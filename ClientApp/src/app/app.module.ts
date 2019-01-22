@@ -5,28 +5,31 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { SharedHomeComponent } from './shared/home/home.component';
+import { SharedAboutComponent } from './shared/about/about.component';
+import { SharedContactComponent } from './shared/contact/contact.component';
+import { SharedHeaderComponent } from './shared/header/header.component';
+import { SharedFooterComponent } from './shared/footer/footer.component';
+import { SharedLayoutComponent } from './shared/layout/layout.component';
+import { LoginComponent } from './login/login.component';
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent
+    SharedHomeComponent,
+    SharedAboutComponent,
+    SharedContactComponent,
+    SharedHeaderComponent,
+    SharedFooterComponent,
+    SharedLayoutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
