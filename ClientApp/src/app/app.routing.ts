@@ -1,13 +1,17 @@
 import { Routes, RouterModule } from '@angular/router';
 
+import { LoginComponent } from './login/login.component';
+
 import { SharedLayoutComponent } from './shared/layout/layout.component';
 import { SharedHomeComponent }  from './shared/home/home.component';
 import { SharedAboutComponent }  from './shared/about/about.component';
 import { SharedContactComponent } from './shared/contact/contact.component';
 
-import { LayoutComponent } from './admin/layout/layout.component';
-import { UserComponent }  from './admin/user/user.component';
-import { FlowComponent }  from './admin/flow/flow.component';
+import { PanelLayoutComponent } from './admin/panel-layout/panel-layout.component';
+import { PanelDashboardComponent }  from './admin/panel-dashboard/panel-dashboard.component';
+import { UserViewComponent }  from './admin/panel-user/view/user-view.component';
+import { UserModifyComponent }  from './admin/panel-user/modify/user-modify.component';
+import { PanelFlowComponent }  from './admin/panel-flow/panel-flow.component';
 
 const appRoutes: Routes =[
     {
@@ -22,11 +26,17 @@ const appRoutes: Routes =[
     },
     {
         path: 'adminpanel',
-        component: LayoutComponent,
+        component: PanelLayoutComponent,
         children: [
-            { path: 'user', component: UserComponent },
-            { path: 'flow', component: FlowComponent }
+            { path: '', component: PanelDashboardComponent, pathMatch: 'full' },
+            { path: 'user', component: UserViewComponent },
+            { path: 'user/modify/:id', component: UserModifyComponent },
+            { path: 'flow', component: PanelFlowComponent }
         ]
+    },
+    {
+        path: 'login',
+        component: LoginComponent
     }
 ];
 

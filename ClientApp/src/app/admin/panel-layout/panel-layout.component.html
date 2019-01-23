@@ -1,0 +1,17 @@
+<app-panel-header></app-panel-header>
+<div id="wrapper">
+  <app-panel-left></app-panel-left>
+  <div id="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a routerLink="{{navObj.uri}}">{{navObj.name}}</a>
+        </li>
+        <li class="breadcrumb-item active">{{navObj.subName}}</li>
+      </ol>
+      <router-outlet></router-outlet>
+    </div>
+    <app-panel-footer></app-panel-footer>
+  </div>
+</div>
