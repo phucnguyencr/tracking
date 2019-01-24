@@ -6,7 +6,7 @@
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
               <th *ngFor="let title of dataTable.headers">{{title}}</th>
@@ -23,10 +23,8 @@
                     <i *ngIf="!item.isActive" class="fa fa-lock text-danger"> Locked</i>
                 </td>    
                 <td >
-                    <button *ngIf="item.isActive" type="button" class="btn btn-link text-danger"
-                    data-toggle="tooltip" data-placement="top" title="Hooray!"> Lock</button>
-                    <button *ngIf="!item.isActive" type="button" class="btn btn-link text-success"
-                    data-toggle="tooltip" data-placement="top" title="Active a User"> Active</button>
+                    <button *ngIf="item.isActive" type="button" class="btn btn-link text-danger"> Lock</button>
+                    <button *ngIf="!item.isActive" type="button" class="btn btn-link text-success"> Active</button>
                 </td>
             </tr>
           </tbody>

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {TooltipModule} from "ngx-tooltip";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -51,8 +50,7 @@ import { PanelFlowComponent } from './admin/panel-flow/panel-flow.component';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    routing,
-    TooltipModule
+    routing
   ],
   providers: [PanelTableComponent],
   bootstrap: [AppComponent]
