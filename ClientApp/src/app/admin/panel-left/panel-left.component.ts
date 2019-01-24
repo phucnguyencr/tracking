@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { userUri } from '../public/model';
 
 @Component({
   selector: 'app-panel-left',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./panel-left.component.css']
 })
 export class PanelLeftComponent implements OnInit {
-
+  private userUri = userUri;
   constructor() { }
 
   ngOnInit() {
-  }
 
+  }
 }

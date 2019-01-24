@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { userUri } from './admin/public/model';
 
 import { LoginComponent } from './login/login.component';
 
@@ -29,8 +30,9 @@ const appRoutes: Routes =[
         component: PanelLayoutComponent,
         children: [
             { path: '', component: PanelDashboardComponent, pathMatch: 'full' },
-            { path: 'user', component: UserViewComponent },
-            { path: 'user/modify/:id', component: UserModifyComponent },
+            { path: userUri.root, component: UserViewComponent },
+            { path: `${userUri.modify}`, component: UserModifyComponent },
+            { path: `${userUri.modify}/:id`, component: UserModifyComponent },
             { path: 'flow', component: PanelFlowComponent }
         ]
     },

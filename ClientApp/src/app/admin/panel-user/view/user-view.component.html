@@ -1,0 +1,37 @@
+<h1>User List</h1>
+<hr>
+<div class="card mb-3">
+    <div class="card-header">
+      <i class="fa fa-table"></i> Tracking List (In-Progress) 
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th *ngFor="let title of dataTable.headers">{{title}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of dataTable.dataArr; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{item.firstName}}</td>
+                <td>{{item.lastName}}</td>
+                <td>{{item.email}}</td>
+                <td>
+                    <i *ngIf="item.isActive" class="fa fa-check-circle-o text-success"> Active</i>
+                    <i *ngIf="!item.isActive" class="fa fa-lock text-danger"> Locked</i>
+                </td>    
+                <td >
+                    <button *ngIf="item.isActive" type="button" class="btn btn-link text-danger"
+                    data-toggle="tooltip" data-placement="top" title="Hooray!"> Lock</button>
+                    <button *ngIf="!item.isActive" type="button" class="btn btn-link text-success"
+                    data-toggle="tooltip" data-placement="top" title="Active a User"> Active</button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer small text-muted">Total {{dataTable.rowsNo}} entries</div>
+  </div>

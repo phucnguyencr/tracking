@@ -1,11 +1,10 @@
-export class navUri {
-  parentName: string;
-  parentUri: string;
-  subName: string;
+export const userUri = {
+  root: "user",
+  modify: "user/modify"
 };
-  
-export const HEROES = [
-  {name: 'Mr. IQ'},
-  {name: 'Magneta'},
-  {name: 'Bombasto'}
-];
+
+export const dataTable = {
+  dataArr: [],
+  headers: [],
+  rowsNo: 0
+};

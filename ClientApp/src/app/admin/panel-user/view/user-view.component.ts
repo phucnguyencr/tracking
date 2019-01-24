@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { navUri } from '../../public/model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { size } from "lodash";
+import { dataTable } from "../../public/model";
 
 @Component({
   selector: 'app-user-view',
@@ -7,12 +8,28 @@ import { navUri } from '../../public/model';
   styleUrls: ['./user-view.component.css']
 })
 export class UserViewComponent implements OnInit {
-  @Input() navObj: navUri;
-  constructor() { }
+  dataTable = dataTable;
 
   ngOnInit() {
-    this.navObj.parentName = "User";
-    this.navObj.parentUri = "/adminpanel/user";
-    this.navObj.subName = "View";
+    this.dataTable.dataArr = [
+      {
+          "id": "1",
+          "firstName": "Phuc",
+          "lastName": "Nguyen",
+          "email": "phucng@gmail.com",
+          "password": "abc",
+          "isActive": true
+      },
+      {
+          "id": "2",
+          "firstName": "An",
+          "lastName": "Nguyen",
+          "email": "anng@gmail.com",
+          "password": "abc",
+          "isActive": false
+      }
+    ];
+    this.dataTable.headers = ["No.", "First Name", "Last Name", "Email", "Status", "Actions"];
+    this.dataTable.rowsNo = size(this.dataTable.dataArr);
   }
 }
