@@ -1,6 +1,7 @@
 export const userUri = {
-  root: "user",
-  modify: "user/modify"
+  root: 'user',
+  modify: 'user/modify',
+  resetPass: 'user/resetPass'
 };
 
 export const dataTable = {

@@ -22,7 +22,8 @@ import { PanelTableComponent } from './admin/panel-table/panel-table.component';
 import { PanelCardComponent } from './admin/panel-card/panel-card.component';
 import { PanelDashboardComponent } from './admin/panel-dashboard/panel-dashboard.component';
 import { UserViewComponent } from './admin/panel-user/view/user-view.component';
-import { UserModifyComponent }  from './admin/panel-user/modify/user-modify.component';
+import { UserModifyComponent } from './admin/panel-user/modify/user-modify.component';
+import { UserResetComponent } from './admin/panel-user/reset/user-reset.component';
 import { PanelFlowComponent } from './admin/panel-flow/panel-flow.component';
 
 @NgModule({
@@ -44,6 +45,7 @@ import { PanelFlowComponent } from './admin/panel-flow/panel-flow.component';
     PanelDashboardComponent,
     UserViewComponent,
     UserModifyComponent,
+    UserResetComponent,
     PanelFlowComponent
   ],
   imports: [

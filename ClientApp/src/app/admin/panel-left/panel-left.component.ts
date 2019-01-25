@@ -7,7 +7,7 @@ import { userUri } from '../public/model';
   styleUrls: ['./panel-left.component.css']
 })
 export class PanelLeftComponent implements OnInit {
-  private userUri = userUri;
+  public userUri = userUri;
   constructor() { }
 
   ngOnInit() {
