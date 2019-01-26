@@ -29,12 +29,11 @@ export class Helpers  {
             window.localStorage['token'] === '') {
             return '';
         }
-        const obj = JSON.parse(window.localStorage['token']);
-        return obj.token;
+        return window.localStorage['token'];
     }
 
     public setToken(data: any): void {
-        this.setStorageToken(JSON.stringify(data));
+        this.setStorageToken(data);
     }
 
     public failToken(): void {
