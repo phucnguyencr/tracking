@@ -12,3 +12,8 @@ table,tbody,td {
 .right {
   float: right;
 }
+
+.dropdown-menu > button:hover {
+  background-color: #0b5290;
+  color: white;
+}
