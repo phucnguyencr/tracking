@@ -8,7 +8,7 @@ export class AppConfig {
 
     constructor() {
         this._config = {
-            authAPI: 'https://localhost:44351/tracking/authencation',
+            authAPI: 'http://localhost:5000/tracking/authencation',
         };
 
     }

@@ -5,7 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { BaseService } from './baseService';
 import { AppConfig } from '../config/config';
-import { Helpers } from '../admin/helpers/helpers';
+import { Helpers } from '../helpers/helpers';
 
 @Injectable()
 

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { ModalConfirmComponent } from '../../modal/modal-confirm/modal-confirm.component';
+import { Helpers } from '../../helpers/helpers'
 
 @Component({
   selector: 'app-panel-header',
@@ -9,7 +11,8 @@ import { ModalConfirmComponent } from '../../modal/modal-confirm/modal-confirm.c
 })
 export class PanelHeaderComponent {
 
-  constructor(private dialogService: DialogService) {}
+  constructor(private dialogService: DialogService, private helpers: Helpers, private router: Router) {}
+
   showConfirm() {
     this.dialogService.addDialog(ModalConfirmComponent, {
       title: 'Ready To Leave',
@@ -18,7 +21,8 @@ export class PanelHeaderComponent {
     })
     .subscribe((isConfirmed) => {
       if (isConfirmed) {
-        alert('accepted');
+        this.helpers.logout();
+        this.router.navigate(['/login']);
       }
     });
   }

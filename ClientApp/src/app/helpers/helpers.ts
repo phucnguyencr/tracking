@@ -10,11 +10,9 @@ export class Helpers  {
     constructor() {}
 
     public isAuthenticated(): boolean {
-        return (!(window.localStorage['token'] === undefined ||
-            window.localStorage['token'] === null ||
-            window.localStorage['token'] === 'null' ||
-            window.localStorage['token'] === 'undefined' ||
-            window.localStorage['token'] === ''));
+        const token = window.localStorage['token'];
+        return (!(token === undefined || token === null ||
+            token === 'null' || token === 'undefined' || token === ''));
     }
 
     public isAuthenticationChanged(): any {
@@ -22,18 +20,11 @@ export class Helpers  {
     }
 
     public getToken(): any {
-        if ( window.localStorage['token'] === undefined ||
-            window.localStorage['token'] === null ||
-            window.localStorage['token'] === 'null' ||
-            window.localStorage['token'] === 'undefined' ||
-            window.localStorage['token'] === '') {
-            return '';
-        }
         return window.localStorage['token'];
     }
 
     public setToken(data: any): void {
-        this.setStorageToken(data);
+        this.setStorageToken(data, false);
     }
 
     public failToken(): void {
@@ -41,11 +32,15 @@ export class Helpers  {
     }
 
     public logout(): void {
-        this.setStorageToken(undefined);
+        this.setStorageToken(undefined, true);
     }
 
-    private setStorageToken(value: any): void {
-        window.localStorage['token'] = value;
+    private setStorageToken(value: any, isRemoved: boolean = false): void {
+        if(isRemoved) {
+            window.localStorage.removeItem('token');
+        } else {
+            window.localStorage['token'] = value.token;
+        }
         this.authenticationChanged.next(this.isAuthenticated());
     }
 }

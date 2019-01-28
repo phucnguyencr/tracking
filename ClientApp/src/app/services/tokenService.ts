@@ -6,7 +6,7 @@ import md5Hex from 'md5-hex';
 
 import { AppConfig } from '../config/config';
 import { BaseService } from './baseService';
-import { Helpers } from '../admin/helpers/helpers';
+import { Helpers } from '../helpers/helpers';
 
 @Injectable()
 
