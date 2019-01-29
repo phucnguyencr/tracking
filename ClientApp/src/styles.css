@@ -17,3 +17,9 @@ table,tbody,td {
   background-color: #0b5290;
   color: white;
 }
+
+.form-group.required .control-label:after { 
+  content:"*";
+  color:red;
+  vertical-align: middle;
+}

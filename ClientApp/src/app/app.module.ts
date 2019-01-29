@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { AuthGuard } from './helpers/activateAuthGuard';
 import { Helpers } from './helpers/helpers';
+import { DataService } from './admin/public/data.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -28,6 +29,7 @@ import { UserModifyComponent } from './admin/panel-user/modify/user-modify.compo
 import { UserResetComponent } from './admin/panel-user/reset/user-reset.component';
 import { PanelFlowComponent } from './admin/panel-flow/panel-flow.component';
 import { ModalConfirmComponent } from './modal/modal-confirm/modal-confirm.component';
+import { ModalWarningComponent } from './modal/modal-warning/modal-warning.component';
 import { ModalInfoComponent } from './modal/modal-info/modal-info.component';
 
 @NgModule({
@@ -51,6 +53,7 @@ import { ModalInfoComponent } from './modal/modal-info/modal-info.component';
     UserResetComponent,
     PanelFlowComponent,
     ModalConfirmComponent,
+    ModalWarningComponent,
     ModalInfoComponent
   ],
   imports: [
@@ -62,9 +65,10 @@ import { ModalInfoComponent } from './modal/modal-info/modal-info.component';
     BootstrapModalModule.forRoot({container: document.body})
   ],
   entryComponents: [
-    ModalConfirmComponent
+    ModalConfirmComponent,
+    ModalWarningComponent
   ],
-  providers: [AuthGuard, Helpers],
+  providers: [AuthGuard, Helpers, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

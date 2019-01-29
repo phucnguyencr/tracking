@@ -28,6 +28,7 @@
     "aspnet-prerendering": "^3.0.1",
     "bootstrap": "^4.1.3",
     "bootstrap-material-design": "^4.1.1",
+    "case": "^1.6.1",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "jquery": "3.3.1",

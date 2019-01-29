@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { size } from 'lodash';
 import { dataTable } from '../../public/model';
+import { DataService } from '../../public/data.service';
+import { userUri } from '../../../admin/public/model';
 
 @Component({
   selector: 'app-user-view',
@@ -10,26 +13,33 @@ import { dataTable } from '../../public/model';
 export class UserViewComponent implements OnInit {
   dataTable = dataTable;
 
+  constructor (private router: Router, private dataService: DataService) {}
+
   ngOnInit() {
     this.dataTable.dataArr = [
       {
           'id': '1',
           'firstName': 'Phuc',
           'lastName': 'Nguyen',
+          'userName': 'pnguyen',
           'email': 'phucng@gmail.com',
-          'password': 'abc',
           'isActive': true
       },
       {
           'id': '2',
           'firstName': 'An',
           'lastName': 'Nguyen',
+          'userName': 'anguyen',
           'email': 'anng@gmail.com',
-          'password': 'abc',
           'isActive': false
       }
     ];
-    this.dataTable.headers = ['No.', 'First Name', 'Last Name', 'Email', 'Status', ''];
+    this.dataTable.headers = ['No.', 'First Name', 'Last Name', 'User Name', 'Email', 'Status', ''];
     this.dataTable.rowsNo = size(this.dataTable.dataArr);
+  }
+  
+  onSelect(user) {
+    this.router.navigate([`adminpanel/${userUri.modify}/${user.id}`]);
+    this.dataService.changeMessage(user);
   }
 }

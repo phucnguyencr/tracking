@@ -35,10 +35,12 @@ export class LoginComponent implements OnInit {
       this.isShow = true;
       if (requiredField) {
         this.errString = '<strong>User Name</strong> and <strong>Password</strong> are required.';
+        return;
       }
       const validLength = hasInvalidLength(errors);
       if (validLength) {
         this.errString = '<strong>User Name</strong> and <strong>Password</strong> are invalid.';
+        return;
       }
     } else {
       this.tokenService.auth(this.loginForm.value).subscribe(token => {

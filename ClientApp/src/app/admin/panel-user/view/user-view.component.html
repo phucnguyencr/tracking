@@ -17,6 +17,7 @@
           <td>{{i+1}}</td>
           <td>{{item.firstName}}</td>
           <td>{{item.lastName}}</td>
+          <td>{{item.userName}}</td>
           <td>{{item.email}}</td>
           <td>
             <i *ngIf="item.isActive" class="fa fa-check-circle-o text-success"> Active</i>
@@ -25,7 +26,7 @@
           <td class="text-center">
             <button *ngIf="item.isActive" type="button" class="btn btn-link text-danger"> Lock</button>
             <button *ngIf="!item.isActive" type="button" class="btn btn-link text-success"> Active</button>
-            <button type="button" class="btn btn-link text-primary"> Edit</button>
+            <button type="button" class="btn btn-link text-primary" (click)="onSelect(item)"> Edit</button>
           </td>
         </tr>
         </tbody>
