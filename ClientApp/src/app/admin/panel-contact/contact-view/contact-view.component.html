@@ -1,8 +1,8 @@
-<h1>User List</h1>
+<h1>Contact List</h1>
 <hr>
 <div class="card mb-3">
   <div class="card-header">
-    <i class="fa fa-table"></i> Tracking List (In-Progress)
+    <i class="fa fa-table"></i> Contact List (Unread)
   </div>
   <div class="card-body">
     <div class="table-responsive-sm">
@@ -16,16 +16,11 @@
         <tr scope="row" *ngFor="let item of dataTable.dataArr; let i = index">
           <td>{{i+1}}</td>
           <td>{{item.fullName}}</td>
-          <td>{{item.userName}}</td>
+          <td>{{item.company}}</td>
           <td>{{item.email}}</td>
-          <td>
-            <i *ngIf="item.isActive" class="fa fa-check-circle-o text-success"> Active</i>
-            <i *ngIf="!item.isActive" class="fa fa-lock text-danger"> Locked</i>
-          </td>
+          <td>{{item.phone}}</td>
           <td class="text-center">
-            <button *ngIf="item.isActive" type="button" class="btn btn-link text-danger"> Lock</button>
-            <button *ngIf="!item.isActive" type="button" class="btn btn-link text-success"> Active</button>
-            <button type="button" class="btn btn-link text-primary" (click)="onSelect(item)"> Edit</button>
+            <button type="button" class="btn btn-link text-primary" (click)="onSelect(item)"> Read Message</button>
           </td>
         </tr>
         </tbody>

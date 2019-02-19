@@ -21,8 +21,7 @@ export class UserModifyComponent implements OnInit {
   isDisabled = true;
   id: string;
   userForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-    lastName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+    fullName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
     userName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
     email: new FormControl('', [Validators.required, Validators.maxLength(50), 
       Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
@@ -38,8 +37,7 @@ export class UserModifyComponent implements OnInit {
     this.dataService.currentMessage.subscribe(data => (userData = data));
     if (isObject(userData) && !isEmpty(userData)) {
       this.userForm.setValue({
-        firstName: userData.firstName,
-        lastName: userData.lastName,
+        fullName: userData.fullName,
         userName: userData.userName,
         email: userData.email,
         isActive: userData.isActive

@@ -1,0 +1,83 @@
+<h1>Contact Message Info</h1>
+<hr>
+<div class="card card-register mx-auto mt-5">
+  <div class="card-header">Details</div>
+  <div class="card-body">
+    <form [formGroup] = "messageForm">
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <label>Full name</label>
+            <input type="text" class="form-control" 
+            formControlName="fullName"
+            [maxLength]="20"
+            [attr.disabled]="isDisabled">
+          </div>
+          <div class="col-md-3"><label class='control-label'></label></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <label>Company</label>
+            <input type="text" class="form-control" 
+            formControlName="company"
+            [maxLength]="50"
+            [attr.disabled]="isDisabled">
+          </div>
+          <div class="col-md-3"><label class='control-label'></label></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <label>Email address</label>
+            <input type="text" class="form-control" 
+            formControlName="email"
+            [maxLength]="50"
+            [attr.disabled]="isDisabled">
+          </div>
+          <div class="col-md-3"><label class='control-label'></label></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <label>Phone number</label>
+            <input type="text" class="form-control" 
+            formControlName="phone"
+            [maxLength]="15"
+            [attr.disabled]="isDisabled">
+          </div>
+          <div class="col-md-3"><label class='control-label'></label></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <label>Message</label>
+            <textarea rows="5" class="form-control" 
+            formControlName="message"
+            [maxLength]="200"
+            [attr.disabled]="isDisabled"></textarea>
+          </div>
+          <div class="col-md-3"><label class='control-label'></label></div>
+        </div>
+      </div>
+      <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <button class="btn btn-primary btn-block col-md-3 right" (click)="markFunc()">Mark as Read</button>
+            </div>
+            <div class="col-md-3"></div>
+          </div>
+      </div>
+    </form>
+  </div>
+</div>

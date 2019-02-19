@@ -4,6 +4,13 @@ export const userUri = {
   resetPass: 'user/resetPass'
 };
 
+export const contactUri = {
+  root: 'contact',
+  read: 'contact/read',
+  landing: 'contact/landing',
+  update: 'contact/update'
+};
+
 export const dataTable = {
   dataArr: [],
   headers: [],

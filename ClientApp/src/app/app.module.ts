@@ -31,6 +31,10 @@ import { PanelFlowComponent } from './admin/panel-flow/panel-flow.component';
 import { ModalConfirmComponent } from './modal/modal-confirm/modal-confirm.component';
 import { ModalWarningComponent } from './modal/modal-warning/modal-warning.component';
 import { ModalInfoComponent } from './modal/modal-info/modal-info.component';
+import { ContactViewComponent } from './admin/panel-contact/contact-view/contact-view.component';
+import { ContactReadComponent } from './admin/panel-contact/contact-read/contact-read.component';
+import { ContactLandingComponent } from './admin/panel-contact/contact-landing/contact-landing.component';
+import { ContactUpdateComponent } from './admin/panel-contact/contact-update/contact-update.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,11 @@ import { ModalInfoComponent } from './modal/modal-info/modal-info.component';
     PanelFlowComponent,
     ModalConfirmComponent,
     ModalWarningComponent,
-    ModalInfoComponent
+    ModalInfoComponent,
+    ContactViewComponent,
+    ContactReadComponent,
+    ContactLandingComponent,
+    ContactUpdateComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

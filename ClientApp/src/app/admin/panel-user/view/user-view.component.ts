@@ -19,22 +19,20 @@ export class UserViewComponent implements OnInit {
     this.dataTable.dataArr = [
       {
           'id': '1',
-          'firstName': 'Phuc',
-          'lastName': 'Nguyen',
+          'fullName': 'Phuc Nguyen',
           'userName': 'pnguyen',
           'email': 'phucng@gmail.com',
           'isActive': true
       },
       {
           'id': '2',
-          'firstName': 'An',
-          'lastName': 'Nguyen',
+          'fullName': 'An Nguyen',
           'userName': 'anguyen',
           'email': 'anng@gmail.com',
           'isActive': false
       }
     ];
-    this.dataTable.headers = ['No.', 'First Name', 'Last Name', 'User Name', 'Email', 'Status', ''];
+    this.dataTable.headers = ['No.', 'Full Name', 'User Name', 'Email', 'Status', ''];
     this.dataTable.rowsNo = size(this.dataTable.dataArr);
   }
   
