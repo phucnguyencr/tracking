@@ -6,6 +6,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { AuthGuard } from './helpers/activateAuthGuard';
 import { Helpers } from './helpers/helpers';
 import { DataService } from './admin/public/data.service';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -35,6 +36,8 @@ import { ContactViewComponent } from './admin/panel-contact/contact-view/contact
 import { ContactReadComponent } from './admin/panel-contact/contact-read/contact-read.component';
 import { ContactLandingComponent } from './admin/panel-contact/contact-landing/contact-landing.component';
 import { ContactUpdateComponent } from './admin/panel-contact/contact-update/contact-update.component';
+import { PanelAboutComponent } from './admin/panel-about/panel-about.component';
+import { EditorComponent } from './editor/editor.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,9 @@ import { ContactUpdateComponent } from './admin/panel-contact/contact-update/con
     ContactViewComponent,
     ContactReadComponent,
     ContactLandingComponent,
-    ContactUpdateComponent
+    ContactUpdateComponent,
+    PanelAboutComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -70,6 +75,7 @@ import { ContactUpdateComponent } from './admin/panel-contact/contact-update/con
     FormsModule,
     ReactiveFormsModule,
     routing,
+    CKEditorModule,
     BootstrapModalModule.forRoot({container: document.body})
   ],
   entryComponents: [

@@ -11,6 +11,11 @@ export const contactUri = {
   update: 'contact/update'
 };
 
+export const aboutUri = {
+  root: 'about',
+  update: 'about/update'
+};
+
 export const dataTable = {
   dataArr: [],
   headers: [],

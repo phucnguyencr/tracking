@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { userUri, contactUri } from '../public/model';
+import { userUri, contactUri, aboutUri } from '../public/model';
 
 @Component({
   selector: 'app-panel-left',
@@ -9,6 +9,7 @@ import { userUri, contactUri } from '../public/model';
 export class PanelLeftComponent implements OnInit {
   public userUri = userUri;
   public contactUri = contactUri;
+  public aboutUri = aboutUri;
   
   constructor() { }
 

@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import { userUri, contactUri } from './admin/public/model';
+import { userUri, contactUri, aboutUri } from './admin/public/model';
 import { AuthGuard } from './helpers/activateAuthGuard';
 
 import { LoginComponent } from './login/login.component';
@@ -18,6 +18,7 @@ import { ContactViewComponent } from './admin/panel-contact/contact-view/contact
 import { ContactReadComponent } from './admin/panel-contact/contact-read/contact-read.component';
 import { ContactLandingComponent } from './admin/panel-contact/contact-landing/contact-landing.component';
 import { ContactUpdateComponent } from './admin/panel-contact/contact-update/contact-update.component';
+import { PanelAboutComponent } from './admin/panel-about/panel-about.component';
 
 const appRoutes: Routes = [
     {
@@ -26,7 +27,7 @@ const appRoutes: Routes = [
         children: [
             { path: '', component: SharedHomeComponent, pathMatch: 'full'},
             { path: 'home', component: SharedHomeComponent },
-            { path: 'about', component: SharedAboutComponent },
+            { path: aboutUri.root, component: SharedAboutComponent },
             { path: 'contact', component: SharedContactComponent }
         ]
     },
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
             { path: contactUri.landing, component: ContactLandingComponent, canActivate: [AuthGuard] },
             { path: `${contactUri.read}/:id`, component: ContactReadComponent, canActivate: [AuthGuard] },
             { path: contactUri.update, component: ContactUpdateComponent, canActivate: [AuthGuard] },
+            { path: aboutUri.update, component: PanelAboutComponent, canActivate: [AuthGuard] },
             { path: 'flow', component: PanelFlowComponent, canActivate: [AuthGuard] }
         ],
         canActivate: [AuthGuard]
