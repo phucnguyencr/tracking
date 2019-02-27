@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import { userUri, contactUri, aboutUri } from './admin/public/model';
+import { userUri, contactUri, aboutUri, scheduleUri } from './admin/public/model';
 import { AuthGuard } from './helpers/activateAuthGuard';
 
 import { LoginComponent } from './login/login.component';
@@ -19,6 +19,7 @@ import { ContactReadComponent } from './admin/panel-contact/contact-read/contact
 import { ContactLandingComponent } from './admin/panel-contact/contact-landing/contact-landing.component';
 import { ContactUpdateComponent } from './admin/panel-contact/contact-update/contact-update.component';
 import { PanelAboutComponent } from './admin/panel-about/panel-about.component';
+import { PanelScheduleComponent } from './admin/panel-schedule/panel-schedule.component';
 
 const appRoutes: Routes = [
     {
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
             { path: `${contactUri.read}/:id`, component: ContactReadComponent, canActivate: [AuthGuard] },
             { path: contactUri.update, component: ContactUpdateComponent, canActivate: [AuthGuard] },
             { path: aboutUri.update, component: PanelAboutComponent, canActivate: [AuthGuard] },
+            { path: scheduleUri.root, component: PanelScheduleComponent, canActivate: [AuthGuard] },
             { path: 'flow', component: PanelFlowComponent, canActivate: [AuthGuard] }
         ],
         canActivate: [AuthGuard]

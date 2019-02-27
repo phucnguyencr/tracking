@@ -20,7 +20,12 @@
         <div class="form-row">
           <div class="col-md-1"></div>
           <div class="col-md-10">
-              <app-editor></app-editor>
+            <ckeditor #input
+              [readonly]="false"
+              debounce="500"
+              [config]="config"
+              formControlName="description">
+            </ckeditor>
           </div>
           <div class="col-md-1"><label class='control-label'></label></div>
         </div>

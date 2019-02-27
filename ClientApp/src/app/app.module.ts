@@ -37,7 +37,7 @@ import { ContactReadComponent } from './admin/panel-contact/contact-read/contact
 import { ContactLandingComponent } from './admin/panel-contact/contact-landing/contact-landing.component';
 import { ContactUpdateComponent } from './admin/panel-contact/contact-update/contact-update.component';
 import { PanelAboutComponent } from './admin/panel-about/panel-about.component';
-import { EditorComponent } from './editor/editor.component';
+import { PanelScheduleComponent } from './admin/panel-schedule/panel-schedule.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +67,7 @@ import { EditorComponent } from './editor/editor.component';
     ContactLandingComponent,
     ContactUpdateComponent,
     PanelAboutComponent,
-    EditorComponent
+    PanelScheduleComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

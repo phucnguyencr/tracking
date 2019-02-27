@@ -26,7 +26,7 @@ export function hasInvalidRequire(anyErrors) {
 }
 
 export function hasInvalidLength(anyErrors) {
-    const lengthErrors = filter(anyErrors,  { 'keyError': 'maxlength' });
+    const lengthErrors = filter(anyErrors,  function(o) { return o.keyError === 'maxlength' || 'minlength'; });
     return lengthErrors.length > 0;
 }
 
@@ -36,9 +36,11 @@ export function hasInvalidPattern(anyErrors) {
 }
 
 export function listInvalidLength(anyErrors) {
-    const arr = filter(anyErrors,  { 'keyError': 'maxlength' });
+    const arrMax = filter(anyErrors, { 'keyError': 'maxlength' });
+    const arrMin = filter(anyErrors, { 'keyError': 'minlength' });
+    const arr = arrMax.concat(arrMin);
     if (size(arr) === 0) return [];
     return arr.map((item) => {
-        return `${Case.sentence(item.key)} - Max length: ${item.errValue.requiredLength}`
+        return `${Case.sentence(item.key)} - ${item.keyError}: ${item.errValue.requiredLength}`
     });
 }

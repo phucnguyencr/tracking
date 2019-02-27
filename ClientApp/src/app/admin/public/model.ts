@@ -16,6 +16,11 @@ export const aboutUri = {
   update: 'about/update'
 };
 
+export const scheduleUri = {
+  root: 'schedule',
+  download: 'schedule/download'
+};
+
 export const dataTable = {
   dataArr: [],
   headers: [],
