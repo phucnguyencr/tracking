@@ -44,3 +44,14 @@ export function listInvalidLength(anyErrors) {
         return `${Case.sentence(item.key)} - ${item.keyError}: ${item.errValue.requiredLength}`
     });
 }
+
+export function listInvalidRange(anyErrors) {
+    const arrMax = filter(anyErrors, { 'keyError': 'max' });
+    const arrMin = filter(anyErrors, { 'keyError': 'min' });
+    const arr = arrMax.concat(arrMin);
+    if (size(arr) === 0) return [];
+    return arr.map((item) => {
+        if (item.keyError === 'max') return `${Case.sentence(item.key)} - ${item.keyError} must be: ${item.errValue.max}` 
+        else return `${Case.sentence(item.key)} - ${item.keyError} must be: ${item.errValue.min}`
+    });
+}

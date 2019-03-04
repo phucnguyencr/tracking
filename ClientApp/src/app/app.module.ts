@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
@@ -28,7 +29,6 @@ import { PanelDashboardComponent } from './admin/panel-dashboard/panel-dashboard
 import { UserViewComponent } from './admin/panel-user/view/user-view.component';
 import { UserModifyComponent } from './admin/panel-user/modify/user-modify.component';
 import { UserResetComponent } from './admin/panel-user/reset/user-reset.component';
-import { PanelFlowComponent } from './admin/panel-flow/panel-flow.component';
 import { ModalConfirmComponent } from './modal/modal-confirm/modal-confirm.component';
 import { ModalWarningComponent } from './modal/modal-warning/modal-warning.component';
 import { ModalInfoComponent } from './modal/modal-info/modal-info.component';
@@ -38,6 +38,10 @@ import { ContactLandingComponent } from './admin/panel-contact/contact-landing/c
 import { ContactUpdateComponent } from './admin/panel-contact/contact-update/contact-update.component';
 import { PanelAboutComponent } from './admin/panel-about/panel-about.component';
 import { PanelScheduleComponent } from './admin/panel-schedule/panel-schedule.component';
+import { FlowViewComponent } from './admin/panel-flow/flow-view/flow-view.component';
+import { FlowModifyComponent } from './admin/panel-flow/flow-modify/flow-modify.component';
+import { ShipViewComponent } from './admin/panel-shipment/ship-view/ship-view.component';
+import { ShipModifyComponent } from './admin/panel-shipment/ship-modify/ship-modify.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,6 @@ import { PanelScheduleComponent } from './admin/panel-schedule/panel-schedule.co
     UserViewComponent,
     UserModifyComponent,
     UserResetComponent,
-    PanelFlowComponent,
     ModalConfirmComponent,
     ModalWarningComponent,
     ModalInfoComponent,
@@ -67,7 +70,11 @@ import { PanelScheduleComponent } from './admin/panel-schedule/panel-schedule.co
     ContactLandingComponent,
     ContactUpdateComponent,
     PanelAboutComponent,
-    PanelScheduleComponent
+    PanelScheduleComponent,
+    FlowViewComponent,
+    FlowModifyComponent,
+    ShipViewComponent,
+    ShipModifyComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -76,6 +83,7 @@ import { PanelScheduleComponent } from './admin/panel-schedule/panel-schedule.co
     ReactiveFormsModule,
     routing,
     CKEditorModule,
+    NgbModule,
     BootstrapModalModule.forRoot({container: document.body})
   ],
   entryComponents: [

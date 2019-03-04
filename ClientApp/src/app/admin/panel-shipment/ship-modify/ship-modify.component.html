@@ -1,0 +1,189 @@
+<h1>Shipment Info</h1>
+<hr>
+<div class="card card-register mx-auto mt-5">
+  <div class="card-header">Details</div>
+  <div class="card-body">
+    <form [formGroup] = "shipForm">
+      <div class="form-group required">
+        <div class="form-row">
+          <div class="col-md-2"></div>
+          <div class="col-md-2">
+            <label class="text-danger">Bill Of Lading</label>
+          </div>
+          <div class="col-md-6">
+            <input type="text" class="form-control" 
+            placeholder="Bill Of Lading"
+            formControlName="billOfLading"
+            [maxLength]="30"
+            autofocus>
+          </div>
+          <div class="col-md-2"><label class='control-label'></label></div>
+        </div>
+      </div>
+      <br/>
+      <div class="form-group required">
+          <div class="form-row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+              <label class="text-danger">Voyage No</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" 
+              placeholder="Voyage No"
+              formControlName="voyageNo"
+              [maxLength]="20"
+              autofocus>
+            </div>
+            <div class="col-md-2"><label class='control-label'></label></div>
+          </div>
+      </div>
+      <br/>
+      <div class="form-group required">
+        <div class="form-row">
+          <div class="col-md-2"></div>
+          <div class="col-md-2">
+              <label class="text-danger">Cargo</label>
+            </div>
+          <div class="col-md-2">
+            <label>Cartons</label>
+            <input type="number" class="form-control" 
+            placeholder="Carton Quantity"
+            formControlName="carton">
+          </div>
+          <div class="col-md-2">
+            <label>Weight</label>
+            <input type="number" class="form-control" 
+            placeholder="Weight"
+            formControlName="weight">
+          </div>
+          <div class="col-md-2">
+            <label>Cubic Meter</label>
+            <input type="number" class="form-control" 
+            placeholder="Cubic Meter"
+            formControlName="cubicMeter">
+          </div>
+          <div class="col-md-2"><label class='control-label'></label></div>
+        </div>
+      </div>
+      <br/>
+      <div class="form-group required">
+        <div class="form-row">
+          <div class="col-md-2"></div>
+          <div class="col-md-2">
+              <label class="text-danger">Departure</label>
+            </div>
+          <div class="col-md-3">
+            <label>Origin</label>
+            <input type="text" class="form-control" 
+            placeholder="Origin"
+            formControlName="origin"
+            [maxlength]="50">
+          </div>
+          <div class="col-md-3">
+            <label>Act. Departure</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                      name="dp" formControlName="actDeparture" ngbDatepicker #d1="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2"><label class='control-label'></label></div>
+        </div>
+      </div>
+      <div class="form-group required">
+          <div class="form-row">
+            <div class="col-md-4"></div>
+            <div class="col-md-3">
+              <label>DEP Vessel</label>
+              <input type="text" class="form-control" 
+              placeholder="DEP Vessel"
+              formControlName="depVessel"
+              [maxlength]="30">
+            </div>
+            <div class="col-md-3">
+              <label>DEP Container</label>
+              <input type="text" class="form-control" 
+              placeholder="DEP Container"
+              formControlName="depContainer"
+              [maxlength]="30">
+            </div>
+            <div class="col-md-2"><label class='control-label'></label></div>
+          </div>
+      </div>
+      <br/>
+      <div class="form-group required">
+          <div class="form-row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <label class="text-danger">Arrival</label>
+              </div>
+            <div class="col-md-3">
+              <label>Destination</label>
+              <input type="text" class="form-control" 
+              placeholder="Destination"
+              formControlName="destination"
+              [maxlength]="50">
+            </div>
+            <div class="col-md-3">
+              <label>Est. Arrival</label>
+              <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd" formControlName="estArrival" ngbDatepicker #d2="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-2"><label class='control-label'></label></div>
+          </div>
+      </div>
+      <div class="form-group required">
+        <div class="form-row">
+          <div class="col-md-4"></div>
+          <div class="col-md-3">
+            <label>AR Vessel</label>
+            <input type="text" class="form-control" 
+            placeholder="AR Vessel"
+            formControlName="arVessel"
+            [maxlength]="30">
+          </div>
+          <div class="col-md-3">
+            <label>AR Container</label>
+            <input type="text" class="form-control" 
+            placeholder="AR Container"
+            formControlName="arContainer"
+            [maxlength]="30">
+          </div>
+          <div class="col-md-2"><label class='control-label'></label></div>
+        </div>
+      </div>
+      <br/>      
+      <div class="form-group required">
+        <div class="form-row">
+          <div class="col-md-2"></div>
+          <div class="col-md-2">
+            <label class="text-danger">Status</label>
+          </div>
+          <div class="col-md-6">
+            <select class="form-control" formControlName="status">
+              <option selected>Open this select menu</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+          </div>
+          <div class="col-md-2"><label class='control-label'></label></div>
+        </div>
+      </div>
+      <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-4"></div>
+            <div class="col-md-6">
+              <button class="btn btn-primary btn-block col-md-2 right" (click)="saveFunc()">Save</button>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+      </div>
+    </form>
+  </div>
+</div>

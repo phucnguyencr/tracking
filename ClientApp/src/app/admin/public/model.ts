@@ -21,6 +21,16 @@ export const scheduleUri = {
   download: 'schedule/download'
 };
 
+export const flowUri = {
+  root: 'flow',
+  modify: 'flow/modify'
+};
+
+export const shipUri = {
+  root: 'shipment',
+  modify: 'shipment/modify'
+};
+
 export const dataTable = {
   dataArr: [],
   headers: [],

@@ -7,26 +7,35 @@ import { ModalWarningComponent } from '../../../modal/modal-warning/modal-warnin
 import { getValidationErrors, hasInvalidRequire, hasInvalidPattern, listInvalidLength } from '../../../utils/getValidationsForm';
 import { DataService } from '../../public/data.service';
 import { userUri } from '../../../admin/public/model';
+import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-user-modify',
-  templateUrl: './user-modify.component.html',
-  styleUrls: ['./user-modify.component.css']
+  selector: 'app-ship-modify',
+  templateUrl: './ship-modify.component.html',
+  styleUrls: ['./ship-modify.component.css']
 })
-export class UserModifyComponent implements OnInit {
+export class ShipModifyComponent implements OnInit {
 
   constructor(private dialogService: DialogService, private route: ActivatedRoute, 
-    private router: Router, private dataService: DataService) { }
+    private router: Router, private dataService: DataService, private calendar: NgbCalendar) { }
   isCreated = false;
   isDisabled = true;
   id: string;
-  userForm = new FormGroup({
-    fullName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-    userName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-    email: new FormControl('', [Validators.required, Validators.maxLength(50), 
-      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-    ]),
-    isActive: new FormControl(true, [Validators.required])
+  shipForm = new FormGroup({
+    billOfLading: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    voyageNo: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+    carton: new FormControl(0, [Validators.required, Validators.max(9999)]),
+    weight: new FormControl(0, [Validators.required, Validators.max(9999)]),
+    cubicMeter: new FormControl(0, [Validators.required, Validators.max(9999)]),
+    origin: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    actDeparture: new FormControl('', [Validators.required]),
+    depVessel: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    depContainer: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    destination: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    estArrival: new FormControl('', [Validators.required]),
+    arVessel: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    arContainer: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    status: new FormControl('', [Validators.required, Validators.maxLength(20)])
   });
 
   ngOnInit() {
@@ -36,21 +45,19 @@ export class UserModifyComponent implements OnInit {
     let userData;
     this.dataService.currentMessage.subscribe(data => (userData = data));
     if (isObject(userData) && !isEmpty(userData)) {
-      this.userForm.setValue({
+      this.shipForm.setValue({
         fullName: userData.fullName,
         userName: userData.userName,
         email: userData.email,
         isActive: userData.isActive
       });
-    } else {
-      this.router.navigate([`adminpanel/${userUri.root}`]);
-    }
+    } 
   }
 
   saveFunc() {
-    const isValid = this.userForm.valid;
+    const isValid = this.shipForm.valid;
     if (!isValid) {
-      const errors = getValidationErrors(this.userForm);
+      const errors = getValidationErrors(this.shipForm);
       const requiredField = hasInvalidRequire(errors);
       if (requiredField) {
         this.openDialog('Required fileds should not be empty. [ * is required field ]');
@@ -80,4 +87,9 @@ export class UserModifyComponent implements OnInit {
       isArray: isArray(msgErr)
     });
   }
+
+  selectToday() {
+    this.shipForm['actDeparture'].setValue = this.calendar.getToday();
+  }
+
 }
