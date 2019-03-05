@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { isArray, isEmpty, isObject } from 'lodash';
 import { ModalWarningComponent } from '../../../modal/modal-warning/modal-warning.component';
+import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { getValidationErrors, hasInvalidRequire, hasInvalidPattern, listInvalidLength } from '../../../utils/getValidationsForm';
 import { DataService } from '../../public/data.service';
 import { userUri } from '../../../admin/public/model';
-import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-ship-modify',
@@ -15,11 +15,12 @@ import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./ship-modify.component.css']
 })
 export class ShipModifyComponent implements OnInit {
-
+  @ViewChild('stepper') public stepper;
   constructor(private dialogService: DialogService, private route: ActivatedRoute, 
     private router: Router, private dataService: DataService, private calendar: NgbCalendar) { }
   isCreated = false;
   isDisabled = true;
+  minDate = this.calendar.getToday();
   id: string;
   shipForm = new FormGroup({
     billOfLading: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -42,16 +43,26 @@ export class ShipModifyComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.isCreated = isEmpty(this.id);
     this.isDisabled = !this.isCreated;
-    let userData;
-    this.dataService.currentMessage.subscribe(data => (userData = data));
-    if (isObject(userData) && !isEmpty(userData)) {
+    let shipData;
+    this.dataService.currentMessage.subscribe(data => (shipData = data));
+    // if (isObject(shipData) && !isEmpty(shipData)) {
       this.shipForm.setValue({
-        fullName: userData.fullName,
-        userName: userData.userName,
-        email: userData.email,
-        isActive: userData.isActive
+        billOfLading: 'HHHLOZ00001',
+        voyageNo: 'HPH0999',
+        carton: 100,
+        weight: 50.03,
+        cubicMeter: 10.02,
+        origin: 'Ha Noi',
+        actDeparture: this.setValueToDatePicker(),
+        depVessel: 'C9990',
+        depContainer: 'HC882',
+        destination: 'Ho Chi Minh',
+        estArrival: this.setValueToDatePicker('2019/03/02'),
+        arVessel: 'ZT201',
+        arContainer: 'ZC672',
+        status: 2
       });
-    } 
+    // } 
   }
 
   saveFunc() {
@@ -88,8 +99,12 @@ export class ShipModifyComponent implements OnInit {
     });
   }
 
-  selectToday() {
-    this.shipForm['actDeparture'].setValue = this.calendar.getToday();
+  setValueToDatePicker(dateStr = null) {
+    if(isEmpty(dateStr)) return this.calendar.getToday();
+    else { 
+      const newDate = new Date(dateStr);
+      return { year: newDate.getFullYear(), month: newDate.getMonth()+1, day: newDate.getDate() };
+    }
   }
 
 }

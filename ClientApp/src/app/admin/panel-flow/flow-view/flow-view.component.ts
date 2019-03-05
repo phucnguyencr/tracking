@@ -19,36 +19,41 @@ export class FlowViewComponent implements OnInit {
     this.dataTable.dataArr = [
       {
         'id': '1',
+        'name': 'Booked',
         'description': 'Booked',
         'subDescription': 'Booking received at $param1$, created by $param2$',
         'step': 1
       },
       {
         'id': '2',
+        'name': 'Planned',
         'description': 'Expected Time of Departure',
-        'subDescription': 'Booking received at $param1$, created by $param2$',
+        'subDescription': 'Planned for departure on vessel $param1$ with Voyage N° $param2$ on $param3$',
         'step': 2
       },
       {
         'id': '3',
-        'description': 'Actual Time of Departure',
-        'subDescription': 'Planned for departure on vessel $param1$ with Voyage N° $param2$ on $param3$',
+        'name': 'Sailed',
+        'description': 'Actual Time of Arrival',
+        'subDescription': 'The vessel $param1$ with Voyage N° $param2$ sailed from $param3$ on $param4$',
         'step': 3
       },
       {
         'id': '4',
+        'name': 'Expected Time',
         'description': 'Expected Time of Arrival',
-        'subDescription': 'The vessel $param1$ with Voyage N° $param2$ sailed from $param3$ on $param4$',
+        'subDescription': '',
         'step': 4
       },
       {
         'id': '5',
-        'description': 'Actual Time of Arrival',
+        'name': 'Arrived',
+        'description': 'Container Expected at Warehouse',
         'subDescription': '',
         'step': 5
       }
     ];
-    this.dataTable.headers = ['No.', 'Description', 'Step', ''];
+    this.dataTable.headers = ['No.', 'Name', 'Description', 'Step', ''];
     this.dataTable.rowsNo = size(this.dataTable.dataArr);
   }
 

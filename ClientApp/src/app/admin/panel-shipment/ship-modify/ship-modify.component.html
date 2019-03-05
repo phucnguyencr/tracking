@@ -83,9 +83,12 @@
             <label>Act. Departure</label>
             <div class="input-group">
               <input class="form-control" placeholder="yyyy-mm-dd"
-                      name="dp" formControlName="actDeparture" ngbDatepicker #d1="ngbDatepicker">
+                name="dp" formControlName="actDeparture" 
+                ngbDatepicker 
+                #d1="ngbDatepicker"
+                [minDate]="minDate">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
+                <button class="btn btn-outline-secondary fa fa-calendar" (click)="d1.toggle()" type="button"></button>
               </div>
             </div>
           </div>
@@ -129,9 +132,13 @@
             <div class="col-md-3">
               <label>Est. Arrival</label>
               <div class="input-group">
-                  <input class="form-control" placeholder="yyyy-mm-dd" formControlName="estArrival" ngbDatepicker #d2="ngbDatepicker">
+                  <input class="form-control" placeholder="yyyy-mm-dd" 
+                  formControlName="estArrival" 
+                  ngbDatepicker 
+                  #d2="ngbDatepicker"
+                  [minDate]="minDate">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+                    <button class="btn btn-outline-secondary fa fa-calendar" (click)="d2.toggle()" type="button"></button>
                   </div>
                 </div>
             </div>
@@ -165,16 +172,33 @@
           <div class="col-md-2">
             <label class="text-danger">Status</label>
           </div>
-          <div class="col-md-6">
-            <select class="form-control" formControlName="status">
-              <option selected>Open this select menu</option>
-              <option>2</option>
-              <option>3</option>
-            </select>
-          </div>
+          <div class="col-md-6"></div>
           <div class="col-md-2"><label class='control-label'></label></div>
         </div>
       </div>
+      <mat-horizontal-stepper labelPosition="bottom" #stepper>
+          <mat-step>
+              <form >
+                  <ng-template matStepLabel>Fill out your name</ng-template>
+                  <div>
+                      <button mat-button matStepperNext>Next</button>
+                  </div>
+              </form>
+          </mat-step>
+          <mat-step optional>
+              <form>
+                  <ng-template matStepLabel>Fill out your address</ng-template>
+                  <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button matStepperNext>Next</button>
+                  </div>
+              </form>
+          </mat-step>
+          <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+              You are now done.
+          </mat-step>
+      </mat-horizontal-stepper>
       <div class="form-group">
           <div class="form-row">
             <div class="col-md-4"></div>

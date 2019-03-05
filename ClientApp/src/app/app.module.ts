@@ -2,12 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { AuthGuard } from './helpers/activateAuthGuard';
 import { Helpers } from './helpers/helpers';
 import { DataService } from './admin/public/data.service';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -81,9 +84,13 @@ import { ShipModifyComponent } from './admin/panel-shipment/ship-modify/ship-mod
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
     routing,
     CKEditorModule,
     NgbModule,
+    MatStepperModule,
+    MatIconModule,
     BootstrapModalModule.forRoot({container: document.body})
   ],
   entryComponents: [

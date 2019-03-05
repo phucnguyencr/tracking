@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { size } from 'lodash';
 import { dataTable } from '../../public/model';
 import { DataService } from '../../public/data.service';
@@ -14,8 +15,34 @@ export class ShipViewComponent implements OnInit {
 
   dataTable = dataTable;
   constructor(private router: Router, private dataService: DataService) { }
+  shipForm = new FormGroup({
+    billOfLading: new FormControl({value: '', disabled: false }, [Validators.maxLength(20)]),
+    fromDate: new FormControl({value: '', disabled: true }, [Validators.maxLength(10)]),
+    toDate: new FormControl({value: '', disabled: true }, [Validators.maxLength(10)])
+  });
 
   ngOnInit() {
+
+  }
+
+  onSelect(flow) {
+    this.router.navigate([`adminpanel/${shipUri.modify}/${flow.id}`]);
+    this.dataService.changeMessage(flow);
+  }
+
+  checkFunc(strChecked) {
+    if(strChecked) {
+      this.shipForm.controls['billOfLading'].enable();
+      this.shipForm.controls['fromDate'].disable();
+      this.shipForm.controls['toDate'].disable();
+    } else {
+      this.shipForm.controls['billOfLading'].disable();
+      this.shipForm.controls['fromDate'].enable();
+      this.shipForm.controls['toDate'].enable();
+    }
+  }
+
+  searchFunc() {
     this.dataTable.dataArr = [
       {
         'id': '1',
@@ -48,10 +75,4 @@ export class ShipViewComponent implements OnInit {
     this.dataTable.headers = ['No.', 'Bill Of Lading', 'Cargo', 'Origin', 'Atc. Departure', 'Destination', 'Est. Arrival', ''];
     this.dataTable.rowsNo = size(this.dataTable.dataArr);
   }
-
-  onSelect(flow) {
-    this.router.navigate([`adminpanel/${shipUri.modify}/${flow.id}`]);
-    this.dataService.changeMessage(flow);
-  }
-
 }

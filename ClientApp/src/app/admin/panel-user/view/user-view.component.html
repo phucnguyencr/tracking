@@ -9,16 +9,16 @@
       <table class="table table-bordered table-hover">
         <thead class="thead-light">
         <tr>
-          <th scope="col" *ngFor="let title of dataTable.headers">{{title}}</th>
+          <th scope="col" *ngFor="let title of dataTable.headers" class="text-center">{{title}}</th>
         </tr>
         </thead>
         <tbody>
         <tr scope="row" *ngFor="let item of dataTable.dataArr; let i = index">
-          <td>{{i+1}}</td>
+          <td class="text-center">{{i+1}}</td>
           <td>{{item.fullName}}</td>
           <td>{{item.userName}}</td>
           <td>{{item.email}}</td>
-          <td>
+          <td class="text-center">
             <i *ngIf="item.isActive" class="fa fa-check-circle-o text-success"> Active</i>
             <i *ngIf="!item.isActive" class="fa fa-lock text-danger"> Locked</i>
           </td>
