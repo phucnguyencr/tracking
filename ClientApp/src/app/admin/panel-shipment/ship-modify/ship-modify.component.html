@@ -177,27 +177,15 @@
         </div>
       </div>
       <mat-horizontal-stepper labelPosition="bottom" #stepper>
-          <mat-step>
-              <form >
-                  <ng-template matStepLabel>Fill out your name</ng-template>
-                  <div>
-                      <button mat-button matStepperNext>Next</button>
-                  </div>
-              </form>
-          </mat-step>
-          <mat-step optional>
-              <form>
-                  <ng-template matStepLabel>Fill out your address</ng-template>
-                  <div>
-                      <button mat-button matStepperPrevious>Back</button>
-                      <button mat-button matStepperNext>Next</button>
-                  </div>
-              </form>
-          </mat-step>
-          <mat-step>
-              <ng-template matStepLabel>Done</ng-template>
-              You are now done.
-          </mat-step>
+        <ng-template matStepperIcon="edit">
+          <mat-icon>check</mat-icon>
+        </ng-template>
+        <mat-step *ngFor="let item of stepArr; let index = index; let last = last;" [completed]="index <= currentIdx">
+            <ng-template matStepLabel>{{item.name}}</ng-template>
+            <div *ngIf="!last">
+              <button class="btn btn-success" matStepperNext>Done</button>
+            </div>
+        </mat-step>
       </mat-horizontal-stepper>
       <div class="form-group">
           <div class="form-row">

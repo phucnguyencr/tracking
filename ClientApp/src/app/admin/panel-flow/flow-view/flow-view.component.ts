@@ -40,7 +40,7 @@ export class FlowViewComponent implements OnInit {
       },
       {
         'id': '4',
-        'name': 'Expected Time',
+        'name': 'On The Way',
         'description': 'Expected Time of Arrival',
         'subDescription': '',
         'step': 4
@@ -51,6 +51,13 @@ export class FlowViewComponent implements OnInit {
         'description': 'Container Expected at Warehouse',
         'subDescription': '',
         'step': 5
+      },
+      {
+        'id': '6',
+        'name': 'Done',
+        'description': 'Your shipment is now done',
+        'subDescription': '',
+        'step': 6
       }
     ];
     this.dataTable.headers = ['No.', 'Name', 'Description', 'Step', ''];

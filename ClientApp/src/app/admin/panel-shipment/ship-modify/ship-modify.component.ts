@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { DialogService } from 'ng2-bootstrap-modal';
@@ -14,13 +14,16 @@ import { userUri } from '../../../admin/public/model';
   templateUrl: './ship-modify.component.html',
   styleUrls: ['./ship-modify.component.css']
 })
-export class ShipModifyComponent implements OnInit {
+export class ShipModifyComponent implements OnInit, AfterViewInit {
   @ViewChild('stepper') public stepper;
   constructor(private dialogService: DialogService, private route: ActivatedRoute, 
-    private router: Router, private dataService: DataService, private calendar: NgbCalendar) { }
+    private router: Router, private dataService: DataService, private calendar: NgbCalendar, private cdr: ChangeDetectorRef) { }
   isCreated = false;
   isDisabled = true;
+  isCompleted = false;
   minDate = this.calendar.getToday();
+  currentIdx = 0;
+  stepArr = [];
   id: string;
   shipForm = new FormGroup({
     billOfLading: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -63,6 +66,14 @@ export class ShipModifyComponent implements OnInit {
         status: 2
       });
     // } 
+    this.stepArr = this.flowArr();
+  }
+
+  ngAfterViewInit() {
+    this.currentIdx = 6;
+    this.stepper.selectedIndex = this.currentIdx - 1;
+    this.stepper.next();
+    this.cdr.detectChanges();  
   }
 
   saveFunc() {
@@ -107,4 +118,32 @@ export class ShipModifyComponent implements OnInit {
     }
   }
 
+  flowArr () {
+    return [
+      {
+        'name': 'Booked',
+        'step': 1
+      },
+      {
+        'name': 'Planned',
+        'step': 2
+      },
+      {
+        'name': 'Sailed',
+        'step': 3
+      },
+      {
+        'name': 'On The Way',
+        'step': 4
+      },
+      {
+        'name': 'Arrived',
+        'step': 5
+      },
+      {
+        'name': 'Done',
+        'step': 6
+      }
+    ]
+  }
 }
