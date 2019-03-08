@@ -4,6 +4,7 @@
 html,
 body {
     background-color: #115896;
+    height: 100%;
 }
 
 table,tbody,td {
@@ -28,4 +29,48 @@ table,tbody,td {
 
 .mat-horizontal-stepper-header{
   pointer-events: none !important;
+}
+
+.shared-body {
+  background-color: white;
+  padding: 40px 40px 100px 40px;
+}
+
+.home-img {
+  height: 350px;
+  width: 100%;
+}
+
+.about-img {
+  width: 100%;
+}
+
+.skype-img {
+  width: 35px;
+}
+
+.card-info {
+  border: 1.25px solid #0a67cc;
+}
+
+.text-blue {
+  color: #0d529c !important;
+}
+
+.text-shadow {
+  text-shadow: -1px 3px 5px #C6C6C6;
+}
+
+.leftpane {
+  border-right: 1px solid #e1e1e1;
+  padding-right: 3%;
+}
+
+.rightpane {
+  padding-left: 3%;
+  word-wrap: break-word;
+}
+
+.about-link {
+  text-decoration:none !important;
 }

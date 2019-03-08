@@ -1,7 +1,12 @@
 .footer {
-    background-color: #f5f5f5;
+    background-color: white;
     text-align: center;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
-  }
+    border-top: 1px solid #0d529cd1;
+}
+
+.text-blue-muted {
+  color: #0d529cd1;
+}

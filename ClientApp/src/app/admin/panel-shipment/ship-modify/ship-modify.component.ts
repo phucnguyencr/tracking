@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { DialogService } from 'ng2-bootstrap-modal';
-import { isArray, isEmpty, isObject } from 'lodash';
+import { isArray, isEmpty, isNil } from 'lodash';
 import { ModalWarningComponent } from '../../../modal/modal-warning/modal-warning.component';
 import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-import { getValidationErrors, hasInvalidRequire, hasInvalidPattern, listInvalidLength } from '../../../utils/getValidationsForm';
+import { getValidationErrors, hasInvalidRequire, listInvalidLength } from '../../../utils/getValidationsForm';
 import { DataService } from '../../public/data.service';
 import { userUri } from '../../../admin/public/model';
 
@@ -18,11 +18,9 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
   @ViewChild('stepper') public stepper;
   constructor(private dialogService: DialogService, private route: ActivatedRoute, 
     private router: Router, private dataService: DataService, private calendar: NgbCalendar, private cdr: ChangeDetectorRef) { }
-  isCreated = false;
-  isDisabled = true;
-  isCompleted = false;
+  isDisabled = false;
   minDate = this.calendar.getToday();
-  currentIdx = 0;
+  doneIdx = 0;
   stepArr = [];
   id: string;
   shipForm = new FormGroup({
@@ -44,11 +42,10 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.isCreated = isEmpty(this.id);
-    this.isDisabled = !this.isCreated;
+    this.isDisabled = !isEmpty(this.id);
     let shipData;
     this.dataService.currentMessage.subscribe(data => (shipData = data));
-    // if (isObject(shipData) && !isEmpty(shipData)) {
+    if (!isEmpty(shipData) && !isEmpty(this.id)) {
       this.shipForm.setValue({
         billOfLading: 'HHHLOZ00001',
         voyageNo: 'HPH0999',
@@ -63,16 +60,22 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
         estArrival: this.setValueToDatePicker('2019/03/02'),
         arVessel: 'ZT201',
         arContainer: 'ZC672',
-        status: 2
+        status: 0
       });
-    // } 
+      this.shipForm.controls['billOfLading'].disable();
+      this.shipForm.controls['carton'].disable();
+      this.shipForm.controls['weight'].disable();
+      this.shipForm.controls['cubicMeter'].disable();
+    } 
     this.stepArr = this.flowArr();
   }
 
   ngAfterViewInit() {
-    this.currentIdx = 6;
-    this.stepper.selectedIndex = this.currentIdx - 1;
-    this.stepper.next();
+    this.doneIdx = 0;
+    if (this.doneIdx > 0) {
+      this.stepper.selectedIndex = this.doneIdx - 1;
+      this.stepper.next();
+    }
     this.cdr.detectChanges();  
   }
 
@@ -88,10 +91,6 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
       const listErr = listInvalidLength(errors);
       if (!isEmpty(listErr)) {
         this.openDialog(listErr);
-        return;
-      }
-      if (hasInvalidPattern(errors)) {
-        this.openDialog('Email is invalid format.');
         return;
       }
     } else {
@@ -116,6 +115,10 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
       const newDate = new Date(dateStr);
       return { year: newDate.getFullYear(), month: newDate.getMonth()+1, day: newDate.getDate() };
     }
+  }
+
+  changeStepEvent(doneStep) {
+    this.doneIdx = doneStep;
   }
 
   flowArr () {

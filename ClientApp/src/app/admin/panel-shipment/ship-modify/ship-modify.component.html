@@ -165,28 +165,30 @@
           <div class="col-md-2"><label class='control-label'></label></div>
         </div>
       </div>
-      <br/>      
-      <div class="form-group required">
-        <div class="form-row">
-          <div class="col-md-2"></div>
-          <div class="col-md-2">
-            <label class="text-danger">Status</label>
-          </div>
-          <div class="col-md-6"></div>
-          <div class="col-md-2"><label class='control-label'></label></div>
-        </div>
-      </div>
-      <mat-horizontal-stepper labelPosition="bottom" #stepper>
-        <ng-template matStepperIcon="edit">
-          <mat-icon>check</mat-icon>
-        </ng-template>
-        <mat-step *ngFor="let item of stepArr; let index = index; let last = last;" [completed]="index <= currentIdx">
-            <ng-template matStepLabel>{{item.name}}</ng-template>
-            <div *ngIf="!last">
-              <button class="btn btn-success" matStepperNext>Done</button>
+      <br/>
+      <div [hidden]="!isDisabled">
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+              <label class="text-danger">Status</label>
             </div>
-        </mat-step>
-      </mat-horizontal-stepper>
+            <div class="col-md-6"></div>
+            <div class="col-md-2"><label class='control-label'></label></div>
+          </div>
+        </div>
+        <mat-horizontal-stepper labelPosition="bottom" #stepper>
+          <ng-template matStepperIcon="edit">
+            <mat-icon>check</mat-icon>
+          </ng-template>
+          <mat-step *ngFor="let item of stepArr; let index = index; let last = last;" [completed]="index <= doneIdx">
+              <ng-template matStepLabel>{{item.name}}</ng-template>
+              <div *ngIf="!last">
+                <button class="btn btn-success" matStepperNext (click)="changeStepEvent(item.step)">Done</button>
+              </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </div> 
       <div class="form-group">
           <div class="form-row">
             <div class="col-md-4"></div>
