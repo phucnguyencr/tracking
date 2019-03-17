@@ -7,7 +7,10 @@ namespace tracking.Models
     {
         public string ID { get; set; }
         [Required]
-        [MaxLength(20)]
+        [MaxLength(50)]
+        public string FullName { get; set; }
+        [Required]
+        [MaxLength(100)]
         public string UserName { get; set; }
         [Required]
         [MaxLength(100)]
@@ -18,5 +21,20 @@ namespace tracking.Models
         [Required]
         public Boolean Active { get; set; }
         public string Role { get; set; }
+    }
+
+    public class UserUpdate
+    {
+        [Required]
+        [MaxLength(50)]
+        public string FullName { get; set; }
+        [Required]
+        [MaxLength(100)]
+        public string UserName { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string Email { get; set; }
+        [Required]
+        public Boolean Active { get; set; }
     }
 }

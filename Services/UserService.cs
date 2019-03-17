@@ -47,6 +47,14 @@ namespace tracking.Services
             return context.User.Find(id);
         }
 
+        public Array Get(TrackingContext context)
+        {
+            var userList = context.User.Select(x => new {
+                x.ID, x.FullName, x.Email, x.UserName, x.Active
+            }).ToArray();
+            return userList;
+        }
+
         public User UserExistToChange(Authencation login, TrackingContext context)
         {
             return context.User.FirstOrDefault(u => u.UserName == login.UserName && u.Password == login.Password);

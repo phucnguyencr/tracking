@@ -14,7 +14,7 @@ import { getValidationErrors, hasInvalidRequire, hasInvalidPattern, listInvalidL
 export class ContactUpdateComponent implements OnInit {
 
   constructor(private dialogService: DialogService, private router: Router) { }
-  
+
   contactForm = new FormGroup({
     fullName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     email: new FormControl('', [Validators.required, Validators.maxLength(50),
