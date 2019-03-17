@@ -15,35 +15,25 @@ namespace tracking_api.Controllers
     [Route("tracking/[controller]")]
     [ApiController]
     [Authorize]
-    public class ContactActivityController : ControllerBase
+    public class ContactController : ControllerBase
     {
-        private ContactActivityService contactActivityService;
+        private ContactService contactService;
         private TrackingContext _context;
-        public ContactActivityController(TrackingContext context)
+        public ContactController(TrackingContext context)
         {
             _context = context;
-            contactActivityService = new ContactActivityService();
+            contactService = new ContactService();
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Get()
         {
-            return Ok(contactActivityService.GetNew(_context));
-        }
-
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] ContactActivity contact)
-        {
-            if (!ModelState.IsValid) {
-                throw new Exception(Contants.UNVALID);
-            }
-            await contactActivityService.Create(contact, _context);
-            return Created("", contact);
+            return Ok(contactService.Get(_context));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromRoute] string id)
+        public async Task<IActionResult> Update([FromRoute] string id, [FromBody] Contact contact)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -53,13 +43,16 @@ namespace tracking_api.Controllers
             {
                 throw new Exception(Contants.UNVALID);
             }
-            var objDB = contactActivityService.GetById(id, _context);
+            var objDB = contactService.Get(_context);
             if (objDB == null)
             {
                 throw new Exception(Contants.NOTFOUND);
             }
-            objDB.IsRead = true;
-            await contactActivityService.Update(objDB, _context);
+            objDB.FullName = contact.FullName;
+            objDB.Email = contact.Email;
+            objDB.PhoneNumber = contact.PhoneNumber;
+            objDB.Address = contact.Address;
+            await contactService.Update(objDB, _context);
             return NoContent();
         }
     }

@@ -13,6 +13,7 @@ namespace tracking.Controllers
 {
     [Route("tracking/[controller]")]
     [ApiController]
+    [Authorize]
     public class AuthencationController : Controller
     {
         private IConfiguration _config;
@@ -27,6 +28,7 @@ namespace tracking.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public dynamic Login([FromBody] Authencation obj)
         {
             var tokenString = JwtTokenConfig.BuildToken(_config);
@@ -40,8 +42,7 @@ namespace tracking.Controllers
         }
 
         [HttpPut]
-        [Authorize]
-        public dynamic ChangePassword([FromBody] Authencation obj)
+        public async Task<dynamic> ChangePassword([FromBody] Authencation obj)
         {
             if (string.IsNullOrEmpty(obj.OldPassword))
             {
@@ -52,7 +53,7 @@ namespace tracking.Controllers
                 throw new Exception(Contants.NOTFOUND);
             }
             objDB.Password = EncryptionUtil.Encrypt(obj.Password, true);
-            userService.Update(objDB, _context);
+            await userService.Update(objDB, _context);
             return NoContent();
         }
     }

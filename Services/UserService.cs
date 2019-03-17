@@ -10,7 +10,7 @@ namespace tracking.Services
 {
     public class UserService
     {
-        public async void Create(User user, TrackingContext context)
+        public async Task Create(User user, TrackingContext context)
         {
             user.Password = EncryptionUtil.Encrypt(user.Password, true);
             user.Active = true;
@@ -19,13 +19,13 @@ namespace tracking.Services
             await context.SaveChangesAsync();
         }
 
-        public async void Update(User user, TrackingContext context)
+        public async Task Update(User user, TrackingContext context)
         {
             context.Entry(user).State = EntityState.Modified;
             await context.SaveChangesAsync();
         }
 
-        public async void Delete(User user, TrackingContext context)
+        public async Task Delete(User user, TrackingContext context)
         {
             context.User.Remove(user);
             await context.SaveChangesAsync();

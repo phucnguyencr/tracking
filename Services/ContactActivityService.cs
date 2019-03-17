@@ -13,16 +13,11 @@ namespace tracking.Services
     {
         public async Task Create(ContactActivity contact, TrackingContext context)
         {
-            try
-            {
+            contact.ID = Guid.NewGuid().ToString();
             contact.IsRead = false;
             contact.CreatedDate = DateTime.Now;
-            contact.ID = Guid.NewGuid().ToString();
             context.ContactActivity.Add(contact);
             await context.SaveChangesAsync();
-            } catch (Exception err) {
-                throw new Exception(contact.ToString());
-            }
         }
 
         public async Task Update(ContactActivity contact, TrackingContext context)

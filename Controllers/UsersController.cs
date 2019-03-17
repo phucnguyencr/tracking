@@ -32,7 +32,7 @@ namespace tracking_api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] User user)
+        public async Task<IActionResult> Create([FromBody] User user)
         {
             if (!ModelState.IsValid) {
                 throw new Exception(Contants.UNVALID);
@@ -41,12 +41,12 @@ namespace tracking_api.Controllers
             {
                 throw new Exception(Contants.DUPLICATE);
             }
-            userService.Create(user, _context);
+            await userService.Create(user, _context);
             return Created("", "");
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update([FromRoute] string id, [FromBody] UserUpdate user)
+        public async Task<IActionResult> Update([FromRoute] string id, [FromBody] UserUpdate user)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -64,13 +64,13 @@ namespace tracking_api.Controllers
             objDB.FullName = user.FullName;
             objDB.Email = user.Email;
             objDB.Active = user.Active;
-            userService.Update(objDB, _context);
+            await userService.Update(objDB, _context);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
 
-        public IActionResult Delete([FromRoute] string id)
+        public async Task<IActionResult> Delete([FromRoute] string id)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -81,7 +81,7 @@ namespace tracking_api.Controllers
             {
                 throw new Exception(Contants.NOTFOUND);
             }
-            userService.Delete(objDB, _context);
+            await userService.Delete(objDB, _context);
             return Ok();
         }
     }
