@@ -3,12 +3,12 @@
 <div class="card card-register mx-auto mt-5">
   <div class="card-header">Details</div>
   <div class="card-body">
-    <form [formGroup] = "uploadForm">
+    <form>
       <div class="form-group">
         <div class="form-row">
           <div class="col-md-6">
               <div class="custom-file">
-                <input type="file" class="custom-file-input" formControlName="uploadFile" id="uploadFile" (change)="fileChange()">
+                <input type="file" class="custom-file-input" (change)="fileChange()" #fileInput>
                 <label class="custom-file-label" for="uploadFile">Choose file</label>
               </div>
           </div>

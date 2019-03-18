@@ -28,8 +28,8 @@ export class BaseService {
         return Observable.throw(errMsg);
     }
 
-    public header() {
-        let header = new HttpHeaders({ 'Content-Type': 'application/json' });
+    public header(isJson = true) {
+        let header = isJson ? new HttpHeaders({ 'Content-Type': 'application/json' }) : new HttpHeaders();
         if (this.helper.isAuthenticated()) {
           header = header.append('Authorization', 'Bearer ' + this.helper.getToken());
         }

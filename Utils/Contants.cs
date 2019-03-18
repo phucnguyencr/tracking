@@ -14,5 +14,7 @@ namespace tracking.Utils
         public const string UNKNOW = "Unknow";
         public const string INTERNALERROR = "Internal Server Error";
         public const string NOTFOUND = "Not Found";
+        public const string EXCELFILE = "Excel";
+        public const string JSONFILE = "Json";
     }
 }
