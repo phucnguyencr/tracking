@@ -19,28 +19,33 @@ namespace tracking_api.Controllers
     // [Authorize]
     public class ScheduleController : ControllerBase
     {
-        private ScheduleService scheduleService;
-        public ScheduleController()
-        {
-            scheduleService = new ScheduleService();
-        }
+        private string filePath = StringPath.FilesPath("", Contants.EXCELFILE);
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Get()
+        public IActionResult Download()
         {
-            return Ok(scheduleService.Get());
+            DirectoryInfo di = new DirectoryInfo(filePath);
+            string fileName = di.GetFiles().Select(fi => fi.Name).FirstOrDefault();
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath + fileName);
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload()
+        public IActionResult Upload()
         {
             var file = Request.Form.Files[0];
             if (file.Length <= 0)
             {
                 throw new Exception(Contants.UNVALID);
             }
-            string filePath = StringPath.FilesPath("", Contants.EXCELFILE);
+
+            System.IO.DirectoryInfo di = new DirectoryInfo(filePath);
+            foreach (FileInfo fi in di.GetFiles())
+            {
+                fi.Delete(); 
+            }
+
             string fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
             string fullPath = Path.Combine(filePath, fileName);
             using (var stream = new FileStream(fullPath, FileMode.Create))

@@ -18,4 +18,9 @@ export class ScheduleService extends BaseService {
     return this.http.post(this.pathAPI, formData, super.header(false)).pipe(
     catchError(super.handleError));
   }
+
+  downloadFile (): Observable<any> {
+    const header = super.header(false);
+    return this.http.get(this.pathAPI, { ...header, responseType: 'arraybuffer' });
+  }
 }

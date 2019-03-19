@@ -95,7 +95,8 @@ import { ShipModifyComponent } from './admin/panel-shipment/ship-modify/ship-mod
   ],
   entryComponents: [
     ModalConfirmComponent,
-    ModalWarningComponent
+    ModalWarningComponent,
+    ModalInfoComponent
   ],
   providers: [AuthGuard, Helpers, DataService],
   bootstrap: [AppComponent]
