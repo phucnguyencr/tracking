@@ -74,3 +74,22 @@ table,tbody,td {
 .about-link {
   text-decoration:none !important;
 }
+
+.set-right {
+  text-align: right;
+  display: block;
+}
+
+.set-left {
+  text-align: left;
+  display: block;
+}
+
+.progress-margin {
+  margin-left: 6%;
+  margin-right: 6%;
+}
+
+mat-step-header ~ .mat-stepper-vertical-line {
+  height: 30px;
+}

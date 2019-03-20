@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-4">
+      <h3><i class="fa fa-ship text-blue set-left"><strong> HPHZLO03202</strong></i></h3>
+  </div>
+  <div class="col-8">
+    <h3><label class="text-blue set-right"><strong> 192 CARTONS - 1038.000 kgs - 10.250 cbm</strong></label></h3>
+  </div>
+</div>
+<br/>
+<div class="progress progress-margin">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" style="width:50%">
+  </div>
+</div>
+<mat-horizontal-stepper labelPosition="bottom" #stepper>
+  <ng-template matStepperIcon="number">
+    <mat-icon>done</mat-icon>
+  </ng-template>
+  <mat-step>
+    <ng-template matStepLabel>
+      <h4><span class="badge badge-success">VNHPH</span></h4>
+      Place of Receipt
+    </ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>
+      <h4><span class="badge badge-success">VNHPH</span></h4>
+      Port of Loading
+      <br/><strong>Act. Departure 15/12/2018</strong>
+    </ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>
+      <h4><span class="badge badge-success">KRPUS</span></h4>
+      Port of Discharge Est
+      <br/><strong>Est. Arrival 15/12/2018</strong>
+    </ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>
+      <h4><span class="badge badge-success">MXZLO</span></h4>
+      Place of Delivery
+      <br/><strong>Est. Arrival 12/01/2019</strong>
+    </ng-template>
+  </mat-step>
+</mat-horizontal-stepper>
+<mat-vertical-stepper [linear]="false">
+    <ng-template matStepperIcon="number">
+      <mat-icon>done</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="edit">
+      <mat-icon>check</mat-icon>
+    </ng-template>
+    <mat-step>
+      <ng-template matStepLabel>
+        Place of Receipt
+      </ng-template>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>
+        Port of Loading
+        <br/><strong>Act. Departure 15/12/2018</strong>
+      </ng-template>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>
+        Port of Discharge Est
+        <br/><strong>Est. Arrival 15/12/2018</strong>
+      </ng-template>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>
+        Place of Delivery
+        <br/><strong>Est. Arrival 12/01/2019</strong>
+      </ng-template>
+    </mat-step>
+  </mat-vertical-stepper>

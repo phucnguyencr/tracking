@@ -5,10 +5,10 @@
       </h3>
       <div class="form-group row">
           <div class="col-sm-10">
-              <input type="search" class="form-control" ng-model="searchtext" placeholder="Please enter your Bill of Lading Number at here">
+              <input type="search" class="form-control" [(ngModel)]="searchText" placeholder="Please enter your Bill of Lading Number at here">
           </div>
           <div class="col-sm-2">
-              <button type="submit" ng-click="submit(searchtext)" value="Submit" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>            
+            <button class="btn btn-primary" (click)="search()"><i class="fa fa-search"></i> Search</button>          
           </div>
       </div>
   </div>

@@ -7,6 +7,7 @@ import { SharedLayoutComponent } from './shared/layout/layout.component';
 import { SharedHomeComponent } from './shared/home/home.component';
 import { SharedAboutComponent } from './shared/about/about.component';
 import { SharedContactComponent } from './shared/contact/contact.component';
+import { SharedTrackingComponent } from './shared/tracking/tracking.component';
 
 import { PanelLayoutComponent } from './admin/panel-layout/panel-layout.component';
 import { PanelDashboardComponent } from './admin/panel-dashboard/panel-dashboard.component';
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
             { path: '', component: SharedHomeComponent, pathMatch: 'full'},
             { path: 'home', component: SharedHomeComponent },
             { path: aboutUri.root, component: SharedAboutComponent },
-            { path: 'contact', component: SharedContactComponent }
+            { path: 'contact', component: SharedContactComponent },
+            { path: 'tracking/:id', component: SharedTrackingComponent },
         ]
     },
     {

@@ -22,6 +22,7 @@ import { SharedContactComponent } from './shared/contact/contact.component';
 import { SharedHeaderComponent } from './shared/header/header.component';
 import { SharedFooterComponent } from './shared/footer/footer.component';
 import { SharedLayoutComponent } from './shared/layout/layout.component';
+import { SharedTrackingComponent } from './shared/tracking/tracking.component';
 
 import { PanelHeaderComponent } from './admin/panel-header/panel-header.component';
 import { PanelFooterComponent } from './admin/panel-footer/panel-footer.component';
@@ -77,7 +78,8 @@ import { ShipModifyComponent } from './admin/panel-shipment/ship-modify/ship-mod
     FlowViewComponent,
     FlowModifyComponent,
     ShipViewComponent,
-    ShipModifyComponent
+    ShipModifyComponent,
+    SharedTrackingComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
