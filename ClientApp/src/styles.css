@@ -90,6 +90,14 @@ table,tbody,td {
   margin-right: 6%;
 }
 
+.no-padding {
+  padding: 0;
+}
+
+.font-small {
+  font-size: small;
+}
+
 mat-step-header ~ .mat-stepper-vertical-line {
   height: 30px;
 }
