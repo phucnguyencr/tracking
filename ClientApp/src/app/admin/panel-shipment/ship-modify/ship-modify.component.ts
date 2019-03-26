@@ -30,13 +30,16 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
     weight: new FormControl(0, [Validators.required, Validators.max(9999)]),
     cubicMeter: new FormControl(0, [Validators.required, Validators.max(9999)]),
     origin: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-    actDeparture: new FormControl('', [Validators.required]),
+    depShortName: new FormControl('', [Validators.required, Validators.maxLength(10)]),
     depVessel: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     depContainer: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     destination: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    destShortName: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+    actDeparture: new FormControl('', [Validators.required]),
     estArrival: new FormControl('', [Validators.required]),
     arVessel: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     arContainer: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    bookedBy: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     status: new FormControl('', [Validators.required, Validators.maxLength(20)])
   });
 
@@ -53,13 +56,16 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
         weight: 50.03,
         cubicMeter: 10.02,
         origin: 'Ha Noi',
+        depShortName: 'HNI',
         actDeparture: this.setValueToDatePicker(),
         depVessel: 'C9990',
         depContainer: 'HC882',
         destination: 'Ho Chi Minh',
+        destShortName: 'HCM',
         estArrival: this.setValueToDatePicker('2019/03/02'),
         arVessel: 'ZT201',
         arContainer: 'ZC672',
+        bookedBy: 'Nguyen Thanh Lam',
         status: 0
       });
       this.shipForm.controls['billOfLading'].disable();

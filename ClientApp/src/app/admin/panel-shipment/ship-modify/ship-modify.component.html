@@ -7,14 +7,20 @@
       <div class="form-group required">
         <div class="form-row">
           <div class="col-md-2"></div>
-          <div class="col-md-2">
-            <label class="text-danger">Bill Of Lading</label>
-          </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
+            <label>Bill Of Lading</label>
             <input type="text" class="form-control" 
             placeholder="Bill Of Lading"
             formControlName="billOfLading"
             [maxLength]="30"
+            autofocus>
+          </div>
+          <div class="col-md-4">
+              <label>Voyage No</label>
+            <input type="text" class="form-control" 
+            placeholder="Voyage No"
+            formControlName="voyageNo"
+            [maxLength]="20"
             autofocus>
           </div>
           <div class="col-md-2"><label class='control-label'></label></div>
@@ -22,45 +28,35 @@
       </div>
       <br/>
       <div class="form-group required">
-          <div class="form-row">
-            <div class="col-md-2"></div>
-            <div class="col-md-2">
-              <label class="text-danger">Voyage No</label>
-            </div>
-            <div class="col-md-6">
-              <input type="text" class="form-control" 
-              placeholder="Voyage No"
-              formControlName="voyageNo"
-              [maxLength]="20"
-              autofocus>
-            </div>
-            <div class="col-md-2"><label class='control-label'></label></div>
-          </div>
-      </div>
-      <br/>
-      <div class="form-group required">
         <div class="form-row">
           <div class="col-md-2"></div>
-          <div class="col-md-2">
-              <label class="text-danger">Cargo</label>
-            </div>
-          <div class="col-md-2">
-            <label>Cartons</label>
-            <input type="number" class="form-control" 
-            placeholder="Carton Quantity"
-            formControlName="carton">
-          </div>
-          <div class="col-md-2">
-            <label>Weight</label>
-            <input type="number" class="form-control" 
-            placeholder="Weight"
-            formControlName="weight">
-          </div>
-          <div class="col-md-2">
-            <label>Cubic Meter</label>
-            <input type="number" class="form-control" 
-            placeholder="Cubic Meter"
-            formControlName="cubicMeter">
+          <div class="col-md-8">
+              <h6 class="text-danger">Cargo</h6>
+              <hr>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="form-row">
+                    <div class="col-md-4">
+                      <label>Cartons</label>
+                      <input type="number" class="form-control" 
+                      placeholder="Carton Quantity"
+                      formControlName="carton">
+                    </div>
+                    <div class="col-md-4">
+                      <label>Weight</label>
+                      <input type="number" class="form-control" 
+                      placeholder="Weight"
+                      formControlName="weight">
+                    </div>
+                    <div class="col-md-4">
+                      <label>Cubic Meter</label>
+                      <input type="number" class="form-control" 
+                      placeholder="Cubic Meter"
+                      formControlName="cubicMeter">
+                    </div>
+                  </div>
+                </div>
+              </div>
           </div>
           <div class="col-md-2"><label class='control-label'></label></div>
         </div>
@@ -69,138 +65,183 @@
       <div class="form-group required">
         <div class="form-row">
           <div class="col-md-2"></div>
-          <div class="col-md-2">
-              <label class="text-danger">Departure</label>
-            </div>
-          <div class="col-md-3">
-            <label>Origin</label>
-            <input type="text" class="form-control" 
-            placeholder="Origin"
-            formControlName="origin"
-            [maxlength]="50">
-          </div>
-          <div class="col-md-3">
-            <label>Act. Departure</label>
-            <div class="input-group">
-              <input class="form-control" placeholder="yyyy-mm-dd"
-                name="dp" formControlName="actDeparture" 
-                ngbDatepicker 
-                #d1="ngbDatepicker"
-                [minDate]="minDate">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary fa fa-calendar" (click)="d1.toggle()" type="button"></button>
+          <div class="col-md-8">
+            <h6 class="text-danger">Departure</h6>
+            <hr>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <label>Origin</label>
+                        <input type="text" class="form-control" 
+                        placeholder="Origin"
+                        formControlName="origin"
+                        [maxlength]="50">
+                      </div>
+                      <div class="col-md-4">
+                        <label>Short Name</label>
+                        <input type="text" class="form-control" 
+                        placeholder="Short Name"
+                        formControlName="depShortName"
+                        [maxlength]="10">
+                      </div>
+                </div>
+                <div class="form-row padding-top">
+                  <div class="col-md-4">
+                    <label>DEP Vessel</label>
+                    <input type="text" class="form-control" 
+                    placeholder="DEP Vessel"
+                    formControlName="depVessel"
+                    [maxlength]="30">
+                  </div>
+                  <div class="col-md-4">
+                    <label>DEP Container</label>
+                    <input type="text" class="form-control" 
+                    placeholder="DEP Container"
+                    formControlName="depContainer"
+                    [maxlength]="30">
+                  </div>
+                  <div class="col-md-4">
+                    <label>Act. Departure Date</label>
+                    <div class="input-group">
+                      <input class="form-control" placeholder="yyyy-mm-dd"
+                        name="dp" formControlName="actDeparture" 
+                        ngbDatepicker 
+                        #d1="ngbDatepicker"
+                        [minDate]="minDate">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d1.toggle()" type="button"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div class="col-md-2"><label class='control-label'></label></div>
         </div>
       </div>
-      <div class="form-group required">
-          <div class="form-row">
-            <div class="col-md-4"></div>
-            <div class="col-md-3">
-              <label>DEP Vessel</label>
-              <input type="text" class="form-control" 
-              placeholder="DEP Vessel"
-              formControlName="depVessel"
-              [maxlength]="30">
-            </div>
-            <div class="col-md-3">
-              <label>DEP Container</label>
-              <input type="text" class="form-control" 
-              placeholder="DEP Container"
-              formControlName="depContainer"
-              [maxlength]="30">
-            </div>
-            <div class="col-md-2"><label class='control-label'></label></div>
-          </div>
-      </div>
       <br/>
       <div class="form-group required">
-          <div class="form-row">
-            <div class="col-md-2"></div>
-            <div class="col-md-2">
-                <label class="text-danger">Arrival</label>
-              </div>
-            <div class="col-md-3">
-              <label>Destination</label>
-              <input type="text" class="form-control" 
-              placeholder="Destination"
-              formControlName="destination"
-              [maxlength]="50">
-            </div>
-            <div class="col-md-3">
-              <label>Est. Arrival</label>
-              <div class="input-group">
-                  <input class="form-control" placeholder="yyyy-mm-dd" 
-                  formControlName="estArrival" 
-                  ngbDatepicker 
-                  #d2="ngbDatepicker"
-                  [minDate]="minDate">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary fa fa-calendar" (click)="d2.toggle()" type="button"></button>
+        <div class="form-row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <h6 class="text-danger">Arrival</h6>
+            <hr>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="form-row">
+                  <div class="col-md-4">
+                    <label>Destination</label>
+                    <input type="text" class="form-control" 
+                    placeholder="Destination"
+                    formControlName="destination"
+                    [maxlength]="50">
+                  </div>
+                  <div class="col-md-4">
+                    <label>Short Name</label>
+                    <input type="text" class="form-control" 
+                    placeholder="Short Name"
+                    formControlName="destShortName"
+                    [maxlength]="50">
+                  </div>
+                </div>
+                <div class="form-row padding-top">
+                  <div class="col-md-4">
+                    <label>AR Vessel</label>
+                    <input type="text" class="form-control" 
+                    placeholder="AR Vessel"
+                    formControlName="arVessel"
+                    [maxlength]="30">
+                  </div>
+                  <div class="col-md-4">
+                    <label>AR Container</label>
+                    <input type="text" class="form-control" 
+                    placeholder="AR Container"
+                    formControlName="arContainer"
+                    [maxlength]="30">
+                  </div>
+                  <div class="col-md-4">
+                    <label>Est. Arrival Date</label>
+                    <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" 
+                    formControlName="estArrival" 
+                    ngbDatepicker 
+                    #d2="ngbDatepicker"
+                    [minDate]="minDate">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary fa fa-calendar" (click)="d2.toggle()" type="button"></button>
+                    </div>
                   </div>
                 </div>
             </div>
-            <div class="col-md-2"><label class='control-label'></label></div>
-          </div>
+            </div>
+          </div>    
+        </div>
+        <div class="col-md-2"><label class='control-label'></label></div>
       </div>
+      </div> 
+      <br/>
       <div class="form-group required">
         <div class="form-row">
-          <div class="col-md-4"></div>
-          <div class="col-md-3">
-            <label>AR Vessel</label>
-            <input type="text" class="form-control" 
-            placeholder="AR Vessel"
-            formControlName="arVessel"
-            [maxlength]="30">
-          </div>
-          <div class="col-md-3">
-            <label>AR Container</label>
-            <input type="text" class="form-control" 
-            placeholder="AR Container"
-            formControlName="arContainer"
-            [maxlength]="30">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <h6 class="text-danger">Other</h6>
+            <hr>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label>Booked By</label>
+                    <input type="text" class="form-control" 
+                    placeholder="Booked By"
+                    formControlName="bookedBy"
+                    [maxlength]="50">
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="col-md-2"><label class='control-label'></label></div>
-        </div>
-      </div>
-      <br/>
-      <div [hidden]="!isDisabled">
-        <div class="form-group">
-          <div class="form-row">
-            <div class="col-md-2"></div>
-            <div class="col-md-2">
-              <label class="text-danger">Status</label>
-            </div>
-            <div class="col-md-6"></div>
-            <div class="col-md-2"><label class='control-label'></label></div>
-          </div>
-        </div>
-        <mat-horizontal-stepper labelPosition="bottom" #stepper>
-          <ng-template matStepperIcon="number">
-            <mat-icon>done</mat-icon>
-          </ng-template>
-          <ng-template matStepperIcon="edit">
-            <mat-icon>check</mat-icon>
-          </ng-template>
-          <mat-step *ngFor="let item of stepArr; let index = index; let last = last;" [completed]="index <= doneIdx">
-              <ng-template matStepLabel>{{item.name}}</ng-template>
-              <div *ngIf="!last">
-                <button class="btn btn-success" matStepperNext (click)="changeStepEvent(item.step)">Done</button>
+      </div>   
+    </div>
+    <br/>
+    <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <h6 class="text-danger">Status</h6>
+            <div class="panel panel-default">
+              <div class="panel-body" [hidden]="!isDisabled">
+                <mat-horizontal-stepper labelPosition="bottom" #stepper>
+                  <ng-template matStepperIcon="number">
+                    <mat-icon>done</mat-icon>
+                  </ng-template>
+                  <ng-template matStepperIcon="edit">
+                    <mat-icon>check</mat-icon>
+                  </ng-template>
+                  <mat-step *ngFor="let item of stepArr; let index = index; let last = last;" [completed]="index <= doneIdx">
+                      <ng-template matStepLabel>{{item.name}}</ng-template>
+                      <div *ngIf="!last">
+                        <button class="btn btn-success" matStepperNext (click)="changeStepEvent(item.step)">Done</button>
+                      </div>
+                  </mat-step>
+                </mat-horizontal-stepper>
               </div>
-          </mat-step>
-        </mat-horizontal-stepper>
-      </div> 
-      <div class="form-group">
-          <div class="form-row">
-            <div class="col-md-4"></div>
-            <div class="col-md-6">
-              <button class="btn btn-primary btn-block col-md-2 right" (click)="saveFunc()">Save</button>
             </div>
-            <div class="col-md-2"></div>
           </div>
-      </div>
+          <div class="col-md-2"><label class='control-label'></label></div>
+      </div>   
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-4"></div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block col-md-2 right" (click)="saveFunc()">Save</button>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+    </div>
     </form>
   </div>
 </div>

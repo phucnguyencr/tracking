@@ -101,3 +101,7 @@ table,tbody,td {
 mat-step-header ~ .mat-stepper-vertical-line {
   height: 30px;
 }
+
+.padding-top {
+  padding-top: 20px;
+}

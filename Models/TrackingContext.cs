@@ -11,5 +11,6 @@ namespace tracking.Models
         public DbSet<User> User { get; set; }
         public DbSet<ContactActivity> ContactActivity { get; set; }
         public DbSet<Contact> Contact { get; set; }
+        public DbSet<Flow> Flow { get; set; }
     }
 }

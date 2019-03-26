@@ -23,7 +23,7 @@ export class FlowModifyComponent implements OnInit {
   flowForm = new FormGroup({
     description: new FormControl('', [Validators.required, Validators.maxLength(100)]),
     step: new FormControl(1, [Validators.required, Validators.max(10), Validators.min(1)]),
-    subDescription: new FormControl('', [Validators.required, Validators.maxLength(100)]),
+    subDescription: new FormControl('', [Validators.required, Validators.maxLength(200)]),
   });
 
   ngOnInit() {
