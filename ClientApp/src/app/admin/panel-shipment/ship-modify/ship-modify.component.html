@@ -105,7 +105,7 @@
                     <label>Act. Departure Date</label>
                     <div class="input-group">
                       <input class="form-control" placeholder="yyyy-mm-dd"
-                        name="dp" formControlName="actDeparture" 
+                        name="dp" formControlName="actDepartureDate" 
                         ngbDatepicker 
                         #d1="ngbDatepicker"
                         [minDate]="minDate">
@@ -145,36 +145,49 @@
                     formControlName="destShortName"
                     [maxlength]="50">
                   </div>
+                  <div class="col-md-4">
+                    <label>Est. Discharge Date</label>
+                    <div class="input-group">
+                      <input class="form-control" placeholder="yyyy-mm-dd" 
+                      formControlName="estDischargeDate" 
+                      ngbDatepicker 
+                      #d3="ngbDatepicker"
+                      [minDate]="minDate">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d3.toggle()" type="button"></button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="form-row padding-top">
                   <div class="col-md-4">
                     <label>AR Vessel</label>
                     <input type="text" class="form-control" 
                     placeholder="AR Vessel"
-                    formControlName="arVessel"
+                    formControlName="arrVessel"
                     [maxlength]="30">
                   </div>
                   <div class="col-md-4">
                     <label>AR Container</label>
                     <input type="text" class="form-control" 
                     placeholder="AR Container"
-                    formControlName="arContainer"
+                    formControlName="arrContainer"
                     [maxlength]="30">
                   </div>
                   <div class="col-md-4">
                     <label>Est. Arrival Date</label>
                     <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" 
-                    formControlName="estArrival" 
-                    ngbDatepicker 
-                    #d2="ngbDatepicker"
-                    [minDate]="minDate">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary fa fa-calendar" (click)="d2.toggle()" type="button"></button>
+                      <input class="form-control" placeholder="yyyy-mm-dd" 
+                      formControlName="estArrivalDate" 
+                      ngbDatepicker 
+                      #d2="ngbDatepicker"
+                      [minDate]="minDate">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d2.toggle()" type="button"></button>
+                      </div>
                     </div>
                   </div>
                 </div>
-            </div>
             </div>
           </div>    
         </div>

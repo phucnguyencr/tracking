@@ -32,15 +32,16 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
     origin: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     depShortName: new FormControl('', [Validators.required, Validators.maxLength(10)]),
     depVessel: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    depContainer: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    depContainer: new FormControl('', [Validators.required, Validators.maxLength(20)]),
     destination: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     destShortName: new FormControl('', [Validators.required, Validators.maxLength(10)]),
-    actDeparture: new FormControl('', [Validators.required]),
-    estArrival: new FormControl('', [Validators.required]),
-    arVessel: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    arContainer: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    actDepartureDate: new FormControl('', [Validators.required]),
+    estArrivalDate: new FormControl('', [Validators.required]),
+    estDischargeDate: new FormControl('', [Validators.required]),
+    arrVessel: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    arrContainer: new FormControl('', [Validators.required, Validators.maxLength(20)]),
     bookedBy: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-    status: new FormControl('', [Validators.required, Validators.maxLength(20)])
+    status: new FormControl('', [Validators.required, Validators.max(10), Validators.min(0)])
   });
 
   ngOnInit() {
@@ -57,14 +58,15 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
         cubicMeter: 10.02,
         origin: 'Ha Noi',
         depShortName: 'HNI',
-        actDeparture: this.setValueToDatePicker(),
+        actDepartureDate: this.setValueToDatePicker(),
         depVessel: 'C9990',
         depContainer: 'HC882',
         destination: 'Ho Chi Minh',
         destShortName: 'HCM',
-        estArrival: this.setValueToDatePicker('2019/03/02'),
-        arVessel: 'ZT201',
-        arContainer: 'ZC672',
+        estArrivalDate: this.setValueToDatePicker('2019/03/02'),
+        estDischargeDate: this.setValueToDatePicker('2019/03/05'),
+        arrVessel: 'ZT201',
+        arrContainer: 'ZC672',
         bookedBy: 'Nguyen Thanh Lam',
         status: 0
       });

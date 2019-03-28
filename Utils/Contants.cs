@@ -16,5 +16,7 @@ namespace tracking.Utils
         public const string NOTFOUND = "Not Found";
         public const string EXCELFILE = "Excel";
         public const string JSONFILE = "Json";
+        public const Int16 OPEN = 0;
+        public const Int16 CLOSED = 1;
     }
 }
