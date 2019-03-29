@@ -23,6 +23,7 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
   doneIdx = 0;
   stepArr = [];
   id: string;
+  isClosed: false;
   shipForm = new FormGroup({
     billOfLading: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     voyageNo: new FormControl('', [Validators.required, Validators.maxLength(20)]),
@@ -40,8 +41,8 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
     estDischargeDate: new FormControl('', [Validators.required]),
     arrVessel: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     arrContainer: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-    bookedBy: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-    status: new FormControl('', [Validators.required, Validators.max(10), Validators.min(0)])
+    createdBy: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    bookingDate: new FormControl('', [Validators.required])
   });
 
   ngOnInit() {
@@ -67,15 +68,17 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
         estDischargeDate: this.setValueToDatePicker('2019/03/05'),
         arrVessel: 'ZT201',
         arrContainer: 'ZC672',
-        bookedBy: 'Nguyen Thanh Lam',
-        status: 0
+        createdBy: 'Nguyen Thanh Lam',
+        bookingDate: this.setValueToDatePicker('2019/02/14')
       });
       this.shipForm.controls['billOfLading'].disable();
       this.shipForm.controls['carton'].disable();
       this.shipForm.controls['weight'].disable();
       this.shipForm.controls['cubicMeter'].disable();
+      this.shipForm.controls['createdBy'].disable();
+      this.shipForm.controls['bookingDate'].disable();
     } 
-    this.stepArr = this.flowArr();
+    // this.stepArr = this.flowArr();
   }
 
   ngAfterViewInit() {
@@ -107,6 +110,10 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
       //   this.router.navigate(['adminpanel']);
       // });
     }
+  }
+
+  closeFunc() {
+
   }
   
   openDialog(msgErr: any) {

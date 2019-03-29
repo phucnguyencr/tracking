@@ -47,10 +47,11 @@ namespace tracking.Models
         public DateTime EstDischargeDate { get; set; }
         [Required]
         [MaxLength(50)]
-        public string BookedBy { get; set; }
+        public string CreatedBy { get; set; }
         [Required]
-        // < 6 is Open, 6 is Close
-        public Int16 Status { get; set; }
+        public DateTime BookedDate { get; set; }
+        [Required]
+        public Boolean IsClosed { get; set; }
 
     }
 }

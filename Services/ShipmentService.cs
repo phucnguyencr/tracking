@@ -27,20 +27,27 @@ namespace tracking.Services
                     return context.Shipment.Where(ship => 
                     ship.BillOfLading == condition.FieldFromValue).ToArray();
                 default:
-                    return context.Shipment.Where(ship => ship.Status != Contants.CLOSED).ToArray();
+                    return context.Shipment.Where(ship => ship.IsClosed != Contants.CLOSED).ToArray();
             }
         }
 
         public async Task Create(Shipment ship, TrackingContext context)
         {
             ship.ID = Guid.NewGuid().ToString();
-            ship.Status = Contants.OPEN;
+            ship.IsClosed = !Contants.CLOSED;
             context.Shipment.Add(ship);
             await context.SaveChangesAsync();
         }
 
         public async Task Update(Shipment ship, TrackingContext context)
         {
+            context.Entry(ship).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+        }
+
+        public async Task Close(Shipment ship, TrackingContext context)
+        {
+            ship.IsClosed = Contants.CLOSED;
             context.Entry(ship).State = EntityState.Modified;
             await context.SaveChangesAsync();
         }
@@ -59,6 +66,11 @@ namespace tracking.Services
         public bool ShipmentExistByBillNo(string billNo, TrackingContext context)
         {
             return context.Shipment.Any(s => s.BillOfLading == billNo);
+        }
+
+        public Shipment GetByBillNo(string billNo, TrackingContext context)
+        {
+            return context.Shipment.FirstOrDefault(s => s.BillOfLading == billNo);
         }
     }
 }

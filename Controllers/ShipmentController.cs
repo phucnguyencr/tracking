@@ -76,9 +76,23 @@ namespace tracking_api.Controllers
             objDB.ArrVessel = ship.ArrVessel;
             objDB.ArrContainer = ship.ArrContainer;
             objDB.EstArrivalDate = ship.EstArrivalDate;
-            objDB.BookedBy = ship.BookedBy;
             await shipService.Update(objDB, _context);
             return NoContent();
+        }
+
+        [HttpPost("{id}")]
+        public async Task<IActionResult> CloseShipment([FromRoute] string id) {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+            var objDB = shipService.ShipmentExistById(id, _context);
+            if (objDB == null)
+            {
+                throw new Exception(Contants.NOTFOUND);
+            }
+            await shipService.Close(objDB, _context);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
@@ -96,6 +110,21 @@ namespace tracking_api.Controllers
             }
             await shipService.Delete(objDB, _context);
             return Ok();
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetDetails([FromRoute] string strNo)
+        {
+            if (string.IsNullOrEmpty(strNo))
+            {
+                return BadRequest();
+            }
+            var objDB = shipService.GetByBillNo(strNo, _context);
+            if (objDB == null)
+            {
+                throw new Exception(Contants.NOTFOUND);
+            }
+            return Ok(objDB);
         }
     }
 }

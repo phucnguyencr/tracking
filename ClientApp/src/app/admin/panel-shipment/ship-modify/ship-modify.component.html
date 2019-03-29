@@ -151,10 +151,10 @@
                       <input class="form-control" placeholder="yyyy-mm-dd" 
                       formControlName="estDischargeDate" 
                       ngbDatepicker 
-                      #d3="ngbDatepicker"
+                      #d2="ngbDatepicker"
                       [minDate]="minDate">
                       <div class="input-group-append">
-                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d3.toggle()" type="button"></button>
+                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d2.toggle()" type="button"></button>
                       </div>
                     </div>
                   </div>
@@ -180,10 +180,10 @@
                       <input class="form-control" placeholder="yyyy-mm-dd" 
                       formControlName="estArrivalDate" 
                       ngbDatepicker 
-                      #d2="ngbDatepicker"
+                      #d3="ngbDatepicker"
                       [minDate]="minDate">
                       <div class="input-group-append">
-                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d2.toggle()" type="button"></button>
+                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d3.toggle()" type="button"></button>
                       </div>
                     </div>
                   </div>
@@ -205,11 +205,24 @@
               <div class="panel-body">
                 <div class="form-row">
                   <div class="col-md-6">
-                    <label>Booked By</label>
+                    <label>Created By</label>
                     <input type="text" class="form-control" 
-                    placeholder="Booked By"
-                    formControlName="bookedBy"
+                    placeholder="Created By"
+                    formControlName="createdBy"
                     [maxlength]="50">
+                  </div>
+                  <div class="col-md-6">
+                    <label>Booking Date</label>
+                    <div class="input-group">
+                      <input class="form-control" placeholder="yyyy-mm-dd" 
+                      formControlName="bookingDate" 
+                      ngbDatepicker 
+                      #d4="ngbDatepicker"
+                      [minDate]="minDate">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d4.toggle()" type="button"></button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -219,7 +232,7 @@
       </div>   
     </div>
     <br/>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <div class="form-row">
           <div class="col-md-2"></div>
           <div class="col-md-8">
@@ -245,12 +258,15 @@
           </div>
           <div class="col-md-2"><label class='control-label'></label></div>
       </div>   
-    </div>
+    </div> -->
     <div class="form-group">
         <div class="form-row">
-          <div class="col-md-4"></div>
-          <div class="col-md-6">
-            <button class="btn btn-primary btn-block col-md-2 right" (click)="saveFunc()">Save</button>
+          <div class="col-md-8"></div>
+          <div class="col-md-1">
+            <button class="btn btn-success btn-block" (click)="closeFunc()">Close</button>
+          </div>
+          <div class="col-md-1">
+            <button class="btn btn-primary btn-block" (click)="saveFunc()" [hidden]="isClose">Save</button>
           </div>
           <div class="col-md-2"></div>
         </div>
