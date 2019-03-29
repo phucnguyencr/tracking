@@ -49,9 +49,8 @@ namespace tracking.Models
         [MaxLength(50)]
         public string BookedBy { get; set; }
         [Required]
-        // 0 is Open, 1 is Close
+        // < 6 is Open, 6 is Close
         public Int16 Status { get; set; }
-        [Required]
-        public Int16 Step { get; set; }
+
     }
 }

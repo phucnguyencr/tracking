@@ -27,7 +27,7 @@ namespace tracking.Services
                     return context.Shipment.Where(ship => 
                     ship.BillOfLading == condition.FieldFromValue).ToArray();
                 default:
-                    return context.Shipment.Where(ship => ship.Status == Contants.OPEN).ToArray();
+                    return context.Shipment.Where(ship => ship.Status != Contants.CLOSED).ToArray();
             }
         }
 
@@ -35,7 +35,6 @@ namespace tracking.Services
         {
             ship.ID = Guid.NewGuid().ToString();
             ship.Status = Contants.OPEN;
-            ship.Step = 1;
             context.Shipment.Add(ship);
             await context.SaveChangesAsync();
         }
