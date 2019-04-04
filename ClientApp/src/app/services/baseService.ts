@@ -16,7 +16,6 @@ export class BaseService {
 
     public handleError(error: Response | any) {
         let errMsg: string;
-        console.log(JSON.stringify(error));
         if (error instanceof Response) {
           const body = error.json() || '';
           const err = body || JSON.stringify(body);

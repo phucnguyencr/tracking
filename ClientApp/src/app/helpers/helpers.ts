@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Cookie } from 'ng2-cookies';
+import { CookieXSRFStrategy } from '@angular/http';
 
 @Injectable()
 
@@ -10,7 +12,7 @@ export class Helpers  {
     constructor() {}
 
     public isAuthenticated(): boolean {
-        const token = window.localStorage['token'];
+        const token = this.getToken();
         return (!(token === undefined || token === null ||
             token === 'null' || token === 'undefined' || token === ''));
     }
@@ -20,7 +22,7 @@ export class Helpers  {
     }
 
     public getToken(): any {
-        return window.localStorage['token'];
+        return Cookie.get('id_token');
     }
 
     public setToken(data: any): void {
@@ -36,11 +38,15 @@ export class Helpers  {
     }
 
     private setStorageToken(value: any, isRemoved: boolean = false): void {
-        if(isRemoved) {
-            window.localStorage.removeItem('token');
-        } else {
-            window.localStorage['token'] = value.token;
+        try {
+            if(isRemoved) {
+                Cookie.delete('id_token');
+            } else {
+                Cookie.set('id_token', value.token);
+            }
+            this.authenticationChanged.next(this.isAuthenticated());
+        } catch (err) {
+            console.log(err);
         }
-        this.authenticationChanged.next(this.isAuthenticated());
     }
 }
