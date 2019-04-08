@@ -3,31 +3,49 @@
 <div class="card card-register mx-auto mt-5">
   <div class="card-header">Reset Password For a User</div>
   <div class="card-body">
-    <div class="row">
-      <div class="col-md-3"></div>
-      <form class="col-md-6">
-        <div class="form-group">
-          <div class="form-row">
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option selected>Open this select menu</option>
-              <option>2</option>
-              <option>3</option>
+    <form [formGroup] = "resetForm">
+      <div class="form-group required">
+        <div class="form-row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <select class="form-control" formControlName="id">
+              <option *ngFor="let user of userList" [value]="user.id">{{user.userName}}</option>
             </select>
           </div>
+          <div class="col-md-4"><label class='control-label'></label></div>
         </div>
-        <div class="form-group">
-          <div class="form-row">
-            <input type="password" id="inputPassword" class="form-control" placeholder="New Password" required="required">
+      </div>
+      <div class="form-group required">
+        <div class="form-row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <input type="password" formControlName="password"
+              [maxLength]="100"
+              class="form-control" placeholder="New Password" required="required">
           </div>
+          <div class="col-md-4"><label class='control-label'></label></div>
         </div>
-        <div class="form-group">
-          <div class="form-row">
-            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm New Password" required="required">
+      </div>
+      <div class="form-group required">
+        <div class="form-row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <input type="password" formControlName="confirmPassword" 
+              [maxLength]="100"
+              class="form-control" placeholder="Confirm New Password" required="required">
           </div>
+          <div class="col-md-4"><label class='control-label'></label></div>
         </div>
-        <button class="btn btn-primary btn-block col-md-2 right">Save</button>
-      </form>
-      <div class="col-md-3"></div>
-    </div>
+      </div>
+      <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <button class="btn btn-primary btn-block col-md-3 right" (click)="saveFunc()">Save</button>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+      </div>
+    </form>
   </div>
 </div>

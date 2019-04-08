@@ -31,10 +31,17 @@ namespace tracking.Services
             return context.ContactActivity.Find(id);
         }
 
-        public Array GetNew(TrackingContext context)
+        public Array GetByCondition(CriteriaModel condition, TrackingContext context)
         {
-            var userList = context.ContactActivity.Where(x => !x.IsRead).ToArray();
-            return userList;
+            switch(condition.FieldName) {
+                case "CreatedDate":
+                    return context.ContactActivity.Where(x => 
+                        x.CreatedDate >= DateTime.Parse(condition.FieldFromValue) &&
+                        x.CreatedDate <= DateTime.Parse(condition.FieldToValue)
+                    ).ToArray();
+                default:
+                    return context.ContactActivity.Where(x => !x.IsRead).ToArray();
+            }
         }
     }
 }

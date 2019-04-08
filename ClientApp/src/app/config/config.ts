@@ -7,10 +7,14 @@ export class AppConfig {
     private _config: { [key: string]: string };
 
     constructor() {
+        const hostName = location.origin;
         this._config = {
             passwordDefault: 'c006a4baf80789e96dd6e7627b904e4c', // Vosa@123$$$
-            authAPI: 'http://localhost:5000/tracking/authencation',
-            scheduleAPI: 'http://localhost:5000/tracking/schedule',
+            authAPI: `${hostName}/tracking/authencation`,
+            scheduleAPI: `${hostName}/tracking/schedule`,
+            userAPI: `${hostName}/tracking/users`,
+            contactAPI: `${hostName}/tracking/contact`,
+            contactActivityAPI: `${hostName}/tracking/ContactActivity`
         };
 
     }

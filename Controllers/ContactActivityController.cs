@@ -12,7 +12,7 @@ using tracking.Utils;
 
 namespace tracking_api.Controllers
 {
-    [Route("tracking/[controller]")]
+    [Route("tracking/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class ContactActivityController : ControllerBase
@@ -25,14 +25,19 @@ namespace tracking_api.Controllers
             contactActivityService = new ContactActivityService();
         }
 
-        [HttpGet]
-        public IActionResult Get()
+        [HttpPost]
+        [ActionName("Search")]
+        public IActionResult SearchContact([FromBody] CriteriaModel condition)
         {
-            return Ok(contactActivityService.GetNew(_context));
+            if (!ModelState.IsValid) {
+                throw new Exception(Contants.UNVALID);
+            }
+            return Ok(contactActivityService.GetByCondition(condition, _context));
         }
 
         [AllowAnonymous]
         [HttpPost]
+        [ActionName("Create")]
         public async Task<IActionResult> Create([FromBody] ContactActivity contact)
         {
             if (!ModelState.IsValid) {

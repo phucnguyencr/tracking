@@ -29,12 +29,16 @@ namespace tracking.Models
         [MaxLength(50)]
         public string FullName { get; set; }
         [Required]
-        [MaxLength(100)]
-        public string UserName { get; set; }
-        [Required]
         [MaxLength(50)]
         public string Email { get; set; }
         [Required]
         public Boolean Active { get; set; }
+    }
+
+    public class UserResetPassword
+    {
+        [Required]
+        [MaxLength(100)]
+        public string Password { get; set; }
     }
 }

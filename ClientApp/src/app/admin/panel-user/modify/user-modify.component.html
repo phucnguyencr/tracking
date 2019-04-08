@@ -24,8 +24,7 @@
             <input type="text" class="form-control" 
             placeholder="User name"
             formControlName="userName"
-            [maxLength]="20"
-            [attr.disabled]="isDisabled">
+            [maxLength]="20">
           </div>
           <div class="col-md-3"><label class='control-label'></label></div>
         </div>
@@ -48,9 +47,9 @@
             <div class="col-md-6">
                 <div class="form-check text-success">
                     <input class="form-check-input" type="checkbox"
-                    formControlName="isActive"
+                    formControlName="active"
                     required 
-                    (ngModel)='isActive'>
+                    (ngModel)='active'>
                     <label class="form-check-label">
                       Active
                     </label>

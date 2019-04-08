@@ -19,12 +19,12 @@
           <td>{{item.userName}}</td>
           <td>{{item.email}}</td>
           <td class="text-center">
-            <i *ngIf="item.isActive" class="fa fa-check-circle-o text-success"> Active</i>
-            <i *ngIf="!item.isActive" class="fa fa-lock text-danger"> Locked</i>
+            <i *ngIf="item.active" class="fa fa-check-circle-o text-success"> Active</i>
+            <i *ngIf="!item.active" class="fa fa-lock text-danger"> Locked</i>
           </td>
           <td class="text-center">
-            <button *ngIf="item.isActive" type="button" class="btn btn-link text-danger"> Lock</button>
-            <button *ngIf="!item.isActive" type="button" class="btn btn-link text-success"> Active</button>
+            <button *ngIf="item.active" type="button" class="btn btn-link text-danger" (click)="activeFunc(item, false)"> Lock</button>
+            <button *ngIf="!item.active" type="button" class="btn btn-link text-success" (click)="activeFunc(item, true)"> Active</button>
             <button type="button" class="btn btn-link text-primary" (click)="onSelect(item)"> Edit</button>
           </td>
         </tr>

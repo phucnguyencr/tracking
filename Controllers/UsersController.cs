@@ -68,6 +68,27 @@ namespace tracking_api.Controllers
             return NoContent();
         }
 
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> ResetPassword([FromRoute] string id, [FromBody] UserResetPassword user)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+            if (!ModelState.IsValid)
+            {
+                throw new Exception(Contants.UNVALID);
+            }
+            var objDB = userService.UserExistById(id, _context);
+            if (objDB == null)
+            {
+                throw new Exception(Contants.NOTFOUND);
+            }
+            objDB.Password = user.Password;
+            await userService.Update(objDB, _context);
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
 
         public async Task<IActionResult> Delete([FromRoute] string id)
