@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
-import { CookieXSRFStrategy } from '@angular/http';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable()
 
@@ -11,10 +11,22 @@ export class Helpers  {
 
     constructor() {}
 
+    public getTokenExpirationDate(token: string): Date {
+        const decoded = jwt_decode(token);
+        if (decoded.exp === undefined) return null;
+        const date = new Date(0); 
+        date.setUTCSeconds(decoded.exp);
+        return date;
+    }
+
     public isAuthenticated(): boolean {
         const token = this.getToken();
-        return (!(token === undefined || token === null ||
-            token === 'null' || token === 'undefined' || token === ''));
+        if (token === undefined || token === null || token === 'null' || token === 'undefined' || token === '') {
+            return false;
+        }
+        const date = this.getTokenExpirationDate(token);
+        if(date === undefined) return false;
+        return (date.valueOf() > new Date().valueOf());
     }
 
     public isAuthenticationChanged(): any {
@@ -38,15 +50,11 @@ export class Helpers  {
     }
 
     private setStorageToken(value: any, isRemoved: boolean = false): void {
-        try {
-            if(isRemoved) {
-                Cookie.delete('id_token');
-            } else {
-                Cookie.set('id_token', value.token);
-            }
-            this.authenticationChanged.next(this.isAuthenticated());
-        } catch (err) {
-            console.log(err);
+        if(isRemoved) {
+            Cookie.delete('id_token');
+        } else {
+            Cookie.set('id_token', value.token);
         }
+        this.authenticationChanged.next(this.isAuthenticated());
     }
 }

@@ -16,7 +16,6 @@ import { UserModifyComponent } from './admin/panel-user/modify/user-modify.compo
 import { UserResetComponent } from './admin/panel-user/reset/user-reset.component';
 import { ContactViewComponent } from './admin/panel-contact/contact-view/contact-view.component';
 import { ContactReadComponent } from './admin/panel-contact/contact-read/contact-read.component';
-import { ContactLandingComponent } from './admin/panel-contact/contact-landing/contact-landing.component';
 import { ContactUpdateComponent } from './admin/panel-contact/contact-update/contact-update.component';
 import { PanelAboutComponent } from './admin/panel-about/panel-about.component';
 import { PanelScheduleComponent } from './admin/panel-schedule/panel-schedule.component';
@@ -47,7 +46,6 @@ const appRoutes: Routes = [
             { path: `${userUri.modify}/:id`, component: UserModifyComponent, canActivate: [AuthGuard] },
             { path: `${userUri.resetPass}`, component: UserResetComponent, canActivate: [AuthGuard] },
             { path: contactUri.root, component: ContactViewComponent, canActivate: [AuthGuard] },
-            { path: contactUri.landing, component: ContactLandingComponent, canActivate: [AuthGuard] },
             { path: `${contactUri.read}/:id`, component: ContactReadComponent, canActivate: [AuthGuard] },
             { path: contactUri.update, component: ContactUpdateComponent, canActivate: [AuthGuard] },
             { path: aboutUri.update, component: PanelAboutComponent, canActivate: [AuthGuard] },

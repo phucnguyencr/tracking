@@ -32,13 +32,9 @@ namespace tracking_api.Controllers
             return Ok(contactService.Get(_context));
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromRoute] string id, [FromBody] Contact contact)
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] Contact contact)
         {
-            if (string.IsNullOrEmpty(id))
-            {
-                return BadRequest();
-            }
             if (!ModelState.IsValid)
             {
                 throw new Exception(Contants.UNVALID);

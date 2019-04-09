@@ -38,7 +38,6 @@ import { ModalWarningComponent } from './modal/modal-warning/modal-warning.compo
 import { ModalInfoComponent } from './modal/modal-info/modal-info.component';
 import { ContactViewComponent } from './admin/panel-contact/contact-view/contact-view.component';
 import { ContactReadComponent } from './admin/panel-contact/contact-read/contact-read.component';
-import { ContactLandingComponent } from './admin/panel-contact/contact-landing/contact-landing.component';
 import { ContactUpdateComponent } from './admin/panel-contact/contact-update/contact-update.component';
 import { PanelAboutComponent } from './admin/panel-about/panel-about.component';
 import { PanelScheduleComponent } from './admin/panel-schedule/panel-schedule.component';
@@ -71,7 +70,6 @@ import { ShipModifyComponent } from './admin/panel-shipment/ship-modify/ship-mod
     ModalInfoComponent,
     ContactViewComponent,
     ContactReadComponent,
-    ContactLandingComponent,
     ContactUpdateComponent,
     PanelAboutComponent,
     PanelScheduleComponent,

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ContactService } from '../../../services/contactService';
+import { AppConfig } from '../../../config/config';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { isArray, isEmpty } from 'lodash';
 import { ModalWarningComponent } from '../../../modal/modal-warning/modal-warning.component';
@@ -9,26 +11,31 @@ import { getValidationErrors, hasInvalidRequire, hasInvalidPattern, listInvalidL
 @Component({
   selector: 'app-contact-update',
   templateUrl: './contact-update.component.html',
-  styleUrls: ['./contact-update.component.css']
+  styleUrls: ['./contact-update.component.css'],
+  providers: [ContactService, AppConfig]
 })
 export class ContactUpdateComponent implements OnInit {
 
-  constructor(private dialogService: DialogService, private router: Router) { }
+  constructor(private dialogService: DialogService, private router: Router, private contactService: ContactService) { }
 
   contactForm = new FormGroup({
-    fullName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    fullName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     email: new FormControl('', [Validators.required, Validators.maxLength(50),
       Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]),
-    phone: new FormControl('', [Validators.required, Validators.maxLength(15)]),
-    address: new FormControl('', [Validators.required, Validators.maxLength(100)])
+    phoneNumber: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+    address: new FormControl('', [Validators.required, Validators.maxLength(200)])
   });
 
   ngOnInit() {
-    this.contactForm.setValue({
-      fullName: 'Thu Nguyen',
-      email: 'thuvosa@gmail.com',
-      phone: '0999999999',
-      address: '08 Nguyen Truong To - P.4 - Q.4'
+    this.contactService.getInfo().subscribe(data => {
+      if(!isEmpty(data)) {
+        this.contactForm.setValue({
+          fullName: data.fullName,
+          email: data.email,
+          phoneNumber: data.phoneNumber,
+          address: data.address
+        });
+      }
     });
   }
 
@@ -51,10 +58,9 @@ export class ContactUpdateComponent implements OnInit {
         return;
       }
     } else {
-      // this.tokenService.auth(this.loginForm.value).subscribe(token => {
-      //   this.helpers.setToken(token);
-      //   this.router.navigate(['adminpanel']);
-      // });
+      this.contactService.updateInfo(this.contactForm.value).subscribe(token => {
+        this.router.navigate(['adminpanel']);
+      });
     }
   }
 

@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { size } from 'lodash';
+import { size, isArray, isEmpty, isObject } from 'lodash';
 import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { dataTable } from '../../public/model';
 import { DataService } from '../../public/data.service';
 import { contactUri } from '../../../admin/public/model';
 import { ContactService } from '../../../services/contactService';
 import { AppConfig } from '../../../config/config';
+import { DialogService } from 'ng2-bootstrap-modal';
+import { ModalWarningComponent } from '../../../modal/modal-warning/modal-warning.component';
+import { convertDateObjToString, compareDateObj } from '../../../utils/convertDateToString';
 
 @Component({
   selector: 'app-contact-view',
@@ -19,15 +22,32 @@ export class ContactViewComponent implements OnInit {
 
   dataTable = dataTable;
   byStatus = true;
-  constructor (private router: Router, private dataService: DataService, private contactService: ContactService, private calendar: NgbCalendar) {}
+  constructor (private router: Router, private dataService: DataService, private contactService: ContactService, 
+    private calendar: NgbCalendar, private dialogService: DialogService) {}
   
   contactForm = new FormGroup({
+    checker: new FormControl(0),
     fromDate: new FormControl({value: '', disabled: true }, [Validators.maxLength(10), Validators.required]),
     toDate: new FormControl({value: '', disabled: true }, [Validators.maxLength(10), Validators.required])
   });
 
   ngOnInit() {
-
+    let info;
+    this.dataService.currentMessage.subscribe(data => (
+      info = data
+    ));
+    if (!isEmpty(info) && isObject(info)) {
+      this.contactForm.setValue({
+        checker: info.searchBy === "Status" ? 0 : 1,
+        fromDate: info.searchValue.fromDate || '',
+        toDate: info.searchValue.toDate || ''
+      });
+      this.byStatus = info.searchBy === "Status" ? true : false;
+    } else {
+      this.dataTable.dataArr = [];
+      this.dataTable.headers = [];
+      this.dataTable.rowsNo = 0;
+    }
   }
 
   checkFunc(strChecked) {
@@ -44,14 +64,35 @@ export class ContactViewComponent implements OnInit {
 
   onSelect(contact) {
     this.router.navigate([`adminpanel/${contactUri.read}/${contact.id}`]);
-    this.dataService.changeMessage(contact);
+    this.dataService.changeMessage({ 
+      data: contact, 
+      searchBy: this.byStatus ? "Status" : "CreatedDate", 
+      searchValue: { 
+        fromDate : this.contactForm.value.fromDate,
+        toDate: this.contactForm.value.toDate
+      } 
+    });
   }
 
   searchFunc() {
-    this.contactService.getContact(this.contactForm.value, this.byStatus).subscribe(data => {
+    if (!compareDateObj(this.contactForm.value.fromDate, this.contactForm.value.toDate)) {
+      this.openDialog('From Date should be less than To Date');
+      return;
+    }
+    const fromDate = this.byStatus ? "" : convertDateObjToString(this.contactForm.value.fromDate);
+    const toDate = this.byStatus ? "" : convertDateObjToString(this.contactForm.value.toDate);
+    this.contactService.getContact(fromDate, toDate, this.byStatus).subscribe(data => {
       this.dataTable.dataArr = data;
+      this.dataTable.headers = ['No.', 'Full Name', 'Company', 'Email', 'Phone', ''];
+      this.dataTable.rowsNo = size(data);
     });
-    this.dataTable.headers = ['No.', 'Full Name', 'Company', 'Email', 'Phone', ''];
-    this.dataTable.rowsNo = size(this.dataTable.dataArr);
+  }
+
+  openDialog(msgErr: any) {
+    this.dialogService.addDialog(ModalWarningComponent, {
+      title: 'Validation Error',
+      message: msgErr,
+      isArray: isArray(msgErr)
+    });
   }
 }

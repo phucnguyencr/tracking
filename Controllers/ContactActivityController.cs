@@ -48,6 +48,7 @@ namespace tracking_api.Controllers
         }
 
         [HttpPut("{id}")]
+        [ActionName("Mark")]
         public async Task<IActionResult> Update([FromRoute] string id)
         {
             if (string.IsNullOrEmpty(id))

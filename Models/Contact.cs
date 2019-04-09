@@ -5,7 +5,7 @@ namespace tracking.Models
 {
     public class Contact
     {
-        public Int16 ID { get; set; }
+        public string ID { get; set; }
         [Required]
         [MaxLength(50)]
         public string FullName { get; set; }
