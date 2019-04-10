@@ -58,7 +58,6 @@ export class ContactReadComponent implements OnInit {
   }
 
   backFunc() {
-    console.log(this.searchInfo);
     this.dataService.changeMessage(this.searchInfo);
     this.router.navigate([`adminpanel/${contactUri.root}`]);
   }

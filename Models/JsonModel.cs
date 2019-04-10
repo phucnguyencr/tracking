@@ -9,6 +9,6 @@ namespace tracking.Models
         [MaxLength(100)]
         public string Title { get; set; }
         [Required]
-        public string Desciption { get; set; }
+        public string Description { get; set; }
     }
 }

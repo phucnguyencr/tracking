@@ -15,7 +15,7 @@ export class ContactService extends BaseService {
   constructor(private http: HttpClient, private config: AppConfig, helper: Helpers) { super(helper); }
 
   getContact (fromDate, toDate, byStatus): Observable<any> {
-    const searchInfo = { fieldName: byStatus ? "Status" : "CreatedDate", fieldFromValue: fromDate, fieldToValue: toDate };
+    const searchInfo = { fieldName: byStatus === 0 ? "Status" : "CreatedDate", fieldFromValue: fromDate, fieldToValue: toDate };
     return this.http.post(`${this.pathContactActivityAPI}/search`, searchInfo, super.header(true)).pipe(
     catchError(super.handleError));
   }

@@ -14,7 +14,8 @@ export class AppConfig {
             scheduleAPI: `${hostName}/tracking/schedule`,
             userAPI: `${hostName}/tracking/users`,
             contactAPI: `${hostName}/tracking/contact`,
-            contactActivityAPI: `${hostName}/tracking/ContactActivity`
+            contactActivityAPI: `${hostName}/tracking/ContactActivity`,
+            aboutAPI: `${hostName}/tracking/about`,
         };
 
     }
