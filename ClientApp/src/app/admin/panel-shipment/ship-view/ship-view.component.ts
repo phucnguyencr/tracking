@@ -22,7 +22,9 @@ export class ShipViewComponent implements OnInit {
   });
 
   ngOnInit() {
-
+    this.dataTable.dataArr = [];
+    this.dataTable.headers = [];
+    this.dataTable.rowsNo = 0;
   }
 
   onSelect(flow) {

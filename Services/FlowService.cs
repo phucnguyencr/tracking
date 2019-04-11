@@ -36,7 +36,7 @@ namespace tracking.Services
 
         public bool FlowExists(Flow flow, TrackingContext context)
         {
-            return context.Flow.Any(e => e.Description == flow.Description);
+            return context.Flow.Any(e => e.Name == flow.Name);
         }
 
         public Flow FlowExistsById(String ID, TrackingContext context)

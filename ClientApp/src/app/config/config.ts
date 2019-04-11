@@ -16,6 +16,7 @@ export class AppConfig {
             contactAPI: `${hostName}/tracking/contact`,
             contactActivityAPI: `${hostName}/tracking/ContactActivity`,
             aboutAPI: `${hostName}/tracking/about`,
+            flowAPI: `${hostName}/tracking/flow`,
         };
 
     }

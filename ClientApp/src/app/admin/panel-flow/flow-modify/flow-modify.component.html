@@ -8,10 +8,10 @@
         <div class="form-row">
           <div class="col-md-2"></div>
           <div class="col-md-8">
-            <label>Description</label>
+            <label>Name</label>
             <input type="text" class="form-control" 
-            placeholder="Description"
-            formControlName="description"
+            placeholder="Name"
+            formControlName="name"
             [maxLength]="100"
             autofocus>
           </div>
@@ -24,8 +24,10 @@
           <div class="col-md-8">
             <label>Step No</label>
             <input type="number" class="form-control" 
-            placeholder="Step"
-            formControlName="step">
+            placeholder="1"
+            min="1"
+            max="10"
+            formControlName="stepNo">
           </div>
           <div class="col-md-2"><label class='control-label'></label></div>
         </div>
@@ -34,11 +36,11 @@
           <div class="form-row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-              <label>Sub Description</label>
+              <label>Description</label>
               <input type="text" class="form-control" 
-              placeholder="Sub Description"
-              formControlName="subDescription"
-              [maxLength]="100">
+              placeholder="Description"
+              formControlName="description"
+              [maxLength]="200">
             </div>
             <div class="col-md-2"><label class='control-label'></label></div>
           </div>

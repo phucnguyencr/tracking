@@ -7,42 +7,49 @@ import { ModalWarningComponent } from '../../../modal/modal-warning/modal-warnin
 import { getValidationErrors, hasInvalidRequire, listInvalidRange, listInvalidLength } from '../../../utils/getValidationsForm';
 import { DataService } from '../../public/data.service';
 import { flowUri } from '../../../admin/public/model';
+import { FlowService } from '../../../services/flowService';
+import { AppConfig } from '../../../config/config';
 
 @Component({
   selector: 'app-flow-modify',
   templateUrl: './flow-modify.component.html',
-  styleUrls: ['./flow-modify.component.css']
+  styleUrls: ['./flow-modify.component.css'],
+  providers: [FlowService, AppConfig]
 })
 export class FlowModifyComponent implements OnInit {
 
   constructor(private dialogService: DialogService, private route: ActivatedRoute, 
-    private router: Router, private dataService: DataService) { }
+    private router: Router, private dataService: DataService, private flowService: FlowService) { }
 
   isCreated = false;
   id: string;
   flowForm = new FormGroup({
-    description: new FormControl('', [Validators.required, Validators.maxLength(100)]),
-    step: new FormControl(1, [Validators.required, Validators.max(10), Validators.min(1)]),
-    subDescription: new FormControl('', [Validators.required, Validators.maxLength(200)]),
+    name: new FormControl('', [Validators.required, Validators.maxLength(100)]),
+    stepNo: new FormControl(1, [Validators.required, Validators.max(10), Validators.min(1)]),
+    description: new FormControl('', [Validators.required, Validators.maxLength(200)]),
   });
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.isCreated = isEmpty(this.id);
-    let flowData;
-    this.dataService.currentMessage.subscribe(data => (flowData = data));
-    if (isObject(flowData) && !isEmpty(flowData)) {
+    if (this.isCreated) {
       this.flowForm.setValue({
-        description: flowData.description,
-        step: flowData.step,
-        subDescription: flowData.subDescription,
+        name: '',
+        stepNo: 1,
+        description: '',
       });
     } else {
-      this.flowForm.setValue({
-        description: '',
-        step: 1,
-        subDescription: ''
-      });
+      let flowData;
+      this.dataService.currentMessage.subscribe(data => (flowData = data));
+      if (isObject(flowData) && !isEmpty(flowData)) {
+        this.flowForm.setValue({
+          name: flowData.name,
+          stepNo: flowData.stepNo,
+          description: flowData.description,
+        });
+      } else {
+        this.router.navigate([`adminpanel/${flowUri.root}`]);
+      }
     }
   }
 
@@ -67,17 +74,14 @@ export class FlowModifyComponent implements OnInit {
       }
     } else {
       if(this.isCreated) {
-      // this.tokenService.auth(this.loginForm.value).subscribe(token => {
-      //   this.helpers.setToken(token);
-      //   this.router.navigate(['adminpanel']);
-      // });
+        this.flowService.createFlow(this.flowForm.value).subscribe(token => {
+          this.router.navigate([`adminpanel/${flowUri.root}`]);
+        });
       } else {
-      // this.tokenService.auth(this.loginForm.value).subscribe(token => {
-      //   this.helpers.setToken(token);
-      //   this.router.navigate(['adminpanel']);
-      // });
+        this.flowService.updateFlow(this.flowForm.value, this.id).subscribe(token => {
+          this.router.navigate([`adminpanel/${flowUri.root}`]);
+        });
       }
-      this.router.navigate([`adminpanel/${flowUri.root}`]);
     }
   }
 
