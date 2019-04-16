@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { size } from 'lodash';
+import { size, isEmpty } from 'lodash';
 import { dataTable } from '../../public/model';
 import { DataService } from '../../public/data.service';
 import { UserService } from '../../../services/userService';
@@ -20,10 +20,16 @@ export class UserViewComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers().subscribe(data => {
-      this.dataTable.dataArr = data;
+      if(!isEmpty(data)) {
+        this.dataTable.dataArr = data;
+        this.dataTable.headers = ['No.', 'Full Name', 'User Name', 'Email', 'Status', ''];
+        this.dataTable.rowsNo = size(this.dataTable.dataArr);
+      } else {
+        this.dataTable.dataArr = [];
+        this.dataTable.headers = [];
+        this.dataTable.rowsNo = 0;
+      }
     });
-    this.dataTable.headers = ['No.', 'Full Name', 'User Name', 'Email', 'Status', ''];
-    this.dataTable.rowsNo = size(this.dataTable.dataArr);
   }
   
   onSelect(user) {

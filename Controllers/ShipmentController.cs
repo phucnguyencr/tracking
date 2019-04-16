@@ -12,7 +12,7 @@ using tracking.Utils;
 
 namespace tracking_api.Controllers
 {
-    [Route("tracking/[controller]")]
+    [Route("tracking/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class ShipmentController : ControllerBase
@@ -25,7 +25,8 @@ namespace tracking_api.Controllers
             shipService = new ShipmentService();
         }
 
-        [HttpGet]
+        [HttpPost]
+        [ActionName("Search")]
         public IActionResult Get([FromBody] CriteriaModel condition)
         {
             if (!ModelState.IsValid) {
@@ -35,6 +36,7 @@ namespace tracking_api.Controllers
         }
 
         [HttpPost]
+        [ActionName("Create")]
         public async Task<IActionResult> Create([FromBody] Shipment ship)
         {
             if (!ModelState.IsValid) {
@@ -49,6 +51,7 @@ namespace tracking_api.Controllers
         }
 
         [HttpPut("{id}")]
+        [ActionName("Update")]
         public async Task<IActionResult> Update([FromRoute] string id, [FromBody] Shipment ship)
         {
             if (string.IsNullOrEmpty(id))
@@ -80,7 +83,8 @@ namespace tracking_api.Controllers
             return NoContent();
         }
 
-        [HttpPost("{id}")]
+        [HttpPut("{id}")]
+        [ActionName("Close")]
         public async Task<IActionResult> CloseShipment([FromRoute] string id) {
             if (string.IsNullOrEmpty(id))
             {
@@ -96,7 +100,7 @@ namespace tracking_api.Controllers
         }
 
         [HttpDelete("{id}")]
-
+        [ActionName("Remove")]
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -113,6 +117,7 @@ namespace tracking_api.Controllers
         }
 
         [HttpGet("{id}")]
+        [ActionName("Details")]
         public IActionResult GetDetails([FromRoute] string strNo)
         {
             if (string.IsNullOrEmpty(strNo))

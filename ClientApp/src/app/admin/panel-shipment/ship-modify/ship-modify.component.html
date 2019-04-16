@@ -107,8 +107,7 @@
                       <input class="form-control" placeholder="yyyy-mm-dd"
                         name="dp" formControlName="actDepartureDate" 
                         ngbDatepicker 
-                        #d1="ngbDatepicker"
-                        [minDate]="minDate">
+                        #d1="ngbDatepicker">
                       <div class="input-group-append">
                         <button class="btn btn-outline-secondary fa fa-calendar" (click)="d1.toggle()" type="button"></button>
                       </div>
@@ -151,8 +150,7 @@
                       <input class="form-control" placeholder="yyyy-mm-dd" 
                       formControlName="estDischargeDate" 
                       ngbDatepicker 
-                      #d2="ngbDatepicker"
-                      [minDate]="minDate">
+                      #d2="ngbDatepicker">
                       <div class="input-group-append">
                         <button class="btn btn-outline-secondary fa fa-calendar" (click)="d2.toggle()" type="button"></button>
                       </div>
@@ -180,8 +178,7 @@
                       <input class="form-control" placeholder="yyyy-mm-dd" 
                       formControlName="estArrivalDate" 
                       ngbDatepicker 
-                      #d3="ngbDatepicker"
-                      [minDate]="minDate">
+                      #d3="ngbDatepicker">
                       <div class="input-group-append">
                         <button class="btn btn-outline-secondary fa fa-calendar" (click)="d3.toggle()" type="button"></button>
                       </div>
@@ -215,10 +212,9 @@
                     <label>Booking Date</label>
                     <div class="input-group">
                       <input class="form-control" placeholder="yyyy-mm-dd" 
-                      formControlName="bookingDate" 
+                      formControlName="bookedDate" 
                       ngbDatepicker 
-                      #d4="ngbDatepicker"
-                      [minDate]="minDate">
+                      #d4="ngbDatepicker">
                       <div class="input-group-append">
                         <button class="btn btn-outline-secondary fa fa-calendar" (click)="d4.toggle()" type="button"></button>
                       </div>
@@ -232,41 +228,17 @@
       </div>   
     </div>
     <br/>
-    <!-- <div class="form-group">
-        <div class="form-row">
-          <div class="col-md-2"></div>
-          <div class="col-md-8">
-            <h6 class="text-danger">Status</h6>
-            <div class="panel panel-default">
-              <div class="panel-body" [hidden]="!isDisabled">
-                <mat-horizontal-stepper labelPosition="bottom" #stepper>
-                  <ng-template matStepperIcon="number">
-                    <mat-icon>done</mat-icon>
-                  </ng-template>
-                  <ng-template matStepperIcon="edit">
-                    <mat-icon>check</mat-icon>
-                  </ng-template>
-                  <mat-step *ngFor="let item of stepArr; let index = index; let last = last;" [completed]="index <= doneIdx">
-                      <ng-template matStepLabel>{{item.name}}</ng-template>
-                      <div *ngIf="!last">
-                        <button class="btn btn-success" matStepperNext (click)="changeStepEvent(item.step)">Done</button>
-                      </div>
-                  </mat-step>
-                </mat-horizontal-stepper>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2"><label class='control-label'></label></div>
-      </div>   
-    </div> -->
     <div class="form-group">
         <div class="form-row">
-          <div class="col-md-8"></div>
-          <div class="col-md-1">
-            <button class="btn btn-success btn-block" (click)="closeFunc()">Close</button>
+          <div class="col-md-6"></div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-success btn-block" (click)="closeFunc()" [hidden]="isCreated || isClosed">Close Shipment</button>
           </div>
           <div class="col-md-1">
-            <button class="btn btn-primary btn-block" (click)="saveFunc()" [hidden]="isClose">Save</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="saveFunc()" [hidden]="isClosed">Save</button>
+          </div>
+          <div class="col-md-1">
+            <button type="button" class="btn btn-danger btn-block" (click)="backFunc()">Back</button>
           </div>
           <div class="col-md-2"></div>
         </div>

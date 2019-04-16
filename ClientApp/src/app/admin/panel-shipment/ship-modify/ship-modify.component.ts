@@ -2,28 +2,30 @@ import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { DialogService } from 'ng2-bootstrap-modal';
-import { isArray, isEmpty, isNil } from 'lodash';
+import { isArray, isEmpty, isObject } from 'lodash';
 import { ModalWarningComponent } from '../../../modal/modal-warning/modal-warning.component';
 import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { getValidationErrors, hasInvalidRequire, listInvalidLength } from '../../../utils/getValidationsForm';
+import { convertDateToObject} from '../../../utils/convertDateToString';
 import { DataService } from '../../public/data.service';
-import { userUri } from '../../../admin/public/model';
+import { shipUri } from '../../../admin/public/model';
+import { ShipmentService } from '../../../services/shipService';
+import { AppConfig } from '../../../config/config';
 
 @Component({
   selector: 'app-ship-modify',
   templateUrl: './ship-modify.component.html',
-  styleUrls: ['./ship-modify.component.css']
+  styleUrls: ['./ship-modify.component.css'],
+  providers: [ShipmentService, AppConfig]
 })
-export class ShipModifyComponent implements OnInit, AfterViewInit {
-  @ViewChild('stepper') public stepper;
+export class ShipModifyComponent implements OnInit {
   constructor(private dialogService: DialogService, private route: ActivatedRoute, 
-    private router: Router, private dataService: DataService, private calendar: NgbCalendar, private cdr: ChangeDetectorRef) { }
-  isDisabled = false;
-  minDate = this.calendar.getToday();
+    private router: Router, private dataService: DataService, private calendar: NgbCalendar, private shipService: ShipmentService) { }
+  isCreated = false;
   doneIdx = 0;
-  stepArr = [];
   id: string;
   isClosed: false;
+  searchInfo;
   shipForm = new FormGroup({
     billOfLading: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     voyageNo: new FormControl('', [Validators.required, Validators.maxLength(20)]),
@@ -42,52 +44,82 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
     arrVessel: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     arrContainer: new FormControl('', [Validators.required, Validators.maxLength(20)]),
     createdBy: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-    bookingDate: new FormControl('', [Validators.required])
+    bookedDate: new FormControl('', [Validators.required])
   });
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.isDisabled = !isEmpty(this.id);
-    let shipData;
-    this.dataService.currentMessage.subscribe(data => (shipData = data));
-    if (!isEmpty(shipData) && !isEmpty(this.id)) {
+    this.isCreated = isEmpty(this.id);
+    if(this.isCreated) {
       this.shipForm.setValue({
-        billOfLading: 'HHHLOZ00001',
-        voyageNo: 'HPH0999',
-        carton: 100,
-        weight: 50.03,
-        cubicMeter: 10.02,
-        origin: 'Ha Noi',
-        depShortName: 'HNI',
-        actDepartureDate: this.setValueToDatePicker(),
-        depVessel: 'C9990',
-        depContainer: 'HC882',
-        destination: 'Ho Chi Minh',
-        destShortName: 'HCM',
-        estArrivalDate: this.setValueToDatePicker('2019/03/02'),
-        estDischargeDate: this.setValueToDatePicker('2019/03/05'),
-        arrVessel: 'ZT201',
-        arrContainer: 'ZC672',
-        createdBy: 'Nguyen Thanh Lam',
-        bookingDate: this.setValueToDatePicker('2019/02/14')
+        billOfLading: '',
+        voyageNo: '',
+        carton: 0,
+        weight: 0,
+        cubicMeter: 0,
+        origin: '',
+        depShortName: '',
+        actDepartureDate: this.calendar.getToday(),
+        depVessel: '',
+        depContainer: '',
+        destination: '',
+        destShortName: '',
+        estArrivalDate: this.calendar.getToday(),
+        estDischargeDate: this.calendar.getToday(),
+        arrVessel: '',
+        arrContainer: '',
+        createdBy: '',
+        bookedDate: this.calendar.getToday()
       });
-      this.shipForm.controls['billOfLading'].disable();
-      this.shipForm.controls['carton'].disable();
-      this.shipForm.controls['weight'].disable();
-      this.shipForm.controls['cubicMeter'].disable();
-      this.shipForm.controls['createdBy'].disable();
-      this.shipForm.controls['bookingDate'].disable();
-    } 
-    // this.stepArr = this.flowArr();
-  }
-
-  ngAfterViewInit() {
-    this.doneIdx = 0;
-    if (this.doneIdx > 0) {
-      this.stepper.selectedIndex = this.doneIdx - 1;
-      this.stepper.next();
+    } else {
+      this.dataService.currentMessage.subscribe(data => (this.searchInfo = data));
+      const shipData = this.searchInfo.data;
+      if (isObject(this.searchInfo) && !isEmpty(this.searchInfo)) {
+        this.shipForm.setValue({
+          billOfLading: shipData.billOfLading,
+          voyageNo: shipData.voyageNo,
+          carton: shipData.carton,
+          weight: shipData.weight,
+          cubicMeter: shipData.cubicMeter,
+          origin: shipData.origin,
+          depShortName: shipData.depShortName,
+          actDepartureDate: convertDateToObject(shipData.actDepartureDate),
+          depVessel: shipData.depVessel,
+          depContainer: shipData.depContainer,
+          destination: shipData.destination,
+          destShortName: shipData.depShortName,
+          estArrivalDate: convertDateToObject(shipData.estArrivalDate),
+          estDischargeDate: convertDateToObject(shipData.estDischargeDate),
+          arrVessel: shipData.arrVessel,
+          arrContainer: shipData.arrContainer,
+          createdBy: shipData.createdBy,
+          bookedDate: convertDateToObject(shipData.bookedDate)
+        });
+        this.isClosed = shipData.isClosed;
+        this.shipForm.controls['billOfLading'].disable();
+        this.shipForm.controls['carton'].disable();
+        this.shipForm.controls['weight'].disable();
+        this.shipForm.controls['cubicMeter'].disable();
+        this.shipForm.controls['createdBy'].disable();
+        this.shipForm.controls['bookedDate'].disable();
+        if(this.isClosed) {
+          this.shipForm.controls['voyageNo'].disable();
+          this.shipForm.controls['origin'].disable();
+          this.shipForm.controls['depShortName'].disable();
+          this.shipForm.controls['depVessel'].disable();
+          this.shipForm.controls['depContainer'].disable();
+          this.shipForm.controls['actDepartureDate'].disable();
+          this.shipForm.controls['destination'].disable();
+          this.shipForm.controls['destShortName'].disable();
+          this.shipForm.controls['estDischargeDate'].disable();
+          this.shipForm.controls['arrVessel'].disable();
+          this.shipForm.controls['arrContainer'].disable();
+          this.shipForm.controls['estArrivalDate'].disable();
+        }
+      } else {
+        this.router.navigate([`adminpanel/${shipUri.root}`]);
+      }
     }
-    this.cdr.detectChanges();  
   }
 
   saveFunc() {
@@ -105,15 +137,26 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
         return;
       }
     } else {
-      // this.tokenService.auth(this.loginForm.value).subscribe(token => {
-      //   this.helpers.setToken(token);
-      //   this.router.navigate(['adminpanel']);
-      // });
+      if(this.isCreated) {
+        this.shipService.createInfo(this.shipForm.value).subscribe(token => {
+          this.router.navigate([`adminpanel/${shipUri.root}`]);
+        });
+      } else {
+        this.shipService.updateInfo(this.shipForm.getRawValue(), this.id).subscribe(token => {
+          this.router.navigate([`adminpanel/${shipUri.root}`]);
+        });
+      }
     }
   }
 
   closeFunc() {
+    this.shipService.closeInfo(this.id).subscribe(token => {
+      this.router.navigate([`adminpanel/${shipUri.root}`]);
+    });
+  }
 
+  backFunc() {
+    this.router.navigate([`adminpanel/${shipUri.root}`]);
   }
   
   openDialog(msgErr: any) {
@@ -122,46 +165,5 @@ export class ShipModifyComponent implements OnInit, AfterViewInit {
       message: msgErr,
       isArray: isArray(msgErr)
     });
-  }
-
-  setValueToDatePicker(dateStr = null) {
-    if(isEmpty(dateStr)) return this.calendar.getToday();
-    else { 
-      const newDate = new Date(dateStr);
-      return { year: newDate.getFullYear(), month: newDate.getMonth()+1, day: newDate.getDate() };
-    }
-  }
-
-  changeStepEvent(doneStep) {
-    this.doneIdx = doneStep;
-  }
-
-  flowArr () {
-    return [
-      {
-        'name': 'Booked',
-        'step': 1
-      },
-      {
-        'name': 'Planned',
-        'step': 2
-      },
-      {
-        'name': 'Sailed',
-        'step': 3
-      },
-      {
-        'name': 'On The Way',
-        'step': 4
-      },
-      {
-        'name': 'Arrived',
-        'step': 5
-      },
-      {
-        'name': 'Done',
-        'step': 6
-      }
-    ]
   }
 }
