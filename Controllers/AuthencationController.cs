@@ -31,14 +31,12 @@ namespace tracking.Controllers
         [AllowAnonymous]
         public dynamic Login([FromBody] Authencation obj)
         {
-            var tokenString = JwtTokenConfig.BuildToken(_config);
-            return Ok(new { token = tokenString });
-            // if (userService.Authencation(obj, _context))
-            // {
-            //     var tokenString = JwtTokenConfig.BuildToken(_config);
-            //     return Ok(tokenString);
-            // }
-            // return Unauthorized();
+            if (userService.Authencation(obj, _context))
+            {
+                var tokenString = JwtTokenConfig.BuildToken(_config, obj.UserName);
+                return Ok(new { token = tokenString });
+            }
+            return Unauthorized();
         }
 
         [HttpPut]
@@ -48,6 +46,7 @@ namespace tracking.Controllers
             {
                 return BadRequest();
             }
+            obj.OldPassword = EncryptionUtil.Encrypt(obj.OldPassword, true);
             var objDB = userService.UserExistToChange(obj, _context);
             if (objDB == null) {
                 throw new Exception(Contants.NOTFOUND);

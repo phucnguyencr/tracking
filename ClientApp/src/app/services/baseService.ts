@@ -43,6 +43,10 @@ export class BaseService {
         this.helper.setToken(data);
     }
 
+    public tokenInfo() {
+      return this.helper.decodeToken();
+    }
+
     public failToken(error: Response | any) {
         this.helper.failToken();
         return this.handleError(Response);

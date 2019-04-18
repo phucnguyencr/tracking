@@ -21,8 +21,8 @@ export class UserResetComponent implements OnInit {
   
   resetForm = new FormGroup({
     id: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required, Validators.maxLength(100)]),
-    confirmPassword: new FormControl('', [Validators.required, Validators.maxLength(100)]),
+    password: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.minLength(10)]),
+    confirmPassword: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.minLength(10)]),
   });
 
   ngOnInit() {

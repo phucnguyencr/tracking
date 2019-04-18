@@ -36,6 +36,7 @@ import { UserResetComponent } from './admin/panel-user/reset/user-reset.componen
 import { ModalConfirmComponent } from './modal/modal-confirm/modal-confirm.component';
 import { ModalWarningComponent } from './modal/modal-warning/modal-warning.component';
 import { ModalInfoComponent } from './modal/modal-info/modal-info.component';
+import { ModalResetPassComponent } from './modal/modal-reset-pass/modal-reset-pass.component';
 import { ContactViewComponent } from './admin/panel-contact/contact-view/contact-view.component';
 import { ContactReadComponent } from './admin/panel-contact/contact-read/contact-read.component';
 import { ContactUpdateComponent } from './admin/panel-contact/contact-update/contact-update.component';
@@ -68,6 +69,7 @@ import { ShipModifyComponent } from './admin/panel-shipment/ship-modify/ship-mod
     ModalConfirmComponent,
     ModalWarningComponent,
     ModalInfoComponent,
+    ModalResetPassComponent,
     ContactViewComponent,
     ContactReadComponent,
     ContactUpdateComponent,
@@ -96,7 +98,8 @@ import { ShipModifyComponent } from './admin/panel-shipment/ship-modify/ship-mod
   entryComponents: [
     ModalConfirmComponent,
     ModalWarningComponent,
-    ModalInfoComponent
+    ModalInfoComponent,
+    ModalResetPassComponent
   ],
   providers: [AuthGuard, Helpers, DataService],
   bootstrap: [AppComponent]

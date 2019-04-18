@@ -41,7 +41,7 @@ export function listInvalidLength(anyErrors) {
     const arr = arrMax.concat(arrMin);
     if (size(arr) === 0) return [];
     return arr.map((item) => {
-        return `${Case.sentence(item.key)} - ${item.keyError}: ${item.errValue.requiredLength}`
+        return ` ${Case.sentence(item.key)} - ${item.keyError}: ${item.errValue.requiredLength}`
     });
 }
 

@@ -14,6 +14,7 @@ namespace tracking.Models
         public string UserName { get; set; }
         [Required]
         [MaxLength(100)]
+        [MinLength(10)]
         public string Password { get; set; }
         [Required]
         [MaxLength(50)]
@@ -39,6 +40,7 @@ namespace tracking.Models
     {
         [Required]
         [MaxLength(100)]
+        [MinLength(10)]
         public string Password { get; set; }
     }
 }

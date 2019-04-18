@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark-blue static-top">
 
-  <a class="navbar-brand mr-1" href="index.html"><i class="fa fa-cogs"></i> Admin Panel</a>
+  <a class="navbar-brand mr-1" href="/adminpanel"><i class="fa fa-cogs"></i> Admin Panel</a>
 
   <!-- Navbar Right Padding -->
   <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"></div>
@@ -12,7 +12,7 @@
         <i class="fa fa-user-circle fa-fw"></i>
       </a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-        <button class="dropdown-item" type="button">Change Password</button>
+        <button class="dropdown-item" type="button" (click)="showChange()">Change Password</button>
         <div class="dropdown-divider"></div>
         <button class="dropdown-item" type="button" (click)="showConfirm()">Logout</button>
       </div>

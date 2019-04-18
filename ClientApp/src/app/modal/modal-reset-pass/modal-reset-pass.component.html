@@ -1,0 +1,55 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title text-primary">
+        <span aria-hidden="true" class="fa fa-question-circle"></span>
+        Change Password
+      </h5>
+      <button type="button" class="close" (click)="close()" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-danger" [hidden]="!isShow" [innerHTML]="errString"></div>
+      <form [formGroup] = "changeForm">
+        <div class="form-group required">
+          <div class="form-row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <input type="password" formControlName="oldPassword"
+                [maxLength]="100"
+                class="form-control" placeholder="Old Password must be minimum 10" required (change)="changeFunc()">
+            </div>
+            <div class="col-md-1"><label class='control-label'></label></div>
+          </div>
+        </div>
+        <div class="form-group required">
+          <div class="form-row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <input type="password" formControlName="password"
+                [maxLength]="100"
+                class="form-control" placeholder="New Password must be minimum 10" required (change)="changeFunc()">
+            </div>
+            <div class="col-md-1"><label class='control-label'></label></div>
+          </div>
+        </div>
+        <div class="form-group required">
+          <div class="form-row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <input type="password" formControlName="confirmPassword" 
+                [maxLength]="100"
+                class="form-control" placeholder="Confirm Password must be minimum 10" required (change)="changeFunc()">
+            </div>
+            <div class="col-md-1"><label class='control-label'></label></div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="close()" >Cancel</button>
+      <button type="button" class="btn btn-success" (click)="confirm()">Change</button>
+    </div>
+  </div>
+</div>

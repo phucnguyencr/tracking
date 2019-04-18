@@ -29,6 +29,10 @@ export class Helpers  {
         return (date.valueOf() > new Date().valueOf());
     }
 
+    public decodeToken(): any {
+        return jwt_decode(this.getToken());
+    }
+
     public isAuthenticationChanged(): any {
         return this.authenticationChanged.asObservable();
     }
