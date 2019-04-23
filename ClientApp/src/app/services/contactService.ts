@@ -30,6 +30,11 @@ export class ContactService extends BaseService {
     catchError(super.handleError));
   }
 
+  sendInfo (contactData): Observable<any> {
+    return this.http.post(`${this.pathContactActivityAPI}/create`, contactData, super.header(true)).pipe(
+    catchError(super.handleError));
+  }
+
   markRead (id): Observable<any> {
     return this.http.put(`${this.pathContactActivityAPI}/mark/${id}`, null, super.header(true)).pipe(
     catchError(super.handleError));

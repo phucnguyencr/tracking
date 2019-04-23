@@ -1,156 +1,161 @@
-<div class="row">
-  <div class="col-4">
-      <h3><i class="fa fa-ship text-shadow text-blue set-left"><strong> HPHZLO03202</strong></i></h3>
-  </div>
-  <div class="col-8">
-    <h4><label class="text-blue text-shadow set-right"><strong> 192 CARTONS - 1038.000 kgs - 10.250 cbm</strong></label></h4>
-  </div>
+<div class="alert alert-info" [hidden]="isShow" [innerHTML]="errString">
+
 </div>
-<br/>
-
-<mat-horizontal-stepper labelPosition="bottom" #stepper>
-  <ng-template matStepperIcon="number">
-    <mat-icon>done</mat-icon>
-  </ng-template>
-  <mat-step>
-    <ng-template matStepLabel>
-      <h4><span class="badge badge-success">VNHPH</span></h4>
-      Place of Receipt
-    </ng-template>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>
-      <h4><span class="badge badge-success">VNHPH</span></h4>
-      Port of Loading
-      <br/><strong>Act. Departure 15/12/2018</strong>
-    </ng-template>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>
-      <h4><span class="badge badge-success">KRPUS</span></h4>
-      Port of Discharge Est
-      <br/><strong>Est. Arrival 15/12/2018</strong>
-    </ng-template>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>
-      <h4><span class="badge badge-success">MXZLO</span></h4>
-      Place of Delivery
-      <br/><strong>Est. Arrival 12/01/2019</strong>
-    </ng-template>
-  </mat-step>
-</mat-horizontal-stepper>
-
-<div class="row">
-  <div class="col-8">
-    <div class="card shadow-sm">
-      <div class="card-header">
-        <h6 class="my-0 text-blue text-shadow">Shipment Activities</h6>
-      </div>
-      <div class="card-body">
-        <mat-vertical-stepper [linear]="false">
-          <ng-template matStepperIcon="number">
-            <mat-icon>done</mat-icon>
-          </ng-template>
-          <ng-template matStepperIcon="edit">
-            <mat-icon>check</mat-icon>
-          </ng-template>
-          <mat-step>
-            <ng-template matStepLabel>
-              Place of Receipt
-            </ng-template>
-          </mat-step>
-          <mat-step>
-            <ng-template matStepLabel>
-              Port of Loading
-              <br/><strong>Act. Departure 15/12/2018</strong>
-            </ng-template>
-          </mat-step>
-          <mat-step>
-            <ng-template matStepLabel>
-              Port of Discharge Est
-              <br/><strong>Est. Arrival 15/12/2018</strong>
-            </ng-template>
-          </mat-step>
-          <mat-step>
-            <ng-template matStepLabel>
-              Place of Delivery
-              <br/><strong>Est. Arrival 12/01/2019</strong>
-            </ng-template>
-          </mat-step>
-        </mat-vertical-stepper>
-      </div>
+<div [hidden]="!isShow">
+  <div class="row">
+    <div class="col-4">
+        <h3><i class="fa fa-ship text-shadow text-blue set-left"><strong> {{id}}</strong></i></h3>
+    </div>
+    <div class="col-8">
+      <h4><label class="text-blue text-shadow set-right"><strong> {{shipData.carton}} CARTONS - {{shipData.weight}} kgs - {{shipData.cubicMeter}} cbm</strong></label></h4>
     </div>
   </div>
-  <div class="col-4">
-    <div class="card shadow-sm">
-      <div class="card-header">
-        <h6 class="my-0 text-blue text-shadow">Shipment Details</h6>
-      </div>
-      <div class="card-body no-padding">
-        <ul class="list-group list-group-flush font-small">
-          <li class="list-group-item">
-            <div class="row">
-                <div class="col-5 text-blue">Bill Of Lading</div>
-                <div class="col-7 text-right">HPHZLO03202</div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="row">
-                <div class="col-3 text-blue">Cargo</div>
-                <div class="col-9 text-right">192 CARTONS - 1038.000 kgs - 10.250 cbm</div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="row">
-                <div class="col-5 text-blue">Origin</div>
-                <div class="col-7 text-right">Hai Phong</div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="row">
-                <div class="col-5 text-blue">Act. Departure</div>
-                <div class="col-7 text-right">15/12/2018</div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="row">
-                <div class="col-5 text-blue">DEP Vessel</div>
-                <div class="col-7 text-right">HEUNG-A YOUNG</div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="row">
-                <div class="col-5 text-blue">DEP Container</div>
-                <div class="col-7 text-right">BEAU4735069</div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="row">
-                <div class="col-5 text-blue">Destination</div>
-                <div class="col-7 text-right">Manzanilo</div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="row">
-                <div class="col-5 text-blue">Est. Arrival</div>
-                <div class="col-7 text-right">12/01/2019</div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="row">
-                <div class="col-5 text-blue">AR Vessel</div>
-                <div class="col-7 text-right">HEUNG-A YOUNG</div>
-            </div>
-          </li>      
-          <li class="list-group-item">
-            <div class="row">
-                <div class="col-5 text-blue">AR Container</div>
-                <div class="col-7 text-right">SUDU9004968</div>
-            </div>
-          </li>                              
-        </ul>
+  <br/>
+  
+  <mat-horizontal-stepper labelPosition="bottom" #stepper>
+    <ng-template matStepperIcon="number">
+      <mat-icon>done</mat-icon>
+    </ng-template>
+    <mat-step>
+      <ng-template matStepLabel>
+        <h4><span class="badge badge-success">VNHPH</span></h4>
+        Place of Receipt
+      </ng-template>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>
+        <h4><span class="badge badge-success">VNHPH</span></h4>
+        Port of Loading
+        <br/><strong>Act. Departure 15/12/2018</strong>
+      </ng-template>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>
+        <h4><span class="badge badge-success">KRPUS</span></h4>
+        Port of Discharge Est
+        <br/><strong>Est. Arrival 15/12/2018</strong>
+      </ng-template>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>
+        <h4><span class="badge badge-success">MXZLO</span></h4>
+        Place of Delivery
+        <br/><strong>Est. Arrival 12/01/2019</strong>
+      </ng-template>
+    </mat-step>
+  </mat-horizontal-stepper>
+  
+  <div class="row">
+    <div class="col-8">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h6 class="my-0 text-blue text-shadow">Shipment Activities</h6>
+        </div>
+        <div class="card-body">
+          <mat-vertical-stepper [linear]="false">
+            <ng-template matStepperIcon="number">
+              <mat-icon>done</mat-icon>
+            </ng-template>
+            <ng-template matStepperIcon="edit">
+              <mat-icon>check</mat-icon>
+            </ng-template>
+            <mat-step>
+              <ng-template matStepLabel>
+                Place of Receipt
+              </ng-template>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>
+                Port of Loading
+                <br/><strong>Act. Departure 15/12/2018</strong>
+              </ng-template>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>
+                Port of Discharge Est
+                <br/><strong>Est. Arrival 15/12/2018</strong>
+              </ng-template>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>
+                Place of Delivery
+                <br/><strong>Est. Arrival 12/01/2019</strong>
+              </ng-template>
+            </mat-step>
+          </mat-vertical-stepper>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="col-4">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h6 class="my-0 text-blue text-shadow">Shipment Details</h6>
+        </div>
+        <div class="card-body no-padding">
+          <ul class="list-group list-group-flush font-small">
+            <li class="list-group-item">
+              <div class="row">
+                  <div class="col-5 text-blue">Bill Of Lading</div>
+                  <div class="col-7 text-right">{{shipData.billOfLading}}</div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                  <div class="col-3 text-blue">Cargo</div>
+                  <div class="col-9 text-right">{{shipData.carton}} CARTONS - {{shipData.weight}} kgs - {{shipData.cubicMeter}} cbm</div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                  <div class="col-5 text-blue">Origin</div>
+                  <div class="col-7 text-right">{{shipData.origin}}</div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                  <div class="col-5 text-blue">Act. Departure</div>
+                  <div class="col-7 text-right">{{shipData.actDepartureDate}}</div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                  <div class="col-5 text-blue">DEP Vessel</div>
+                  <div class="col-7 text-right">{{shipData.depVessel}}</div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                  <div class="col-5 text-blue">DEP Container</div>
+                  <div class="col-7 text-right">{{shipData.depContainer}}</div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                  <div class="col-5 text-blue">Destination</div>
+                  <div class="col-7 text-right">{{shipData.destination}}</div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                  <div class="col-5 text-blue">Est. Arrival</div>
+                  <div class="col-7 text-right">{{shipData.estArrivalDate}}</div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                  <div class="col-5 text-blue">AR Vessel</div>
+                  <div class="col-7 text-right">{{shipData.arrVessel}}</div>
+              </div>
+            </li>      
+            <li class="list-group-item">
+              <div class="row">
+                  <div class="col-5 text-blue">AR Container</div>
+                  <div class="col-7 text-right">{{shipData.arrContainer}}</div>
+              </div>
+            </li>                              
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>  
 </div>

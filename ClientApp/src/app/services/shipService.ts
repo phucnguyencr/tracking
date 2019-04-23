@@ -14,7 +14,7 @@ export class ShipmentService extends BaseService {
   private pathShipAPI = this.config.setting['shipAPI'];
   constructor(private http: HttpClient, private config: AppConfig, helper: Helpers) { super(helper); }
 
-  getContact (fromDate, toDate, billNo, searchBy): Observable<any> {
+  getList (fromDate, toDate, billNo, searchBy): Observable<any> {
     let byField = 'Status';
     switch(searchBy) {
       case 1:
@@ -35,26 +35,26 @@ export class ShipmentService extends BaseService {
     catchError(super.handleError));
   }
   
-  createInfo (contactData): Observable<any> {
-    contactData.actDepartureDate = convertDateObjToString(contactData.actDepartureDate);
-    contactData.bookedDate = convertDateObjToString(contactData.bookedDate);
-    contactData.estArrivalDate = convertDateObjToString(contactData.estArrivalDate);
-    contactData.estDischargeDate = convertDateObjToString(contactData.estDischargeDate);
-    return this.http.post(`${this.pathShipAPI}/create`, contactData, super.header(true)).pipe(
+  createInfo (shipData): Observable<any> {
+    shipData.actDepartureDate = convertDateObjToString(shipData.actDepartureDate);
+    shipData.bookedDate = convertDateObjToString(shipData.bookedDate);
+    shipData.estArrivalDate = convertDateObjToString(shipData.estArrivalDate);
+    shipData.estDischargeDate = convertDateObjToString(shipData.estDischargeDate);
+    return this.http.post(`${this.pathShipAPI}/create`, shipData, super.header(true)).pipe(
     catchError(super.handleError));
   }
 
-  getInfo (): Observable<any> {
-    return this.http.get(`${this.pathShipAPI}`, super.header(true)).pipe(
+  getInfo (id): Observable<any> {
+    return this.http.get(`${this.pathShipAPI}/details/${id}`, super.header(true)).pipe(
     catchError(super.handleError));
   }
 
-  updateInfo (contactData, id): Observable<any> {
-    contactData.actDepartureDate = convertDateObjToString(contactData.actDepartureDate);
-    contactData.bookedDate = convertDateObjToString(contactData.bookedDate);
-    contactData.estArrivalDate = convertDateObjToString(contactData.estArrivalDate);
-    contactData.estDischargeDate = convertDateObjToString(contactData.estDischargeDate);
-    return this.http.put(`${this.pathShipAPI}/update/${id}`, contactData, super.header(true)).pipe(
+  updateInfo (shipData, id): Observable<any> {
+    shipData.actDepartureDate = convertDateObjToString(shipData.actDepartureDate);
+    shipData.bookedDate = convertDateObjToString(shipData.bookedDate);
+    shipData.estArrivalDate = convertDateObjToString(shipData.estArrivalDate);
+    shipData.estDischargeDate = convertDateObjToString(shipData.estDischargeDate);
+    return this.http.put(`${this.pathShipAPI}/update/${id}`, shipData, super.header(true)).pipe(
     catchError(super.handleError));
   }
 

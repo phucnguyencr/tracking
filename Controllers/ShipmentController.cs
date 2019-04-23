@@ -118,18 +118,17 @@ namespace tracking_api.Controllers
 
         [HttpGet("{id}")]
         [ActionName("Details")]
-        public IActionResult GetDetails([FromRoute] string strNo)
+        [AllowAnonymous]
+        public IActionResult GetDetails([FromRoute] string id)
         {
-            if (string.IsNullOrEmpty(strNo))
+            if (string.IsNullOrEmpty(id))
             {
                 return BadRequest();
             }
-            var objDB = shipService.GetByBillNo(strNo, _context);
-            if (objDB == null)
-            {
-                throw new Exception(Contants.NOTFOUND);
-            }
-            return Ok(objDB);
+            var objDB = shipService.GetByBillNo(id, _context);
+            var flowService = new FlowService();
+            var flowData = flowService.Get(_context);
+            return Ok(new { shipInfo = objDB, flowInfo = flowData  });
         }
     }
 }

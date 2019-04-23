@@ -103,7 +103,7 @@ export class ShipViewComponent implements OnInit {
     const fromDate = this.shipForm.value.checker === 0 ? "" : convertDateObjToString(this.shipForm.value.fromDate);
     const toDate = this.shipForm.value.checker === 0 ? "" : convertDateObjToString(this.shipForm.value.toDate);
     const billNo = this.shipForm.value.billOfLading;
-    this.shipService.getContact(fromDate, toDate, billNo, this.shipForm.value.checker).subscribe(data => {
+    this.shipService.getList(fromDate, toDate, billNo, this.shipForm.value.checker).subscribe(data => {
       this.dataTable.dataArr = data;
       this.dataTable.headers = ['No.', 'Bill Of Lading', 'Origin', 'Atc. Departure', 'Destination', 'Est. Arrival', ''];
       this.dataTable.rowsNo = size(data);
