@@ -12,7 +12,7 @@ namespace tracking.Services
     {
         public Array Get(TrackingContext context)
         {
-            return context.Flow.ToArray();
+            return context.Flow.OrderBy( f => f.StepNo).ToArray();
         }
 
         public async Task Create(Flow flow, TrackingContext context)

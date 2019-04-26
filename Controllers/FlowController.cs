@@ -61,9 +61,7 @@ namespace tracking_api.Controllers
             {
                 throw new Exception(Contants.NOTFOUND);
             }
-            objDB.Description = flow.Description;
             objDB.Name = flow.Name;
-            objDB.StepNo = flow.StepNo;
             await flowService.Update(objDB, _context);
             return NoContent();
         }

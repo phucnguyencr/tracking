@@ -25,8 +25,8 @@ export class FlowModifyComponent implements OnInit {
   id: string;
   flowForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.maxLength(100)]),
-    stepNo: new FormControl(1, [Validators.required, Validators.max(10), Validators.min(1)]),
-    description: new FormControl('', [Validators.required, Validators.maxLength(200)]),
+    stepNo: new FormControl({ value: 1, disabled: true }, [Validators.required, Validators.max(10), Validators.min(1)]),
+    description: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.maxLength(200)]),
   });
 
   ngOnInit() {

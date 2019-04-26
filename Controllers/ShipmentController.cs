@@ -125,10 +125,12 @@ namespace tracking_api.Controllers
             {
                 return BadRequest();
             }
-            var objDB = shipService.GetByBillNo(id, _context);
-            var flowService = new FlowService();
-            var flowData = flowService.Get(_context);
-            return Ok(new { shipInfo = objDB, flowInfo = flowData  });
+            Shipment objDB = shipService.GetByBillNo(id, _context);
+            if(objDB != null) { 
+                var flowData = shipService.mapFlowData(objDB, _context);
+                return Ok(new { shipInfo = objDB, flowInfo = flowData  });
+            }
+            return Ok(new { shipInfo = new {}, flowInfo = new Array[0] });
         }
     }
 }

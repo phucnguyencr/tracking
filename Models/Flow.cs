@@ -14,5 +14,6 @@ namespace tracking.Models
         public string Description { get; set; }
         [Required]
         public Int16 StepNo { get; set; }
+        public string SubDescription { get; set; }
     }
 }

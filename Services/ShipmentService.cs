@@ -91,6 +91,67 @@ namespace tracking.Services
             ship.ArrContainer = textInfo.ToUpper(ship.ArrContainer);
             ship.CreatedBy = textInfo.ToTitleCase(ship.CreatedBy);
             return ship;
-        } 
+        }
+
+        public Array mapFlowData(Shipment ship, TrackingContext context)
+        {
+            var flowService = new FlowService();
+            var flowData = flowService.Get(context);
+            List<Flow> newFlow = new List<Flow>();
+            if(flowData.Length == 0) 
+            {
+                return new Array[0];
+            }
+            foreach(Flow flow in flowData)
+            {
+                newFlow.Add(mapStr(flow, ship));
+            }
+            return flowData;
+        }
+
+        private Flow mapStr(Flow flow, Shipment ship)
+        {
+            var Desc = "TO BE ADVISED";
+            var SubDesc = "";
+            switch(flow.StepNo)
+            {
+                case 1:
+                {
+                    flow.Description = ReplaceParam.MakeStringWithParams(flow.Description, new string[] { ship.DepShortName, ship.CreatedBy });
+                    flow.SubDescription = String.Format("{0}  {1: dd/MM/yyyy}", ship.DepShortName, ship.BookedDate);
+                    break;
+                }
+                case 2:
+                {
+                    if (DateTime.Now.Date >= ship.ActDepartureDate.Date)
+                    {
+                        string opt = String.Format("{0: dd MMM yyyy}", ship.ActDepartureDate);
+                        Desc = ReplaceParam.MakeStringWithParams(flow.Description, new string[] { ship.DepVessel, ship.VoyageNo, opt });
+                        SubDesc = String.Format("{0}  {1: dd/MM/yyyy}", ship.DepShortName, ship.ActDepartureDate);
+                    }
+                    break;
+                }
+                case 3:
+                {
+                    if (DateTime.Now.Date >= ship.ActDepartureDate.Date)
+                    {
+                        string opt = String.Format("{0} on {1: dd MMM yyyy}", ship.DepShortName, ship.ActDepartureDate);
+                        Desc = ReplaceParam.MakeStringWithParams(flow.Description, new string[] { ship.DepShortName, ship.CreatedBy, opt });
+                        SubDesc = String.Format("{0}  {1: dd/MM/yyyy}", ship.DepShortName, ship.ActDepartureDate);
+                    }
+                    break;
+                }
+                default:
+                    if (DateTime.Now.Date >= ship.ActDepartureDate.Date)
+                    {
+                        Desc = "";
+                        SubDesc = String.Format("{0}  {1: dd/MM/yyyy}", ship.DestShortName, ship.EstArrivalDate);
+                    }
+                    break; 
+            }
+            flow.Description = Desc;
+            flow.SubDescription = SubDesc;
+            return flow;
+        }
     }
 }
