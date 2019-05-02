@@ -117,8 +117,8 @@ namespace tracking.Services
             {
                 case 1:
                 {
-                    flow.Description = ReplaceParam.MakeStringWithParams(flow.Description, new string[] { ship.DepShortName, ship.CreatedBy });
-                    flow.SubDescription = String.Format("{0}  {1: dd/MM/yyyy}", ship.DepShortName, ship.BookedDate);
+                    Desc = ReplaceParam.MakeStringWithParams(flow.Description, new string[] { ship.DepShortName, ship.CreatedBy });
+                    SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.DepShortName, ship.BookedDate);
                     break;
                 }
                 case 2:
@@ -127,7 +127,7 @@ namespace tracking.Services
                     {
                         string opt = String.Format("{0: dd MMM yyyy}", ship.ActDepartureDate);
                         Desc = ReplaceParam.MakeStringWithParams(flow.Description, new string[] { ship.DepVessel, ship.VoyageNo, opt });
-                        SubDesc = String.Format("{0}  {1: dd/MM/yyyy}", ship.DepShortName, ship.ActDepartureDate);
+                        SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.DepShortName, ship.ActDepartureDate);
                     }
                     break;
                 }
@@ -135,9 +135,9 @@ namespace tracking.Services
                 {
                     if (DateTime.Now.Date >= ship.ActDepartureDate.Date)
                     {
-                        string opt = String.Format("{0} on {1: dd MMM yyyy}", ship.DepShortName, ship.ActDepartureDate);
-                        Desc = ReplaceParam.MakeStringWithParams(flow.Description, new string[] { ship.DepShortName, ship.CreatedBy, opt });
-                        SubDesc = String.Format("{0}  {1: dd/MM/yyyy}", ship.DepShortName, ship.ActDepartureDate);
+                        string opt = String.Format("{0: dd MMM yyyy}", ship.ActDepartureDate);
+                        Desc = ReplaceParam.MakeStringWithParams(flow.Description, new string[] { ship.DepShortName, ship.VoyageNo, ship.DepShortName, opt });
+                        SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.DepShortName, ship.ActDepartureDate);
                     }
                     break;
                 }
@@ -145,7 +145,7 @@ namespace tracking.Services
                     if (DateTime.Now.Date >= ship.ActDepartureDate.Date)
                     {
                         Desc = "";
-                        SubDesc = String.Format("{0}  {1: dd/MM/yyyy}", ship.DestShortName, ship.EstArrivalDate);
+                        SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.DestShortName, ship.EstArrivalDate);
                     }
                     break; 
             }

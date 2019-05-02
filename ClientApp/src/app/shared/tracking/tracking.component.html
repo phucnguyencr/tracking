@@ -1,5 +1,6 @@
-<div class="alert alert-info" [hidden]="isShow" [innerHTML]="errString">
-
+<div class="alert alert-info" [hidden]="isShow">
+  <label>No any data found ! Please contact us for further info. </label>
+  <a routerLink="/"> Click here to go back Home page</a>
 </div>
 <div [hidden]="!isShow">
   <div class="row">
@@ -12,35 +13,38 @@
   </div>
   <br/>
   
-  <mat-horizontal-stepper labelPosition="bottom" #stepper>
+  <mat-horizontal-stepper labelPosition="bottom">
     <ng-template matStepperIcon="number">
       <mat-icon>done</mat-icon>
     </ng-template>
+    <ng-template matStepperIcon="edit">
+      <mat-icon>check</mat-icon>
+    </ng-template>
     <mat-step>
       <ng-template matStepLabel>
-        <h4><span class="badge badge-success">VNHPH</span></h4>
+        <h4><span class="badge badge-success">{{shipData.depShortName}}</span></h4>
         Place of Receipt
       </ng-template>
     </mat-step>
-    <mat-step>
+    <mat-step [completed]="isLoading">
       <ng-template matStepLabel>
-        <h4><span class="badge badge-success">VNHPH</span></h4>
+        <h4><span class="badge badge-success">{{shipData.depShortName}}</span></h4>
         Port of Loading
-        <br/><strong>Act. Departure 15/12/2018</strong>
+        <br/><strong>Act. Departure {{shipData.actDepartureDate | date:'dd/MM/yyyy'}}</strong>
       </ng-template>
     </mat-step>
-    <mat-step>
+    <mat-step [completed]="isDischarged">
       <ng-template matStepLabel>
-        <h4><span class="badge badge-success">KRPUS</span></h4>
+        <h4><span class="badge badge-success">{{shipData.destShortName}}</span></h4>
         Port of Discharge Est
-        <br/><strong>Est. Arrival 15/12/2018</strong>
+        <br/><strong>Est. Discharge {{shipData.estDischargeDate | date:'dd/MM/yyyy'}}</strong>
       </ng-template>
     </mat-step>
-    <mat-step>
+    <mat-step [completed]="isDelivery">
       <ng-template matStepLabel>
-        <h4><span class="badge badge-success">MXZLO</span></h4>
+        <h4><span class="badge badge-success">{{shipData.destShortName}}</span></h4>
         Place of Delivery
-        <br/><strong>Est. Arrival 12/01/2019</strong>
+        <br/><strong>Est. Arrival {{shipData.estArrivalDate | date:'dd/MM/yyyy'}}</strong>
       </ng-template>
     </mat-step>
   </mat-horizontal-stepper>
@@ -52,34 +56,18 @@
           <h6 class="my-0 text-blue text-shadow">Shipment Activities</h6>
         </div>
         <div class="card-body">
-          <mat-vertical-stepper [linear]="false">
+          <mat-vertical-stepper [linear]="false" #stepper>
             <ng-template matStepperIcon="number">
               <mat-icon>done</mat-icon>
             </ng-template>
             <ng-template matStepperIcon="edit">
               <mat-icon>check</mat-icon>
             </ng-template>
-            <mat-step>
+            <mat-step *ngFor="let flow of flowData" [completed]="true">
               <ng-template matStepLabel>
-                Place of Receipt
-              </ng-template>
-            </mat-step>
-            <mat-step>
-              <ng-template matStepLabel>
-                Port of Loading
-                <br/><strong>Act. Departure 15/12/2018</strong>
-              </ng-template>
-            </mat-step>
-            <mat-step>
-              <ng-template matStepLabel>
-                Port of Discharge Est
-                <br/><strong>Est. Arrival 15/12/2018</strong>
-              </ng-template>
-            </mat-step>
-            <mat-step>
-              <ng-template matStepLabel>
-                Place of Delivery
-                <br/><strong>Est. Arrival 12/01/2019</strong>
+                {{flow.name}} <div class="right text-blue">{{flow.subDescription}}</div>
+                <br/>
+                <div class="font-small text-dark">{{flow.description}}</div>
               </ng-template>
             </mat-step>
           </mat-vertical-stepper>
@@ -114,7 +102,7 @@
             <li class="list-group-item">
               <div class="row">
                   <div class="col-5 text-blue">Act. Departure</div>
-                  <div class="col-7 text-right">{{shipData.actDepartureDate}}</div>
+                  <div class="col-7 text-right">{{shipData.actDepartureDate | date:'dd/MM/yyyy'}}</div>
               </div>
             </li>
             <li class="list-group-item">
@@ -138,7 +126,7 @@
             <li class="list-group-item">
               <div class="row">
                   <div class="col-5 text-blue">Est. Arrival</div>
-                  <div class="col-7 text-right">{{shipData.estArrivalDate}}</div>
+                  <div class="col-7 text-right">{{shipData.estArrivalDate | date:'dd/MM/yyyy'}}</div>
               </div>
             </li>
             <li class="list-group-item">

@@ -9,11 +9,12 @@ namespace tracking.Models
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings=true)]
         [MaxLength(200)]
         public string Description { get; set; }
         [Required]
         public Int16 StepNo { get; set; }
+        [Required(AllowEmptyStrings=true)]
         public string SubDescription { get; set; }
     }
 }

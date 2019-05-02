@@ -58,6 +58,10 @@ table,tbody,td {
   color: #0d529c !important;
 }
 
+.text-dark {
+  color: black !important;
+}
+
 .text-shadow {
   text-shadow: -1px 3px 5px #C6C6C6;
 }
@@ -101,6 +105,12 @@ table,tbody,td {
 
 mat-step-header ~ .mat-stepper-vertical-line {
   height: 30px;
+}
+
+mat-step-header > .mat-step-label {
+  width: 100%;
+  color: #0d529c !important;
+  font-weight: 500;
 }
 
 .padding-top {
