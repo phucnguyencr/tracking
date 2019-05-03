@@ -111,8 +111,8 @@ namespace tracking.Services
 
         private Flow mapStr(Flow flow, Shipment ship)
         {
-            var Desc = "TO BE ADVISED";
-            var SubDesc = "";
+            var Desc = "";
+            var SubDesc = "TO BE ADVISED";
             switch(flow.StepNo)
             {
                 case 1:
@@ -142,7 +142,7 @@ namespace tracking.Services
                     break;
                 }
                 default:
-                    if (DateTime.Now.Date >= ship.ActDepartureDate.Date)
+                    if (DateTime.Now.Date >= ship.EstArrivalDate.Date)
                     {
                         Desc = "";
                         SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.DestShortName, ship.EstArrivalDate);

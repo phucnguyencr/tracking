@@ -57,13 +57,9 @@
         </div>
         <div class="card-body">
           <mat-vertical-stepper [linear]="false" #stepper>
-            <ng-template matStepperIcon="number">
-              <mat-icon>done</mat-icon>
-            </ng-template>
-            <ng-template matStepperIcon="edit">
-              <mat-icon>check</mat-icon>
-            </ng-template>
-            <mat-step *ngFor="let flow of flowData" [completed]="true">
+              <ng-template matStepperIcon="number"></ng-template>
+              <ng-template matStepperIcon="done"></ng-template>
+            <mat-step *ngFor="let flow of flowData" [completed]="true" [editable]="false">
               <ng-template matStepLabel>
                 {{flow.name}} <div class="right text-blue">{{flow.subDescription}}</div>
                 <br/>
