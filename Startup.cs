@@ -34,8 +34,7 @@ namespace tracking
                 opt.SuppressModelStateInvalidFilter = true;
             });
             string conStr = Configuration.GetConnectionString("TrackingDatabase");
-            // services.AddDbContext<TrackingContext>(opt => opt.UseSqlServer(conStr));
-            services.AddDbContext<TrackingContext>(opt => opt.UseInMemoryDatabase());
+            services.AddDbContext<TrackingContext>(opt => opt.UseSqlServer(conStr));
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {

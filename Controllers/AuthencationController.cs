@@ -31,12 +31,12 @@ namespace tracking.Controllers
         [AllowAnonymous]
         public dynamic Login([FromBody] Authencation obj)
         {
-            //if (userService.Authencation(obj, _context))
-            //{
+            if (userService.Authencation(obj, _context))
+            {
                 var tokenString = JwtTokenConfig.BuildToken(_config, obj.UserName);
                 return Ok(new { token = tokenString });
-            //}
-            //return Unauthorized();
+            }
+            return Unauthorized();
         }
 
         [HttpPut]
