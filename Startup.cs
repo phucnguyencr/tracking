@@ -23,6 +23,7 @@ namespace tracking
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+			services.AddMvc(opt => opt.Filters.Add(new ErrorHandlingFilter()));
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
@@ -35,6 +36,14 @@ namespace tracking
             });
             string conStr = Configuration.GetConnectionString("TrackingDatabase");
             services.AddDbContext<TrackingContext>(opt => opt.UseSqlServer(conStr));
+            services.Configure<IISServerOptions>(options =>
+            {
+                options.AutomaticAuthentication = false;
+            });
+            services.Configure<IISOptions>(options =>
+            {
+                options.ForwardClientCertificate = false;
+            });
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {

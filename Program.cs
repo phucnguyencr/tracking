@@ -22,7 +22,6 @@ namespace tracking
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
-                .UseStartup<Startup>()
-                .UseUrls("http://localhost:5000/");
+                .UseStartup<Startup>();
     }
 }
