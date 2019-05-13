@@ -6,7 +6,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./layout.component.css']
 })
 export class SharedLayoutComponent implements OnInit {
-
+  private homeIMG = './assets/pics/homepage.jpg';
   constructor() { }
 
   ngOnInit() {

@@ -10,7 +10,7 @@ import { ScheduleService } from '../../services/scheduleService';
   providers: [ScheduleService, AppConfig]
 })
 export class SharedHeaderComponent implements OnInit {
-
+  private logoIMG = './assets/pics/logo.png';
   constructor(private scheduleService: ScheduleService) { }
 
   ngOnInit() {

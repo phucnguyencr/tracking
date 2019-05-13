@@ -15,7 +15,7 @@ import { ModalInfoComponent } from '../../modal/modal-info/modal-info.component'
   providers: [ContactService, AppConfig]
 })
 export class SharedContactComponent implements OnInit {
-
+  private supportIMG = './assets/pics/support.png';
   constructor(private contactService: ContactService, private dialogService: DialogService) { }
 
   messageForm = new FormGroup({

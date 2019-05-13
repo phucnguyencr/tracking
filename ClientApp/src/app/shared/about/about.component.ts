@@ -10,7 +10,8 @@ import { isEmpty } from 'lodash';
   providers: [AboutService, AppConfig]
 })
 export class SharedAboutComponent implements OnInit {
-
+  private supportIMG = './assets/pics/support.png';
+  private skypeIMG = './assets/pics/skype.png';
   constructor(private aboutService: AboutService) { }
   title = '';
   description = '';
