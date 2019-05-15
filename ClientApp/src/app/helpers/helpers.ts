@@ -13,8 +13,8 @@ export class Helpers  {
 
     public getTokenExpirationDate(token: string): Date {
         const decoded = jwt_decode(token);
-        if (decoded.exp === undefined) return null;
-        const date = new Date(0); 
+        if (decoded.exp === undefined) { return null; }
+        const date = new Date(0);
         date.setUTCSeconds(decoded.exp);
         return date;
     }
@@ -25,7 +25,7 @@ export class Helpers  {
             return false;
         }
         const date = this.getTokenExpirationDate(token);
-        if(date === undefined) return false;
+        if (date === undefined) { return false; }
         return (date.valueOf() > new Date().valueOf());
     }
 
@@ -54,7 +54,7 @@ export class Helpers  {
     }
 
     private setStorageToken(value: any, isRemoved: boolean = false): void {
-        if(isRemoved) {
+        if (isRemoved) {
             Cookie.delete('id_token');
         } else {
             Cookie.set('id_token', value.token);
