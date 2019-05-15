@@ -13,11 +13,11 @@ namespace tracking.Models
         [MaxLength(20)]
         public string VoyageNo { get; set; }
         [Required]
-        public float Carton { get; set; }
+        public Double Carton { get; set; }
         [Required]
-        public float Weight { get; set; }
+        public Double Weight { get; set; }
         [Required]
-        public float CubicMeter { get; set; }
+        public Double CubicMeter { get; set; }
         [Required]
         [MaxLength(50)]
         public string Origin { get; set; }

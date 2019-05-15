@@ -27,7 +27,7 @@ namespace tracking.Services
                     return context.Shipment.Where(ship => 
                     ship.BillOfLading == condition.FieldFromValue).ToArray();
                 default:
-                    return context.Shipment.Where(ship => ship.IsClosed != Contants.CLOSED).ToArray();
+                    return context.Shipment.Where(ship => !ship.IsClosed).ToArray();
             }
         }
 
