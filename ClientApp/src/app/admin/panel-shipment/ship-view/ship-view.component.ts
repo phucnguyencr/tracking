@@ -21,7 +21,7 @@ import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 export class ShipViewComponent implements OnInit {
 
   dataTable = dataTable;
-  constructor (private router: Router, private dataService: DataService, private shipService: ShipmentService, 
+  constructor (private router: Router, private dataService: DataService, private shipService: ShipmentService,
     private calendar: NgbCalendar, private dialogService: DialogService) {}
   shipForm = new FormGroup({
     checker: new FormControl(0),
@@ -31,11 +31,14 @@ export class ShipViewComponent implements OnInit {
   });
 
   ngOnInit() {
+    this.dataTable.dataArr = [];
+    this.dataTable.headers = [];
+    this.dataTable.rowsNo = 0;
     let info;
     this.dataService.currentMessage.subscribe(data => (
       info = data
     ));
-    if (!isEmpty(info) && isObject(info)) {
+    if (isObject(info) && !isEmpty(info.searchValue)) {
       this.shipForm.setValue({
         checker: info.searchBy,
         billOfLading: info.searchValue.billOfLading || '',
@@ -46,34 +49,31 @@ export class ShipViewComponent implements OnInit {
       this.searchFunc();
     } else {
       this.checkFunc();
-      this.dataTable.dataArr = [];
-      this.dataTable.headers = [];
-      this.dataTable.rowsNo = 0;
     }
   }
 
   onSelect(ship) {
     this.router.navigate([`adminpanel/${shipUri.modify}/${ship.id}`]);
-    this.dataService.changeMessage({ 
-      data: ship, 
-      searchBy: this.shipForm.value.checker, 
-      searchValue: { 
+    this.dataService.changeMessage({
+      data: ship,
+      searchBy: this.shipForm.value.checker,
+      searchValue: {
         fromDate : this.shipForm.value.fromDate,
         toDate: this.shipForm.value.toDate,
         billOfLading: this.shipForm.value.billOfLading
-      } 
+      }
     });
   }
 
   checkFunc() {
     const opt = this.shipForm.value.checker;
-    if(opt === 0) {
+    if (opt === 0) {
       this.resetDateValue();
       this.resetBillValue();
       this.shipForm.controls['billOfLading'].disable();
       this.shipForm.controls['fromDate'].disable();
       this.shipForm.controls['toDate'].disable();
-    } else if(opt === 1) {
+    } else if (opt === 1) {
       this.resetDateValue();
       this.shipForm.controls['billOfLading'].enable();
       this.shipForm.controls['fromDate'].disable();
@@ -100,8 +100,8 @@ export class ShipViewComponent implements OnInit {
       this.openDialog('From Date should be less than To Date');
       return;
     }
-    const fromDate = this.shipForm.value.checker === 0 ? "" : convertDateObjToString(this.shipForm.value.fromDate);
-    const toDate = this.shipForm.value.checker === 0 ? "" : convertDateObjToString(this.shipForm.value.toDate);
+    const fromDate = this.shipForm.value.checker === 0 ? '' : convertDateObjToString(this.shipForm.value.fromDate);
+    const toDate = this.shipForm.value.checker === 0 ? '' : convertDateObjToString(this.shipForm.value.toDate);
     const billNo = this.shipForm.value.billOfLading;
     this.shipService.getList(fromDate, toDate, billNo, this.shipForm.value.checker).subscribe(data => {
       this.dataTable.dataArr = data;

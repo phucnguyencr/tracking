@@ -21,9 +21,9 @@ import { convertDateObjToString, compareDateObj } from '../../../utils/convertDa
 export class ContactViewComponent implements OnInit {
 
   dataTable = dataTable;
-  constructor (private router: Router, private dataService: DataService, private contactService: ContactService, 
+  constructor (private router: Router, private dataService: DataService, private contactService: ContactService,
     private calendar: NgbCalendar, private dialogService: DialogService) {}
-  
+
   contactForm = new FormGroup({
     checker: new FormControl(0),
     fromDate: new FormControl({value: '', disabled: true }, [Validators.maxLength(10), Validators.required]),
@@ -32,26 +32,25 @@ export class ContactViewComponent implements OnInit {
 
   ngOnInit() {
     let info;
+    this.dataTable.dataArr = [];
+    this.dataTable.headers = [];
+    this.dataTable.rowsNo = 0;
     this.dataService.currentMessage.subscribe(data => (
       info = data
     ));
     if (!isEmpty(info) && isObject(info)) {
       this.contactForm.setValue({
-        checker: info.searchBy === "Status" ? 0 : 1,
+        checker: info.searchBy === 'Status' ? 0 : 1,
         fromDate: info.searchValue.fromDate || '',
         toDate: info.searchValue.toDate || ''
       });
-      this.checkFunc(info.searchBy === "Status" ? true : false);
+      this.checkFunc(info.searchBy === 'Status' ? true : false);
       this.searchFunc();
-    } else {
-      this.dataTable.dataArr = [];
-      this.dataTable.headers = [];
-      this.dataTable.rowsNo = 0;
     }
   }
 
   checkFunc(strChecked) {
-    if(strChecked) {
+    if (strChecked) {
       this.contactForm.controls['fromDate'].setValue('');
       this.contactForm.controls['toDate'].setValue('');
       this.contactForm.controls['fromDate'].disable();
@@ -64,13 +63,13 @@ export class ContactViewComponent implements OnInit {
 
   onSelect(contact) {
     this.router.navigate([`adminpanel/${contactUri.read}/${contact.id}`]);
-    this.dataService.changeMessage({ 
-      data: contact, 
-      searchBy: this.contactForm.value.checker === 0 ? "Status" : "CreatedDate", 
-      searchValue: { 
+    this.dataService.changeMessage({
+      data: contact,
+      searchBy: this.contactForm.value.checker === 0 ? 'Status' : 'CreatedDate',
+      searchValue: {
         fromDate : this.contactForm.value.fromDate,
         toDate: this.contactForm.value.toDate
-      } 
+      }
     });
   }
 
@@ -79,8 +78,8 @@ export class ContactViewComponent implements OnInit {
       this.openDialog('From Date should be less than To Date');
       return;
     }
-    const fromDate = this.contactForm.value.checker === 0 ? "" : convertDateObjToString(this.contactForm.value.fromDate);
-    const toDate = this.contactForm.value.checker === 0 ? "" : convertDateObjToString(this.contactForm.value.toDate);
+    const fromDate = this.contactForm.value.checker === 0 ? '' : convertDateObjToString(this.contactForm.value.fromDate);
+    const toDate = this.contactForm.value.checker === 0 ? '' : convertDateObjToString(this.contactForm.value.toDate);
     this.contactService.getContact(fromDate, toDate, this.contactForm.value.checker).subscribe(data => {
       this.dataTable.dataArr = data;
       this.dataTable.headers = ['No.', 'Full Name', 'Company', 'Email', 'Phone', ''];

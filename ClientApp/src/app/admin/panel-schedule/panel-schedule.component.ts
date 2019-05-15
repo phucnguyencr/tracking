@@ -28,9 +28,9 @@ export class PanelScheduleComponent implements OnInit {
     const fileBrowser = this.fileInput.nativeElement;
     if (fileBrowser.files && fileBrowser.files[0]) {
       const extension = this.fileInfo.split('.').pop();
-      if(extension === 'xls' || extension === 'xlsx') {
+      if (extension === 'xls' || extension === 'xlsx') {
         const formData = new FormData();
-        formData.append("excel", fileBrowser.files[0]);
+        formData.append('excel', fileBrowser.files[0]);
         this.scheduleService.uploadFile(formData).subscribe(result => {
           this.openDialog(result === null ? true : false);
         });
@@ -43,7 +43,7 @@ export class PanelScheduleComponent implements OnInit {
       this.dialogService.addDialog(ModalInfoComponent, {
         title: 'Information',
         message: 'File is uploaded successfully.'
-      }); 
+      });
     } else {
       this.dialogService.addDialog(ModalWarningComponent, {
         title: 'Warning',

@@ -19,19 +19,18 @@ export class UserViewComponent implements OnInit {
   constructor (private router: Router, private dataService: DataService, private userService: UserService) {}
 
   ngOnInit() {
+    this.dataTable.dataArr = [];
+    this.dataTable.headers = [];
+    this.dataTable.rowsNo = 0;
     this.userService.getUsers().subscribe(data => {
-      if(!isEmpty(data)) {
+      if (!isEmpty(data)) {
         this.dataTable.dataArr = data;
         this.dataTable.headers = ['No.', 'Full Name', 'User Name', 'Email', 'Status', ''];
         this.dataTable.rowsNo = size(this.dataTable.dataArr);
-      } else {
-        this.dataTable.dataArr = [];
-        this.dataTable.headers = [];
-        this.dataTable.rowsNo = 0;
       }
     });
   }
-  
+
   onSelect(user) {
     this.router.navigate([`adminpanel/${userUri.modify}/${user.id}`]);
     this.dataService.changeMessage(user);

@@ -19,15 +19,14 @@ export class FlowViewComponent implements OnInit {
   constructor(private router: Router, private dataService: DataService, private flowService: FlowService) { }
 
   ngOnInit() {
+    this.dataTable.dataArr = [];
+    this.dataTable.headers = [];
+    this.dataTable.rowsNo = 0;
     this.flowService.getFlows().subscribe(data => {
-      if(!isEmpty(data)) {
+      if (!isEmpty(data)) {
         this.dataTable.dataArr = data;
         this.dataTable.headers = ['No.', 'Name', 'Step No', ''];
         this.dataTable.rowsNo = size(this.dataTable.dataArr);
-      } else {
-        this.dataTable.dataArr = [];
-        this.dataTable.headers = [];
-        this.dataTable.rowsNo = 0;
       }
     });
   }
