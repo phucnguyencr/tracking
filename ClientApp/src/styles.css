@@ -103,6 +103,18 @@ table,tbody,td {
   font-size: small;
 }
 
+.font-xsmall {
+  font-size: x-small;
+}
+
+.font-large {
+  font-size: x-large;
+}
+
+.font-bold {
+  font-weight: 450;
+}
+
 mat-step-header ~ .mat-stepper-vertical-line {
   height: 30px;
 }
