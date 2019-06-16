@@ -122,7 +122,7 @@ mat-step-header ~ .mat-stepper-vertical-line {
 mat-step-header > .mat-step-label {
   width: 100%;
   color: #0d529c !important;
-  font-weight: 500;
+  font-size: small;
 }
 
 .padding-top {

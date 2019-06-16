@@ -40,19 +40,22 @@
                       <label>Cartons</label>
                       <input type="number" class="form-control" 
                       placeholder="Carton Quantity"
-                      formControlName="carton">
+                      formControlName="carton"
+                      min="0">
                     </div>
                     <div class="col-md-4">
                       <label>Weight</label>
                       <input type="number" class="form-control" 
                       placeholder="Weight"
-                      formControlName="weight">
+                      formControlName="weight"
+                      min="0">
                     </div>
                     <div class="col-md-4">
                       <label>Cubic Meter</label>
                       <input type="number" class="form-control" 
                       placeholder="Cubic Meter"
-                      formControlName="cubicMeter">
+                      formControlName="cubicMeter"
+                      min="0">
                     </div>
                   </div>
                 </div>
@@ -84,9 +87,9 @@
                       <input class="form-control" placeholder="yyyy-mm-dd"
                         name="dp" formControlName="transArrivalDate" 
                         ngbDatepicker 
-                        #d5="ngbDatepicker">
+                        #d1="ngbDatepicker">
                       <div class="input-group-append">
-                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d5.toggle()" type="button"></button>
+                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d1.toggle()" type="button"></button>
                       </div>
                     </div>
                   </div>
@@ -96,9 +99,9 @@
                       <input class="form-control" placeholder="yyyy-mm-dd"
                         name="dp" formControlName="transDepartureDate" 
                         ngbDatepicker 
-                        #d6="ngbDatepicker">
+                        #d2="ngbDatepicker">
                       <div class="input-group-append">
-                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d6.toggle()" type="button"></button>
+                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d2.toggle()" type="button"></button>
                       </div>
                     </div>
                   </div>
@@ -148,9 +151,9 @@
                       <input class="form-control" placeholder="yyyy-mm-dd"
                         name="dp" formControlName="actDepartureDate" 
                         ngbDatepicker 
-                        #d1="ngbDatepicker">
+                        #d3="ngbDatepicker">
                       <div class="input-group-append">
-                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d1.toggle()" type="button"></button>
+                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d3.toggle()" type="button"></button>
                       </div>
                     </div>
                   </div>
@@ -200,9 +203,9 @@
                       <input class="form-control" placeholder="yyyy-mm-dd" 
                       formControlName="estDischargeDate" 
                       ngbDatepicker 
-                      #d2="ngbDatepicker">
+                      #d4="ngbDatepicker">
                       <div class="input-group-append">
-                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d2.toggle()" type="button"></button>
+                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d4.toggle()" type="button"></button>
                       </div>
                     </div>
                   </div>
@@ -221,9 +224,9 @@
                       <input class="form-control" placeholder="yyyy-mm-dd" 
                       formControlName="estArrivalDate" 
                       ngbDatepicker 
-                      #d3="ngbDatepicker">
+                      #d5="ngbDatepicker">
                       <div class="input-group-append">
-                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d3.toggle()" type="button"></button>
+                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d5.toggle()" type="button"></button>
                       </div>
                     </div>
                   </div>
@@ -266,9 +269,9 @@
                       <input class="form-control" placeholder="yyyy-mm-dd" 
                       formControlName="bookedDate" 
                       ngbDatepicker 
-                      #d4="ngbDatepicker">
+                      #d6="ngbDatepicker">
                       <div class="input-group-append">
-                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d4.toggle()" type="button"></button>
+                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="d6.toggle()" type="button"></button>
                       </div>
                     </div>
                   </div>

@@ -16,7 +16,7 @@ export class ShipmentService extends BaseService {
 
   getList (fromDate, toDate, billNo, searchBy): Observable<any> {
     let byField = 'Status';
-    switch(searchBy) {
+    switch (searchBy) {
       case 1:
         byField = 'BillOfLading';
         fromDate = billNo;
@@ -34,12 +34,14 @@ export class ShipmentService extends BaseService {
     return this.http.post(`${this.pathShipAPI}/search`, searchInfo, super.header(true)).pipe(
     catchError(super.handleError));
   }
-  
+
   createInfo (shipData): Observable<any> {
     shipData.actDepartureDate = convertDateObjToString(shipData.actDepartureDate);
     shipData.bookedDate = convertDateObjToString(shipData.bookedDate);
     shipData.estArrivalDate = convertDateObjToString(shipData.estArrivalDate);
     shipData.estDischargeDate = convertDateObjToString(shipData.estDischargeDate);
+    shipData.transDepartureDate = convertDateObjToString(shipData.transDepartureDate);
+    shipData.transArrivalDate = convertDateObjToString(shipData.transArrivalDate);
     return this.http.post(`${this.pathShipAPI}/create`, shipData, super.header(true)).pipe(
     catchError(super.handleError));
   }
@@ -54,6 +56,8 @@ export class ShipmentService extends BaseService {
     shipData.bookedDate = convertDateObjToString(shipData.bookedDate);
     shipData.estArrivalDate = convertDateObjToString(shipData.estArrivalDate);
     shipData.estDischargeDate = convertDateObjToString(shipData.estDischargeDate);
+    shipData.transDepartureDate = convertDateObjToString(shipData.transDepartureDate);
+    shipData.transArrivalDate = convertDateObjToString(shipData.transArrivalDate);
     return this.http.put(`${this.pathShipAPI}/update/${id}`, shipData, super.header(true)).pipe(
     catchError(super.handleError));
   }

@@ -22,43 +22,50 @@
     </ng-template>
     <mat-step>
       <ng-template matStepLabel>
-        <h4><span class="badge badge-success">{{shipData.depShortName}}</span></h4>
-        Place of Receipt
+        <h5><span class="badge badge-success">{{shipData.depShortName}}</span></h5>
+        <span matTooltip="Place of Receipt">
+          Place of Receipt
+        </span>
       </ng-template>
     </mat-step>
     <mat-step [completed]="isLoading">
       <ng-template matStepLabel>
-        <h4><span class="badge badge-success">{{shipData.depShortName}}</span></h4>
-        Port of Loading
-        <br/><strong>Act. Departure {{shipData.actDepartureDate | date:'dd/MM/yyyy'}}</strong>
+        <h5><span class="badge badge-success">{{shipData.depShortName}}</span></h5>
+        <span matTooltip="Act. Departure">
+          Port of Loading<br/><strong>Act. Departure <br/> {{shipData.actDepartureDate | date:'dd/MM/yyyy'}}</strong>
+        </span>
       </ng-template>
     </mat-step>
     <mat-step [completed]="isLoading">
       <ng-template matStepLabel>
-        <h4><span class="badge badge-success">{{shipData.transShortName}}</span></h4>
-        Port of Transshipment
-        <br/><strong>Arrival Date {{shipData.transArrivalDate | date:'dd/MM/yyyy'}}</strong>
+        <h5><span class="badge badge-success">{{shipData.transShortName}}</span></h5>
+        <span matTooltip="Port of Transshipment">
+          Port of Transshipment<br/><strong>Arrival Date <br/> {{shipData.transArrivalDate | date:'dd/MM/yyyy'}}</strong>
+        </span>
       </ng-template>
     </mat-step>
     <mat-step [completed]="isLoading">
       <ng-template matStepLabel>
-        <h4><span class="badge badge-success">{{shipData.transShortName}}</span></h4>
-        Port of Transshipment
-        <br/><strong>Departure Date {{shipData.transDepartureDate | date:'dd/MM/yyyy'}}</strong>
+        <h5><span class="badge badge-success">{{shipData.transShortName}}</span></h5>
+        <span matTooltip="Port of Transshipment">
+          Port of Transshipment<br/><strong>Departure Date <br/> {{shipData.transDepartureDate | date:'dd/MM/yyyy'}}</strong>
+        </span>
       </ng-template>
     </mat-step>
     <mat-step [completed]="isDischarged">
       <ng-template matStepLabel>
-        <h4><span class="badge badge-success">{{shipData.destShortName}}</span></h4>
-        Port of Discharge Est
-        <br/><strong>Est. Discharge {{shipData.estDischargeDate | date:'dd/MM/yyyy'}}</strong>
+        <h5><span class="badge badge-success">{{shipData.destShortName}}</span></h5>
+        <span matTooltip="Port of Discharge Est">
+          Port of Discharge Est<br/><strong>Est. Discharge <br/> {{shipData.estDischargeDate | date:'dd/MM/yyyy'}}</strong>
+        </span>
       </ng-template>
     </mat-step>
     <mat-step [completed]="isDelivery">
       <ng-template matStepLabel>
-        <h4><span class="badge badge-success">{{shipData.destShortName}}</span></h4>
-        Place of Delivery
-        <br/><strong>Est. Arrival {{shipData.estArrivalDate | date:'dd/MM/yyyy'}}</strong>
+        <h5><span class="badge badge-success">{{shipData.destShortName}}</span></h5>
+        <span matTooltip="Place of Delivery">
+            Place of Delivery<br/><strong>Est. Arrival <br/> {{shipData.estArrivalDate | date:'dd/MM/yyyy'}}</strong>
+        </span>
       </ng-template>
     </mat-step>
   </mat-horizontal-stepper>

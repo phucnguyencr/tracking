@@ -112,7 +112,7 @@ namespace tracking.Services
         private Flow mapStr(Flow flow, Shipment ship)
         {
             var Desc = "";
-            var SubDesc = "TO BE ADVISED";
+            var SubDesc = "";
             switch(flow.StepNo)
             {
                 case 1:

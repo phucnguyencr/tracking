@@ -79,6 +79,9 @@ namespace tracking_api.Controllers
             objDB.ArrVessel = ship.ArrVessel;
             objDB.ArrContainer = ship.ArrContainer;
             objDB.EstArrivalDate = ship.EstArrivalDate;
+            objDB.TransShortName = ship.TransShortName;
+            objDB.TransArrivalDate = ship.TransArrivalDate;
+            objDB.TransDepartureDate = ship.TransDepartureDate;
             await shipService.Update(objDB, _context);
             return NoContent();
         }

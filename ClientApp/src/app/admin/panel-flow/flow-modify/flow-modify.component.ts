@@ -85,6 +85,10 @@ export class FlowModifyComponent implements OnInit {
     }
   }
 
+  backFunc() {
+    this.router.navigate([`adminpanel/${flowUri.root}`]);
+  }
+
   openDialog(msgErr: any) {
     this.dialogService.addDialog(ModalWarningComponent, {
       title: 'Validation Error',
