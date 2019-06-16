@@ -23,12 +23,17 @@ namespace tracking.Models
         public string Origin { get; set; }
         [Required]
         [MaxLength(10)]
+        public string TransShortName { get; set; }
+        public DateTime TransArrivalDate { get; set; }
+        public DateTime TransDepartureDate { get; set; }
+        [Required]
+        [MaxLength(10)]
         public string DepShortName { get; set; }
         [Required]
         [MaxLength(30)]
         public string DepVessel { get; set; }
         [Required]
-        [MaxLength(20)]
+        [MaxLength(100)]
         public string DepContainer { get; set; }
         public DateTime ActDepartureDate { get; set; }
         [Required]
@@ -41,7 +46,7 @@ namespace tracking.Models
         [MaxLength(30)]
         public string ArrVessel { get; set; }
         [Required]
-        [MaxLength(20)]
+        [MaxLength(100)]
         public string ArrContainer { get; set; }
         public DateTime EstArrivalDate { get; set; }
         public DateTime EstDischargeDate { get; set; }

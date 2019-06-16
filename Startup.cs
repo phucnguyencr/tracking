@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +28,7 @@ namespace tracking
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-            
+
             JwtTokenConfig.AddAuthentication(services, Configuration);
             services.Configure<ApiBehaviorOptions>(opt =>
             {
@@ -51,6 +50,7 @@ namespace tracking
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
             app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -61,7 +61,6 @@ namespace tracking
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
-
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");

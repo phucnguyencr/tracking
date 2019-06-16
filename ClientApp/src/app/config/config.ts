@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 
 @Injectable()
 
@@ -6,18 +6,18 @@ export class AppConfig {
 
     private _config: { [key: string]: string };
 
-    constructor() {
-        const hostName = location.origin;
+    constructor(@Inject('BASE_URL') baseUrl: string) {
+        const hostname = `${baseUrl }tracking`;
         this._config = {
             passwordDefault: 'c006a4baf80789e96dd6e7627b904e4c', // Vosa@123$$$
-            authAPI: `${hostName}/tracking/authencation`,
-            scheduleAPI: `${hostName}/tracking/schedule`,
-            userAPI: `${hostName}/tracking/users`,
-            contactAPI: `${hostName}/tracking/contact`,
-            contactActivityAPI: `${hostName}/tracking/ContactActivity`,
-            aboutAPI: `${hostName}/tracking/about`,
-            flowAPI: `${hostName}/tracking/flow`,
-            shipAPI: `${hostName}/tracking/shipment`,
+            authAPI: `${hostname}/authencation`,
+            scheduleAPI: `${hostname }/schedule`,
+            userAPI: `${hostname }/users`,
+            contactAPI: `${hostname }/contact`,
+            contactActivityAPI: `${hostname }/ContactActivity`,
+            aboutAPI: `${hostname }/about`,
+            flowAPI: `${hostname }/flow`,
+            shipAPI: `${hostname }/shipment`,
         };
 
     }

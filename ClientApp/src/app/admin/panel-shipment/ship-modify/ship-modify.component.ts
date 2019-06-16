@@ -19,7 +19,7 @@ import { AppConfig } from '../../../config/config';
   providers: [ShipmentService, AppConfig]
 })
 export class ShipModifyComponent implements OnInit {
-  constructor(private dialogService: DialogService, private route: ActivatedRoute, 
+  constructor(private dialogService: DialogService, private route: ActivatedRoute,
     private router: Router, private dataService: DataService, private calendar: NgbCalendar, private shipService: ShipmentService) { }
   isCreated = false;
   doneIdx = 0;
@@ -33,16 +33,19 @@ export class ShipModifyComponent implements OnInit {
     weight: new FormControl(0, [Validators.required, Validators.max(9999)]),
     cubicMeter: new FormControl(0, [Validators.required, Validators.max(9999)]),
     origin: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    transShortName: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+    transArrivalDate: new FormControl('', [Validators.required]),
+    transDepartureDate: new FormControl('', [Validators.required]),
     depShortName: new FormControl('', [Validators.required, Validators.maxLength(10)]),
     depVessel: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    depContainer: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+    depContainer: new FormControl('', [Validators.required, Validators.maxLength(100)]),
     destination: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     destShortName: new FormControl('', [Validators.required, Validators.maxLength(10)]),
     actDepartureDate: new FormControl('', [Validators.required]),
     estArrivalDate: new FormControl('', [Validators.required]),
     estDischargeDate: new FormControl('', [Validators.required]),
     arrVessel: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    arrContainer: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+    arrContainer: new FormControl('', [Validators.required, Validators.maxLength(100)]),
     createdBy: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     bookedDate: new FormControl('', [Validators.required])
   });
@@ -50,7 +53,8 @@ export class ShipModifyComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.isCreated = isEmpty(this.id);
-    if(this.isCreated) {
+    if (this.isCreated) {
+      const toDay = this.calendar.getToday();
       this.shipForm.setValue({
         billOfLading: '',
         voyageNo: '',
@@ -58,18 +62,21 @@ export class ShipModifyComponent implements OnInit {
         weight: 0,
         cubicMeter: 0,
         origin: '',
+        transShortName: '',
+        transArrivalDate: toDay,
+        transDepartureDate: toDay,
         depShortName: '',
-        actDepartureDate: this.calendar.getToday(),
+        actDepartureDate: toDay,
         depVessel: '',
         depContainer: '',
         destination: '',
         destShortName: '',
-        estArrivalDate: this.calendar.getToday(),
-        estDischargeDate: this.calendar.getToday(),
+        estArrivalDate: toDay,
+        estDischargeDate: toDay,
         arrVessel: '',
         arrContainer: '',
         createdBy: '',
-        bookedDate: this.calendar.getToday()
+        bookedDate: toDay
       });
     } else {
       this.dataService.currentMessage.subscribe(data => (this.searchInfo = data));
@@ -82,6 +89,9 @@ export class ShipModifyComponent implements OnInit {
           weight: shipData.weight,
           cubicMeter: shipData.cubicMeter,
           origin: shipData.origin,
+          transShortName: shipData.transShortName,
+          transArrivalDate: convertDateToObject(shipData.transArrivalDate),
+          transDepartureDate: convertDateToObject(shipData.transDepartureDate),
           depShortName: shipData.depShortName,
           actDepartureDate: convertDateToObject(shipData.actDepartureDate),
           depVessel: shipData.depVessel,
@@ -102,9 +112,12 @@ export class ShipModifyComponent implements OnInit {
         this.shipForm.controls['cubicMeter'].disable();
         this.shipForm.controls['createdBy'].disable();
         this.shipForm.controls['bookedDate'].disable();
-        if(this.isClosed) {
+        if (this.isClosed) {
           this.shipForm.controls['voyageNo'].disable();
           this.shipForm.controls['origin'].disable();
+          this.shipForm.controls['transShortName'].disable();
+          this.shipForm.controls['transArrivalDate'].disable();
+          this.shipForm.controls['transDepartureDate'].disable();
           this.shipForm.controls['depShortName'].disable();
           this.shipForm.controls['depVessel'].disable();
           this.shipForm.controls['depContainer'].disable();
@@ -137,7 +150,7 @@ export class ShipModifyComponent implements OnInit {
         return;
       }
     } else {
-      if(this.isCreated) {
+      if (this.isCreated) {
         this.shipService.createInfo(this.shipForm.value).subscribe(token => {
           this.router.navigate([`adminpanel/${shipUri.root}`]);
         });
@@ -158,7 +171,7 @@ export class ShipModifyComponent implements OnInit {
   backFunc() {
     this.router.navigate([`adminpanel/${shipUri.root}`]);
   }
-  
+
   openDialog(msgErr: any) {
     this.dialogService.addDialog(ModalWarningComponent, {
       title: 'Validation Error',

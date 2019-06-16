@@ -33,6 +33,20 @@
         <br/><strong>Act. Departure {{shipData.actDepartureDate | date:'dd/MM/yyyy'}}</strong>
       </ng-template>
     </mat-step>
+    <mat-step [completed]="isLoading">
+      <ng-template matStepLabel>
+        <h4><span class="badge badge-success">{{shipData.transShortName}}</span></h4>
+        Port of Transshipment
+        <br/><strong>Arrival Date {{shipData.transArrivalDate | date:'dd/MM/yyyy'}}</strong>
+      </ng-template>
+    </mat-step>
+    <mat-step [completed]="isLoading">
+      <ng-template matStepLabel>
+        <h4><span class="badge badge-success">{{shipData.transShortName}}</span></h4>
+        Port of Transshipment
+        <br/><strong>Departure Date {{shipData.transDepartureDate | date:'dd/MM/yyyy'}}</strong>
+      </ng-template>
+    </mat-step>
     <mat-step [completed]="isDischarged">
       <ng-template matStepLabel>
         <h4><span class="badge badge-success">{{shipData.destShortName}}</span></h4>
