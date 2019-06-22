@@ -16,5 +16,13 @@ namespace tracking.Utils
             }
             return newStr;
         }
+
+        public static string CheckActualOrEstimate(DateTime dateAny)
+        {
+            if (DateTime.Now.Date >= dateAny) {
+                return "Actual ";
+            }
+            return "Estimated ";
+        }
     }
 }

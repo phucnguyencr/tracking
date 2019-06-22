@@ -123,30 +123,37 @@ namespace tracking.Services
                 }
                 case 2:
                 {
-                    if (DateTime.Now.Date >= ship.ActDepartureDate.Date)
-                    {
-                        string opt = String.Format("{0: dd MMM yyyy}", ship.ActDepartureDate);
-                        Desc = ReplaceParam.MakeStringWithParams(flow.Description, new string[] { ship.DepVessel, ship.VoyageNo, opt });
-                        SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.DepShortName, ship.ActDepartureDate);
-                    }
+                    string opt = String.Format("{0: dd MMM yyyy}", ship.ActDepartureDate);
+                    Desc = ReplaceParam.CheckActualOrEstimate(ship.ActDepartureDate.Date) 
+                    + ReplaceParam.MakeStringWithParams(flow.Description, new string[] { opt });
+                    SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.DepShortName, ship.ActDepartureDate);
                     break;
                 }
                 case 3:
                 {
-                    if (DateTime.Now.Date >= ship.ActDepartureDate.Date)
-                    {
-                        string opt = String.Format("{0: dd MMM yyyy}", ship.ActDepartureDate);
-                        Desc = ReplaceParam.MakeStringWithParams(flow.Description, new string[] { ship.DepShortName, ship.VoyageNo, ship.DepShortName, opt });
-                        SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.DepShortName, ship.ActDepartureDate);
-                    }
+                    string opt = String.Format("{0: dd MMM yyyy}", ship.TransArrivalDate);
+                    Desc = ReplaceParam.CheckActualOrEstimate(ship.TransArrivalDate.Date) 
+                    + ReplaceParam.MakeStringWithParams(flow.Description, new string[] { opt });
+                    SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.TransShortName, ship.TransArrivalDate);
+                    break;
+                }
+                case 4:
+                {
+                    string opt = String.Format("{0: dd MMM yyyy}", ship.TransDepartureDate);
+                    Desc = ReplaceParam.CheckActualOrEstimate(ship.TransDepartureDate.Date) 
+                    + ReplaceParam.MakeStringWithParams(flow.Description, new string[] { opt });
+                    SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.TransShortName, ship.TransDepartureDate);
+                    break;
+                }
+                case 5:
+                {
+                    string opt = String.Format("{0: dd MMM yyyy}", ship.EstArrivalDate);
+                    Desc = ReplaceParam.CheckActualOrEstimate(ship.EstArrivalDate.Date) 
+                    + ReplaceParam.MakeStringWithParams(flow.Description, new string[] { opt });
+                    SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.TransShortName, ship.EstArrivalDate);
                     break;
                 }
                 default:
-                    if (DateTime.Now.Date >= ship.EstArrivalDate.Date)
-                    {
-                        Desc = "";
-                        SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.DestShortName, ship.EstArrivalDate);
-                    }
                     break; 
             }
             flow.Description = Desc;

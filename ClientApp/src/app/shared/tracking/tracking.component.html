@@ -36,7 +36,7 @@
         </span>
       </ng-template>
     </mat-step>
-    <mat-step [completed]="isLoading">
+    <mat-step [completed]="isTranArr">
       <ng-template matStepLabel>
         <h5><span class="badge badge-success">{{shipData.transShortName}}</span></h5>
         <span matTooltip="Port of Transshipment">
@@ -44,7 +44,7 @@
         </span>
       </ng-template>
     </mat-step>
-    <mat-step [completed]="isLoading">
+    <mat-step [completed]="isTranDep">
       <ng-template matStepLabel>
         <h5><span class="badge badge-success">{{shipData.transShortName}}</span></h5>
         <span matTooltip="Port of Transshipment">

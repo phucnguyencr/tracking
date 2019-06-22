@@ -16,6 +16,8 @@ export class SharedTrackingComponent implements OnInit {
   shipData = {};
   flowData = [];
   isLoading = false;
+  isTranDep = false;
+  isTranArr = false;
   isDischarged = false;
   isDelivery = false;
   constructor(private route: ActivatedRoute, private shipService: ShipmentService) { }
@@ -23,12 +25,14 @@ export class SharedTrackingComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.shipService.getInfo(this.id).subscribe(data => {
-      if (!isEmpty(data.shipInfo)){
+      if (!isEmpty(data.shipInfo)) {
         this.shipData = data.shipInfo;
         this.flowData = data.flowInfo;
         this.isShow = true;
         const toDay = new Date();
         this.isLoading = toDay >= new Date(data.shipInfo.actDepartureDate);
+        this.isTranDep = toDay >= new Date(data.shipInfo.transDepartureDate);
+        this.isTranArr = toDay >= new Date(data.shipInfo.transArrivalDate);
         this.isDischarged = toDay >= new Date(data.shipInfo.estDischargeDate);
         this.isDelivery = toDay >= new Date(data.shipInfo.estArrivalDate);
       }
