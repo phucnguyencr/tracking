@@ -29,9 +29,9 @@ export class ShipModifyComponent implements OnInit {
   shipForm = new FormGroup({
     billOfLading: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     voyageNo: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-    carton: new FormControl(0, [Validators.required, Validators.max(9999), Validators.min(0)]),
-    weight: new FormControl(0, [Validators.required, Validators.max(9999), Validators.min(0)]),
-    cubicMeter: new FormControl(0, [Validators.required, Validators.max(9999), Validators.min(0)]),
+    carton: new FormControl(0, [Validators.required, Validators.max(99999), Validators.min(0)]),
+    weight: new FormControl(0, [Validators.required, Validators.max(99999), Validators.min(0)]),
+    cubicMeter: new FormControl(0, [Validators.required, Validators.max(99999), Validators.min(0)]),
     origin: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     transShortName: new FormControl('', [Validators.required, Validators.maxLength(10)]),
     transArrivalDate: new FormControl('', [Validators.required]),

@@ -81,15 +81,15 @@ namespace tracking.Services
             System.Globalization.TextInfo textInfo = cultureInfo.TextInfo;
             ship.BillOfLading = textInfo.ToUpper(ship.BillOfLading);
             ship.VoyageNo = textInfo.ToUpper(ship.VoyageNo);
-            ship.Origin = textInfo.ToTitleCase(ship.Origin);
+            ship.Origin = textInfo.ToUpper(ship.Origin);
             ship.DepShortName = textInfo.ToUpper(ship.DepShortName);
-            ship.DepVessel = textInfo.ToTitleCase(ship.DepVessel);
+            ship.DepVessel = textInfo.ToUpper(ship.DepVessel);
             ship.DepContainer = textInfo.ToUpper(ship.DepContainer);
-            ship.Destination = textInfo.ToTitleCase(ship.Destination);
+            ship.Destination = textInfo.ToUpper(ship.Destination);
             ship.DestShortName = textInfo.ToUpper(ship.DestShortName);
-            ship.ArrVessel = textInfo.ToTitleCase(ship.ArrVessel);
+            ship.ArrVessel = textInfo.ToUpper(ship.ArrVessel);
             ship.ArrContainer = textInfo.ToUpper(ship.ArrContainer);
-            ship.CreatedBy = textInfo.ToTitleCase(ship.CreatedBy);
+            ship.CreatedBy = textInfo.ToUpper(ship.CreatedBy);
             return ship;
         }
 
