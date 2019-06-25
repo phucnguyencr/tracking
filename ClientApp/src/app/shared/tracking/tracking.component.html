@@ -6,6 +6,7 @@
   <div class="row">
     <div class="col-4">
         <h3><i class="fa fa-ship text-shadow text-blue set-left"><strong> {{id}}</strong></i></h3>
+        <h5><i class="text-shadow text-blue set-left"><strong>B/L Status: {{shipData.voyageNo}}</strong></i></h5>
     </div>
     <div class="col-8">
       <h4><label class="text-blue text-shadow set-right"><strong> {{shipData.carton}} CARTONS - {{shipData.weight}} kgs - {{shipData.cubicMeter}} cbm</strong></label></h4>
@@ -32,7 +33,7 @@
       <ng-template matStepLabel>
         <h5><span class="badge badge-success">{{shipData.depShortName}}</span></h5>
         <span matTooltip="Act. Departure">
-          Port of Loading<br/><strong>Act. Departure <br/> {{shipData.actDepartureDate | date:'dd/MM/yyyy'}}</strong>
+          Port of Loading<br/><strong>Departure <br/> {{shipData.actDepartureDate | date:'dd/MM/yyyy'}}</strong>
         </span>
       </ng-template>
     </mat-step>
@@ -56,7 +57,7 @@
       <ng-template matStepLabel>
         <h5><span class="badge badge-success">{{shipData.destShortName}}</span></h5>
         <span matTooltip="Port of Discharge Est">
-          Port of Discharge Est<br/><strong>Est. Discharge <br/> {{shipData.estDischargeDate | date:'dd/MM/yyyy'}}</strong>
+          Port of Discharge Est<br/><strong>Discharge <br/> {{shipData.estDischargeDate | date:'dd/MM/yyyy'}}</strong>
         </span>
       </ng-template>
     </mat-step>
@@ -64,7 +65,7 @@
       <ng-template matStepLabel>
         <h5><span class="badge badge-success">{{shipData.destShortName}}</span></h5>
         <span matTooltip="Place of Delivery">
-            Place of Delivery<br/><strong>Est. Arrival <br/> {{shipData.estArrivalDate | date:'dd/MM/yyyy'}}</strong>
+            Place of Delivery<br/><strong>Arrival <br/> {{shipData.estArrivalDate | date:'dd/MM/yyyy'}}</strong>
         </span>
       </ng-template>
     </mat-step>
@@ -118,7 +119,7 @@
             </li>
             <li class="list-group-item">
               <div class="row">
-                  <div class="col-5 text-blue">Act. Departure</div>
+                  <div class="col-5 text-blue">Departure</div>
                   <div class="col-7 text-right">{{shipData.actDepartureDate | date:'dd/MM/yyyy'}}</div>
               </div>
             </li>
@@ -142,7 +143,7 @@
             </li>
             <li class="list-group-item">
               <div class="row">
-                  <div class="col-5 text-blue">Est. Arrival</div>
+                  <div class="col-5 text-blue">Arrival</div>
                   <div class="col-7 text-right">{{shipData.estArrivalDate | date:'dd/MM/yyyy'}}</div>
               </div>
             </li>

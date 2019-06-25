@@ -150,7 +150,7 @@ namespace tracking.Services
                     string opt = String.Format("{0: dd MMM yyyy}", ship.EstArrivalDate);
                     Desc = ReplaceParam.CheckActualOrEstimate(ship.EstArrivalDate.Date) 
                     + ReplaceParam.MakeStringWithParams(flow.Description, new string[] { opt });
-                    SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.TransShortName, ship.EstArrivalDate);
+                    SubDesc = String.Format("{0}{1: dd/MM/yyyy}", ship.DestShortName, ship.EstArrivalDate);
                     break;
                 }
                 default:
