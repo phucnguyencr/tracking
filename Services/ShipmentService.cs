@@ -17,17 +17,19 @@ namespace tracking.Services
                     return context.Shipment.Where(ship => 
                         ship.ActDepartureDate >= DateTime.Parse(condition.FieldFromValue) &&
                         ship.ActDepartureDate <= DateTime.Parse(condition.FieldToValue)
-                    ).ToArray();
+                    ).OrderBy(ship => ship.BillOfLading).ToArray();
                 case "EstArrivalDate":
                     return context.Shipment.Where(ship => 
                         ship.EstArrivalDate >= DateTime.Parse(condition.FieldFromValue) &&
                         ship.EstArrivalDate <= DateTime.Parse(condition.FieldToValue)
-                    ).ToArray();
+                    ).OrderBy(ship => ship.BillOfLading).ToArray();
                 case "BillOfLading":
                     return context.Shipment.Where(ship => 
-                    ship.BillOfLading == condition.FieldFromValue).ToArray();
+                    ship.BillOfLading == condition.FieldFromValue)
+                    .OrderBy(ship => ship.BillOfLading).ToArray();
                 default:
-                    return context.Shipment.Where(ship => !ship.IsClosed).ToArray();
+                    return context.Shipment.Where(ship => !ship.IsClosed)
+                    .OrderBy(ship => ship.BillOfLading).ToArray();
             }
         }
 
