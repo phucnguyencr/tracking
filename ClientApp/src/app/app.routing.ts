@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import { userUri, contactUri, aboutUri, scheduleUri, flowUri, shipUri } from './admin/public/model';
+import { userUri, contactUri, aboutUri, scheduleUri, flowUri, shipUri, importUri } from './admin/public/model';
 import { AuthGuard } from './helpers/activateAuthGuard';
 
 import { LoginComponent } from './login/login.component';
@@ -19,6 +19,7 @@ import { ContactReadComponent } from './admin/panel-contact/contact-read/contact
 import { ContactUpdateComponent } from './admin/panel-contact/contact-update/contact-update.component';
 import { PanelAboutComponent } from './admin/panel-about/panel-about.component';
 import { PanelScheduleComponent } from './admin/panel-schedule/panel-schedule.component';
+import { PanelImportComponent } from './admin/panel-import/panel-import.component';
 import { FlowViewComponent } from './admin/panel-flow/flow-view/flow-view.component';
 import { FlowModifyComponent } from './admin/panel-flow/flow-modify/flow-modify.component';
 import { ShipViewComponent } from './admin/panel-shipment/ship-view/ship-view.component';
@@ -50,6 +51,7 @@ const appRoutes: Routes = [
             { path: contactUri.update, component: ContactUpdateComponent, canActivate: [AuthGuard] },
             { path: aboutUri.update, component: PanelAboutComponent, canActivate: [AuthGuard] },
             { path: scheduleUri.root, component: PanelScheduleComponent, canActivate: [AuthGuard] },
+            { path: importUri.root, component: PanelImportComponent, canActivate: [AuthGuard] },
             { path: flowUri.root, component: FlowViewComponent, canActivate: [AuthGuard] },
             { path: `${flowUri.modify}`, component: FlowModifyComponent, canActivate: [AuthGuard] },
             { path: `${flowUri.modify}/:id`, component: FlowModifyComponent, canActivate: [AuthGuard] },

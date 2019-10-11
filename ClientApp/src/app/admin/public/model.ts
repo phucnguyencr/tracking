@@ -21,6 +21,10 @@ export const scheduleUri = {
   download: 'schedule/download'
 };
 
+export const importUri = {
+  root: 'import'
+};
+
 export const flowUri = {
   root: 'flow',
   modify: 'flow/modify'

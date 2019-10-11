@@ -1,0 +1,28 @@
+<h1>Import Data</h1>
+<hr>
+<div class="card card-register mx-auto mt-5">
+  <div class="card-header">Details</div>
+  <div class="card-body">
+    <form>
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-md-6">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" (change)="fileChange()" #fileInput>
+                <label class="custom-file-label" for="uploadFile">Choose file</label>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block col-md-2" (click)="importFunc()">Process</button>
+          </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6">
+              <label class="text-info">{{fileInfo}}</label>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { userUri, contactUri, aboutUri, scheduleUri, flowUri, shipUri } from '../public/model';
+import { userUri, contactUri, aboutUri, scheduleUri, flowUri, shipUri, importUri } from '../public/model';
 
 @Component({
   selector: 'app-panel-left',
@@ -13,7 +13,7 @@ export class PanelLeftComponent implements OnInit {
   public scheduleUri = scheduleUri;
   public flowUri = flowUri;
   public shipUri = shipUri;
-  
+  public importUri = shipUri;
   constructor() { }
 
   ngOnInit() {

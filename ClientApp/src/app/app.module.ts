@@ -46,6 +46,7 @@ import { FlowViewComponent } from './admin/panel-flow/flow-view/flow-view.compon
 import { FlowModifyComponent } from './admin/panel-flow/flow-modify/flow-modify.component';
 import { ShipViewComponent } from './admin/panel-shipment/ship-view/ship-view.component';
 import { ShipModifyComponent } from './admin/panel-shipment/ship-modify/ship-modify.component';
+import { PanelImportComponent } from './admin/panel-import/panel-import.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { ShipModifyComponent } from './admin/panel-shipment/ship-modify/ship-mod
     FlowModifyComponent,
     ShipViewComponent,
     ShipModifyComponent,
-    SharedTrackingComponent
+    SharedTrackingComponent,
+    PanelImportComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
